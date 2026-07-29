@@ -99,6 +99,82 @@ body {
   letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.25);
 }
 
+/* ── NIVEL SELECTOR ─────────────────────────────────── */
+.nivel-bar {
+  background: var(--surface);
+  border-bottom: 2px solid var(--border);
+  padding: 0 3rem;
+  display: flex;
+  gap: 0;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.nivel-btn {
+  display: flex; align-items: center; gap: .55rem;
+  padding: .85rem 1.5rem .85rem 0;
+  margin-right: 2rem;
+  border: none; border-bottom: 3px solid transparent;
+  background: none; cursor: pointer;
+  font-family: var(--f-body);
+  font-size: .82rem; font-weight: 700;
+  color: var(--dim);
+  letter-spacing: .04em; text-transform: uppercase;
+  transition: color .15s, border-color .15s;
+  line-height: 1;
+  margin-bottom: -2px;
+}
+.nivel-btn:hover { color: var(--text); }
+.nivel-btn.active { color: var(--navy); border-bottom-color: var(--red); }
+.nivel-btn .nbadge {
+  font-size: .58rem; font-weight: 700; letter-spacing: .06em;
+  padding: .18rem .5rem; border-radius: 3px; color: #fff;
+}
+
+/* Panel visibility */
+.nivel-panel { display: none; }
+.nivel-panel.active { display: block; }
+
+/* Posgrado placeholder */
+.pos-placeholder {
+  min-height: 70vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 5rem 3rem;
+  text-align: center;
+}
+.pos-placeholder-icon {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple) 0%, var(--navy) 100%);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+.pos-placeholder-eyebrow {
+  font-size: .62rem; font-weight: 700; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--dim); margin-bottom: .75rem;
+}
+.pos-placeholder-title {
+  font-family: var(--f-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--text); letter-spacing: .04em; line-height: 1;
+  margin-bottom: 1.5rem;
+}
+.pos-placeholder-desc {
+  max-width: 420px; font-size: .88rem; color: var(--muted);
+  line-height: 1.75; margin-bottom: 2rem;
+}
+.pos-chips {
+  display: flex; flex-wrap: wrap; gap: .6rem;
+  justify-content: center; max-width: 560px;
+}
+.pos-chip {
+  font-size: .72rem; font-weight: 600; letter-spacing: .06em;
+  padding: .3rem .9rem; border-radius: 100px;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--muted);
+}
+
 /* ── SHARED SECTION ─────────────────────────────────── */
 .q-section {
   padding: 3.25rem 3rem;
@@ -462,6 +538,21 @@ body {
     <p class="hero-attr">Propuesta estratégica · EEN · UR · 2026</p>
   </div>
 </section>
+
+<!-- ── SELECTOR NIVEL ─────────────────────────────────── -->
+<div class="nivel-bar" role="tablist">
+  <button class="nivel-btn active" id="btn-preg" role="tab" aria-selected="true" onclick="switchNivel('preg')">
+    <span class="nbadge" style="background:var(--navy);">PRE</span>
+    Pregrado
+  </button>
+  <button class="nivel-btn" id="btn-pos" role="tab" aria-selected="false" onclick="switchNivel('pos')">
+    <span class="nbadge" style="background:var(--purple);">POS</span>
+    Posgrado
+  </button>
+</div>
+
+<!-- ══ PANEL PREGRADO ══════════════════════════════════ -->
+<div class="nivel-panel active" id="panel-preg" role="tabpanel">
 
 <!-- ── EL OBJETIVO: CONECTAR ─────────────────────────── -->
 <section class="q-section">
@@ -881,6 +972,42 @@ body {
     </div><!-- end model-pair -->
   </div>
 </section>
+
+
+</div><!-- end panel-preg -->
+
+<!-- ══ PANEL POSGRADO ══════════════════════════════════ -->
+<div class="nivel-panel" id="panel-pos" role="tabpanel">
+  <div class="pos-placeholder">
+    <div class="pos-placeholder-icon">🧩</div>
+    <p class="pos-placeholder-eyebrow">En construcción</p>
+    <h2 class="pos-placeholder-title">Posgrado · Modelo LEGO</h2>
+    <p class="pos-placeholder-desc">
+      La propuesta de posgrado se está diseñando sobre el modelo de bloques modulares apilables:
+      fundamentos compartidos, profundizaciones intercambiables y microcredenciales con valor propio.
+    </p>
+    <div class="pos-chips">
+      <span class="pos-chip">Especializaciones</span>
+      <span class="pos-chip">Maestrías</span>
+      <span class="pos-chip">Doctorado</span>
+      <span class="pos-chip">Microcredenciales</span>
+      <span class="pos-chip">IA para Negocios</span>
+      <span class="pos-chip">Análisis de Datos</span>
+      <span class="pos-chip">Finanzas Cuantitativas</span>
+    </div>
+  </div>
+</div><!-- end panel-pos -->
+
+<script>
+function switchNivel(key) {
+  ['preg','pos'].forEach(k => {
+    document.getElementById('panel-' + k).classList.toggle('active', k === key);
+    const btn = document.getElementById('btn-' + k);
+    btn.classList.toggle('active', k === key);
+    btn.setAttribute('aria-selected', k === key ? 'true' : 'false');
+  });
+}
+</script>
 
 </body>
 </html>
