@@ -384,6 +384,67 @@ body {
   color: var(--muted);
   line-height: 1.65;
 }
+
+/* ── CLOSING SECTION ────────────────────────────────── */
+.closing-lead {
+  font-size: .92rem;
+  color: rgba(255,255,255,.62);
+  line-height: 1.8;
+  max-width: 640px;
+  margin-bottom: 2.5rem;
+  border-left: 2px solid rgba(218,9,33,.5);
+  padding-left: 1.1rem;
+}
+
+.closing-three {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 760px;
+}
+
+.closing-item {
+  display: flex;
+  gap: 2rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  align-items: flex-start;
+}
+.closing-item:last-child { border-bottom: none; }
+
+.closing-item-num {
+  font-family: var(--f-display);
+  font-size: 2rem;
+  letter-spacing: .04em;
+  color: rgba(255,255,255,.12);
+  flex-shrink: 0;
+  width: 36px;
+  padding-top: 2px;
+  line-height: 1;
+}
+
+.closing-item-title {
+  font-size: .88rem;
+  font-weight: 700;
+  color: rgba(255,255,255,.9);
+  margin-bottom: .5rem;
+  line-height: 1.3;
+}
+
+.closing-item-desc {
+  font-size: .83rem;
+  color: rgba(255,255,255,.55);
+  line-height: 1.75;
+}
+
+.closing-footer {
+  margin-top: 2.5rem;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.2);
+}
 </style>
 </head>
 <body>
@@ -764,104 +825,70 @@ body {
   </div>
 </section>
 
-<!-- ── 04: PREGRADO — DETALLE ────────────────────────── -->
-<section class="q-section" style="background:var(--surface);">
+<!-- ── 04: REFLEXIÓN FINAL ─────────────────────────────── -->
+<section class="q-section" style="background:var(--navy);">
   <div class="inner">
-    <p class="q-number" style="color:var(--navy);">04 · Pregrado</p>
-    <h2 class="q-heading">Modelo Jenga:<br>base sólida, trayectoria propia</h2>
+    <p class="q-number" style="color:rgba(255,255,255,.4);">04 · Síntesis</p>
+    <h2 class="q-heading" style="color:#fff;">Una arquitectura curricular<br>al servicio de tres objetivos</h2>
 
-    <p class="demand-intro">
-      El pregrado forma <strong>ciudadanos globales y profesionales sólidos</strong>: personas capaces de actuar
-      en entornos cambiantes, con rigor analítico, perspectiva interdisciplinaria y compromiso social.
-      La estructura curricular garantiza una base inamovible y permite al estudiante construir su énfasis
-      sin comprometer la coherencia del conjunto.
+    <p class="closing-lead">
+      Los modelos Jenga y LEGO no son metáforas decorativas: son principios de diseño que
+      responden a necesidades distintas pero complementarias. Su combinación —una base sólida compartida
+      en pregrado, módulos apilables en posgrado— es la forma concreta en que la Escuela materializa
+      su propuesta de valor.
     </p>
 
-    <div class="pregrado-grid">
+    <div class="closing-three">
 
-      <!-- Visual Jenga ampliado -->
-      <div class="preg-visual">
-        <div class="preg-visual-legend">
-          <span class="preg-leg-item"><span class="preg-leg-dot" style="background:var(--navy);"></span>Núcleo analítico</span>
-          <span class="preg-leg-item"><span class="preg-leg-dot" style="background:var(--purple);"></span>Concentración</span>
-          <span class="preg-leg-item"><span class="preg-leg-dot" style="background:var(--red);"></span>Electivas</span>
-          <span class="preg-leg-item"><span class="preg-leg-dot" style="background:var(--gold);"></span>Integración</span>
-        </div>
-        <svg viewBox="0 0 220 240" width="100%" style="max-width:240px;" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Núcleo obligatorio: 3 rows -->
-          <rect x="10" y="198" width="60" height="20" rx="2" fill="#190056"/>
-          <rect x="80" y="198" width="60" height="20" rx="2" fill="#190056"/>
-          <rect x="150" y="198" width="60" height="20" rx="2" fill="#190056"/>
-          <rect x="10" y="174" width="60" height="20" rx="2" fill="#190056"/>
-          <rect x="80" y="174" width="60" height="20" rx="2" fill="#190056"/>
-          <rect x="150" y="174" width="60" height="20" rx="2" fill="#190056"/>
-          <rect x="10" y="150" width="60" height="20" rx="2" fill="#190056"/>
-          <rect x="80" y="150" width="60" height="20" rx="2" fill="#190056"/>
-          <rect x="150" y="150" width="60" height="20" rx="2" fill="#190056"/>
-          <!-- Concentración rows -->
-          <rect x="10" y="126" width="60" height="20" rx="2" fill="#3100A0"/>
-          <rect x="80" y="126" width="60" height="20" rx="2" fill="#3100A0"/>
-          <rect x="150" y="129" width="60" height="20" rx="2" fill="#3100A0" opacity=".3" stroke="#3100A0" stroke-width="1" stroke-dasharray="3 2"/>
-          <rect x="10" y="102" width="60" height="20" rx="2" fill="#3100A0"/>
-          <rect x="86" y="102" width="60" height="20" rx="2" fill="#DA0921"/>
-          <rect x="152" y="102" width="60" height="20" rx="2" fill="#3100A0"/>
-          <!-- Electivas -->
-          <rect x="18" y="78" width="58" height="20" rx="2" fill="#DA0921" opacity=".85"/>
-          <rect x="86" y="78" width="58" height="20" rx="2" fill="#DA0921" opacity=".85"/>
-          <rect x="122" y="78" width="46" height="20" rx="2" fill="#DA0921" opacity=".35" stroke="#DA0921" stroke-width="1" stroke-dasharray="3 2"/>
-          <!-- Integradora top -->
-          <rect x="46" y="54" width="128" height="20" rx="2" fill="#C8A03A" opacity=".9"/>
-          <rect x="68" y="30" width="84" height="20" rx="2" fill="#C8A03A" opacity=".65"/>
-          <!-- Bracket labels -->
-          <line x1="6" y1="148" x2="6" y2="220" stroke="#190056" stroke-width="2" stroke-linecap="round"/>
-          <text x="2" y="190" font-family="Raleway,sans-serif" font-size="6.5" fill="#190056" writing-mode="tb-rl" text-anchor="middle" transform="rotate(180 3 188)">Núcleo</text>
-          <line x1="6" y1="100" x2="6" y2="146" stroke="#3100A0" stroke-width="2" stroke-linecap="round"/>
-          <text x="2" y="130" font-family="Raleway,sans-serif" font-size="6.5" fill="#3100A0" writing-mode="tb-rl" text-anchor="middle" transform="rotate(180 3 126)">Conc.</text>
-          <line x1="6" y1="52" x2="6" y2="98" stroke="#DA0921" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </div>
-
-      <!-- 4 diferenciadores -->
-      <div class="preg-diffs">
-        <div class="preg-diff-card" style="--accent:var(--navy);">
-          <div class="preg-diff-icon" style="background:rgba(25,0,86,.1);">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="11" width="14" height="3" rx="1" fill="#190056"/><rect x="1" y="7" width="14" height="3" rx="1" fill="#190056" opacity=".6"/><rect x="1" y="3" width="14" height="3" rx="1" fill="#190056" opacity=".3"/></svg>
-          </div>
-          <div>
-            <div class="preg-diff-title">Núcleo de formación crítica</div>
-            <p class="preg-diff-desc">Pensamiento crítico, literacidad de datos y fundamentos económico-financieros forman la base irreducible. No se negocian — son la garantía de solidez profesional sin importar la concentración elegida.</p>
-          </div>
-        </div>
-        <div class="preg-diff-card" style="--accent:var(--purple);">
-          <div class="preg-diff-icon" style="background:rgba(49,0,160,.1);">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="#3100A0" stroke-width="1.8" stroke-linecap="round"/></svg>
-          </div>
-          <div>
-            <div class="preg-diff-title">Currículo flexible y modular</div>
-            <p class="preg-diff-desc">Concentraciones y electivas permiten profundizar sin desestabilizar la estructura. El estudiante elige su énfasis dentro de un marco coherente: economía aplicada, finanzas, negocios internacionales o política pública.</p>
-          </div>
-        </div>
-        <div class="preg-diff-card" style="--accent:var(--red);">
-          <div class="preg-diff-icon" style="background:rgba(218,9,33,.1);">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="#DA0921" stroke-width="1.5"/><path d="M5.5 8.5l2 2 3-3.5" stroke="#DA0921" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div>
-            <div class="preg-diff-title">Aprendizaje por retos reales</div>
-            <p class="preg-diff-desc">Proyectos integrados con organizaciones, entidades públicas y emprendimientos desde semestres tempranos. La teoría encuentra fricción con el mundo real: no como añadido sino como método central.</p>
-          </div>
-        </div>
-        <div class="preg-diff-card" style="--accent:var(--gold);">
-          <div class="preg-diff-icon" style="background:rgba(200,160,58,.12);">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L14 6v5L8 14 2 11V6L8 2z" stroke="#C8A03A" stroke-width="1.5" fill="none"/></svg>
-          </div>
-          <div>
-            <div class="preg-diff-title">Ciudadanos globales con criterio</div>
-            <p class="preg-diff-desc">El objetivo no es solo empleabilidad: es la formación de personas con ética, capacidad analítica y visión global. Internacionalización, doble titulación y movilidad como diferenciadores concretos.</p>
-          </div>
+      <div class="closing-item">
+        <div class="closing-item-num">I</div>
+        <div class="closing-item-body">
+          <div class="closing-item-title">Objetivos de formación</div>
+          <p class="closing-item-desc">
+            El núcleo compartido garantiza que todo egresado —sin importar su programa o énfasis—
+            salga con rigor analítico, literacidad de datos y capacidad de pensar en sistemas.
+            Las capas superiores (concentraciones, electivas, microcredenciales) permiten
+            que ese mismo estudiante construya una trayectoria que responde a sus intereses
+            y a las demandas del mercado. Formación sólida y flexible al mismo tiempo: no es una contradicción,
+            es el diseño.
+          </p>
         </div>
       </div>
 
-    </div><!-- end pregrado-grid -->
+      <div class="closing-item">
+        <div class="closing-item-num">II</div>
+        <div class="closing-item-body">
+          <div class="closing-item-title">Eficiencia académico-administrativa</div>
+          <p class="closing-item-desc">
+            Cursos compartidos entre programas reducen la duplicación docente y concentran
+            la inversión pedagógica donde más impacta. Un bloque de fundamentos que sirve
+            a cuatro programas de pregrado, o un módulo de análisis de datos que alimenta
+            tres posgrados, es a la vez mejor formación y mejor uso de los recursos.
+            La modularidad no es solo pedagógica: es también una decisión de sostenibilidad institucional.
+          </p>
+        </div>
+      </div>
+
+      <div class="closing-item">
+        <div class="closing-item-num">III</div>
+        <div class="closing-item-body">
+          <div class="closing-item-title">Propuesta de valor del modelo pedagógico</div>
+          <p class="closing-item-desc">
+            La reforma no cambia solo qué se enseña sino cómo se enseña y para qué.
+            El aprendizaje basado en retos, la interdisciplinariedad real, la formación humanista
+            y el uso avanzado de datos no son contenidos: son el método.
+            Jenga y LEGO son las estructuras que hacen posible que ese método opere
+            en la práctica cotidiana de la malla —no como declaración de intenciones,
+            sino como arquitectura curricular verificable.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="closing-footer">
+      Propuesta Estratégica · Escuela de Economía y Negocios · Universidad del Rosario · 2026
+    </p>
   </div>
 </section>
 
