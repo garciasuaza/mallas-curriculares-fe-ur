@@ -92,6 +92,15 @@ html, body { height: 100%; font-family: Calibri, 'Trebuchet MS', Arial, sans-ser
 }
 .dd-item:hover { background: var(--ur-gray-f); color: var(--ur-navy); }
 .dd-item.active { color: var(--ur-red); font-weight: 600; }
+.dd-group-label {
+  font-size: .58rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ur-gray-50);
+  padding: .55rem 1rem .25rem;
+  border-top: 1px solid var(--ur-gray-e);
+  margin-top: .2rem;
+}
+.dd-group-label:first-child { border-top: none; margin-top: 0; }
+
 .dd-chip {
   font-size: .6rem; font-weight: 700; letter-spacing: .04em;
   padding: 1px 6px; border-radius: 2px; color: #fff; flex-shrink: 0;
@@ -133,6 +142,7 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
       Pregrado <span class="nav-arrow">▾</span>
     </button>
     <div class="dd-menu">
+      <div class="dd-group-label">Reformas</div>
       <button class="dd-item" id="tab-mallas" onclick="switchTab('mallas')">
         <span class="dd-chip" style="background:#DA0921;">MALLAS</span> Mallas curriculares
       </button>
@@ -142,6 +152,7 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
       <button class="dd-item" id="tab-blq" onclick="switchTab('blq')">
         <span class="dd-chip" style="background:#065F46;">BLQ</span> Bloques
       </button>
+      <div class="dd-group-label">Recursos</div>
       <button class="dd-item" id="tab-nbc" onclick="switchTab('nbc')">
         <span class="dd-chip" style="background:#3100A0;">NBC</span> Syllabus nuevos cursos
       </button>
@@ -154,8 +165,9 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
       <button class="dd-item" id="tab-men" onclick="switchTab('men')">
         <span class="dd-chip" style="background:#7C3AED;">MEN</span> Menores
       </button>
+      <div class="dd-group-label">Referentes</div>
       <button class="dd-item" id="tab-ice" onclick="switchTab('ice')">
-        <span class="dd-chip" style="background:#190056;">IC</span> Icesi · Referencia
+        <span class="dd-chip" style="background:#190056;">IC</span> Icesi
       </button>
     </div>
   </div>
