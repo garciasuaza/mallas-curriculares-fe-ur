@@ -128,9 +128,9 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
     </button>
   </div>
 
-  <div class="nav-item" id="dd-reforma">
-    <button class="nav-btn" onclick="toggleDrop('dd-reforma')">
-      Reformas <span class="nav-arrow">▾</span>
+  <div class="nav-item" id="dd-preg">
+    <button class="nav-btn" onclick="toggleDrop('dd-preg')">
+      Pregrado <span class="nav-arrow">▾</span>
     </button>
     <div class="dd-menu">
       <button class="dd-item" id="tab-mallas" onclick="switchTab('mallas')">
@@ -142,14 +142,6 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
       <button class="dd-item" id="tab-blq" onclick="switchTab('blq')">
         <span class="dd-chip" style="background:#065F46;">BLQ</span> Bloques
       </button>
-    </div>
-  </div>
-
-  <div class="nav-item" id="dd-recursos">
-    <button class="nav-btn" onclick="toggleDrop('dd-recursos')">
-      Recursos <span class="nav-arrow">▾</span>
-    </button>
-    <div class="dd-menu">
       <button class="dd-item" id="tab-nbc" onclick="switchTab('nbc')">
         <span class="dd-chip" style="background:#3100A0;">NBC</span> Syllabus nuevos cursos
       </button>
@@ -162,16 +154,19 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
       <button class="dd-item" id="tab-men" onclick="switchTab('men')">
         <span class="dd-chip" style="background:#7C3AED;">MEN</span> Menores
       </button>
+      <button class="dd-item" id="tab-ice" onclick="switchTab('ice')">
+        <span class="dd-chip" style="background:#190056;">IC</span> Icesi · Referencia
+      </button>
     </div>
   </div>
 
-  <div class="nav-item" id="dd-referencia">
-    <button class="nav-btn" onclick="toggleDrop('dd-referencia')">
-      Referencia <span class="nav-arrow">▾</span>
+  <div class="nav-item" id="dd-pos">
+    <button class="nav-btn" onclick="toggleDrop('dd-pos')">
+      Posgrado <span class="nav-arrow">▾</span>
     </button>
     <div class="dd-menu">
-      <button class="dd-item" id="tab-ice" onclick="switchTab('ice')">
-        <span class="dd-chip" style="background:#190056;">IC</span> Icesi
+      <button class="dd-item" id="tab-pos" onclick="switchTab('pos')" style="color:#7C3AED;">
+        <span class="dd-chip" style="background:#3100A0;">POS</span> En diseño
       </button>
     </div>
   </div>
@@ -215,12 +210,17 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
   <iframe src="web/icesi_mallas_comparativo.html" title="Mallas Icesi — referencia comparativa" loading="lazy"></iframe>
 </div>
 
+<div class="pane" id="pane-pos" role="tabpanel" aria-labelledby="tab-pos">
+  <iframe src="web/posgrado.html" title="Posgrado — en diseño" loading="lazy"></iframe>
+</div>
+
 <script>
-const TABS = ['inicio','mallas','art','blq','nbc','ped','act','men','ice'];
+const TABS = ['inicio','mallas','art','blq','nbc','ped','act','men','ice','pos'];
 const DD_PARENT = {
-  mallas:'dd-reforma', art:'dd-reforma', blq:'dd-reforma',
-  nbc:'dd-recursos', ped:'dd-recursos', act:'dd-recursos',
-  men:'dd-recursos', ice:'dd-referencia'
+  mallas:'dd-preg', art:'dd-preg', blq:'dd-preg',
+  nbc:'dd-preg', ped:'dd-preg', act:'dd-preg',
+  men:'dd-preg', ice:'dd-preg',
+  pos:'dd-pos'
 };
 
 function switchTab(key) {

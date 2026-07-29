@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Posgrado · EEN · UR</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:   #190056;
+  --purple: #3100A0;
+  --red:    #DA0921;
+  --gold:   #C8A03A;
+  --bg:     #F5F3EF;
+  --surface:#FFFFFF;
+  --border: #E3E0DA;
+  --text:   #1A1620;
+  --muted:  #6B6478;
+  --dim:    #A099B0;
+  --f-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  --f-body:    'Raleway', 'Trebuchet MS', Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0B001E; --surface:#130033; --border:#261250; --text:#EDE9F5; --muted:#9080B8; --dim:#6A5890; }
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--f-body);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+}
+.wrap {
+  text-align: center;
+  padding: 4rem 2rem;
+  max-width: 560px;
+}
+.icon {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple) 0%, var(--navy) 100%);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 2rem;
+  font-size: 2rem;
+}
+.eyebrow {
+  font-size: .62rem; font-weight: 700; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--dim); margin-bottom: .75rem;
+}
+.title {
+  font-family: var(--f-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: var(--text); letter-spacing: .04em; line-height: 1;
+  margin-bottom: 1.5rem;
+}
+.title em { color: var(--purple); font-style: normal; }
+.desc {
+  font-size: .9rem; color: var(--muted); line-height: 1.75; margin-bottom: 2.5rem;
+}
+.chips {
+  display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center;
+}
+.chip {
+  font-size: .72rem; font-weight: 600; letter-spacing: .06em;
+  padding: .32rem 1rem; border-radius: 100px;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--muted);
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="icon">🧩</div>
+    <p class="eyebrow">En diseño · Modelo LEGO</p>
+    <h1 class="title">Posgrado<br><em>EEN · Rosario</em></h1>
+    <p class="desc">
+      La propuesta de posgrado se está diseñando sobre el principio de bloques modulares apilables:
+      fundamentos compartidos entre programas, profundizaciones intercambiables
+      y microcredenciales con valor propio —acreditables antes de terminar el posgrado.
+    </p>
+    <div class="chips">
+      <span class="chip">Especializaciones</span>
+      <span class="chip">Maestrías</span>
+      <span class="chip">Doctorado</span>
+      <span class="chip">Microcredenciales</span>
+      <span class="chip">IA para Negocios</span>
+      <span class="chip">Análisis de Datos</span>
+      <span class="chip">Finanzas Cuantitativas</span>
+    </div>
+  </div>
+</body>
+</html>

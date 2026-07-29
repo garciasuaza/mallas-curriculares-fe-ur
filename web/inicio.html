@@ -539,21 +539,6 @@ body {
   </div>
 </section>
 
-<!-- ── SELECTOR NIVEL ─────────────────────────────────── -->
-<div class="nivel-bar" role="tablist">
-  <button class="nivel-btn active" id="btn-preg" role="tab" aria-selected="true" onclick="switchNivel('preg')">
-    <span class="nbadge" style="background:var(--navy);">PRE</span>
-    Pregrado
-  </button>
-  <button class="nivel-btn" id="btn-pos" role="tab" aria-selected="false" onclick="switchNivel('pos')">
-    <span class="nbadge" style="background:var(--purple);">POS</span>
-    Posgrado
-  </button>
-</div>
-
-<!-- ══ PANEL PREGRADO ══════════════════════════════════ -->
-<div class="nivel-panel active" id="panel-preg" role="tabpanel">
-
 <!-- ── EL OBJETIVO: CONECTAR ─────────────────────────── -->
 <section class="q-section">
   <div class="inner">
@@ -973,41 +958,6 @@ body {
   </div>
 </section>
 
-
-</div><!-- end panel-preg -->
-
-<!-- ══ PANEL POSGRADO ══════════════════════════════════ -->
-<div class="nivel-panel" id="panel-pos" role="tabpanel">
-  <div class="pos-placeholder">
-    <div class="pos-placeholder-icon">🧩</div>
-    <p class="pos-placeholder-eyebrow">En construcción</p>
-    <h2 class="pos-placeholder-title">Posgrado · Modelo LEGO</h2>
-    <p class="pos-placeholder-desc">
-      La propuesta de posgrado se está diseñando sobre el modelo de bloques modulares apilables:
-      fundamentos compartidos, profundizaciones intercambiables y microcredenciales con valor propio.
-    </p>
-    <div class="pos-chips">
-      <span class="pos-chip">Especializaciones</span>
-      <span class="pos-chip">Maestrías</span>
-      <span class="pos-chip">Doctorado</span>
-      <span class="pos-chip">Microcredenciales</span>
-      <span class="pos-chip">IA para Negocios</span>
-      <span class="pos-chip">Análisis de Datos</span>
-      <span class="pos-chip">Finanzas Cuantitativas</span>
-    </div>
-  </div>
-</div><!-- end panel-pos -->
-
-<script>
-function switchNivel(key) {
-  ['preg','pos'].forEach(k => {
-    document.getElementById('panel-' + k).classList.toggle('active', k === key);
-    const btn = document.getElementById('btn-' + k);
-    btn.classList.toggle('active', k === key);
-    btn.setAttribute('aria-selected', k === key ? 'true' : 'false');
-  });
-}
-</script>
 
 </body>
 </html>
