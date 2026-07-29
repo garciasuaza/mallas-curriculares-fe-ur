@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Posgrado · EEN · UR</title>
+<title>Posgrado · Escuela de Economía y Negocios · UR</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -11,12 +11,14 @@
   --purple: #3100A0;
   --red:    #DA0921;
   --gold:   #C8A03A;
+  --teal:   #0A6B5A;
   --bg:     #F5F3EF;
   --surface:#FFFFFF;
   --border: #E3E0DA;
   --text:   #1A1620;
   --muted:  #6B6478;
   --dim:    #A099B0;
+  --r: 6px;
   --f-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
   --f-body:    'Raleway', 'Trebuchet MS', Arial, sans-serif;
 }
@@ -28,65 +30,306 @@ body {
   font-family: var(--f-body);
   background: var(--bg);
   color: var(--text);
-  min-height: 100vh;
-  display: flex; align-items: center; justify-content: center;
+  font-size: 15px;
+  line-height: 1.65;
 }
-.wrap {
-  text-align: center;
-  padding: 4rem 2rem;
-  max-width: 560px;
+
+/* ── INTRO ── */
+.page-wrap { max-width: 960px; padding: 2.75rem 3rem 4rem; }
+
+.page-eyebrow {
+  font-size: .6rem; font-weight: 700; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--purple);
+  margin-bottom: .6rem;
 }
-.icon {
-  width: 80px; height: 80px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--purple) 0%, var(--navy) 100%);
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 2rem;
-  font-size: 2rem;
-}
-.eyebrow {
-  font-size: .62rem; font-weight: 700; letter-spacing: .18em;
-  text-transform: uppercase; color: var(--dim); margin-bottom: .75rem;
-}
-.title {
+.page-title {
   font-family: var(--f-display);
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  color: var(--text); letter-spacing: .04em; line-height: 1;
-  margin-bottom: 1.5rem;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: .04em; line-height: 1;
+  color: var(--text); margin-bottom: .5rem;
 }
-.title em { color: var(--purple); font-style: normal; }
-.desc {
-  font-size: .9rem; color: var(--muted); line-height: 1.75; margin-bottom: 2.5rem;
+.page-sub {
+  font-size: .78rem; color: var(--dim);
+  margin-bottom: 2rem; letter-spacing: .04em;
 }
-.chips {
-  display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center;
+
+.intro-text {
+  max-width: 680px;
+  font-size: .88rem; color: var(--muted); line-height: 1.8;
+  margin-bottom: 2.5rem;
+  border-left: 3px solid var(--purple);
+  padding-left: 1.1rem;
 }
-.chip {
-  font-size: .72rem; font-weight: 600; letter-spacing: .06em;
-  padding: .32rem 1rem; border-radius: 100px;
+.intro-text strong { color: var(--text); font-weight: 600; }
+
+/* ── LEYENDA ── */
+.legend {
+  display: flex; flex-wrap: wrap; gap: .6rem 1.4rem;
+  align-items: center; margin-bottom: 2rem;
+}
+.leg-item { display: flex; align-items: center; gap: .45rem; font-size: .75rem; color: var(--muted); }
+.leg-dot  { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+.cred-badge {
+  width: 22px; height: 22px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .6rem; font-weight: 700; color: #fff;
+  flex-shrink: 0;
+}
+.ec-badge {
+  font-size: .58rem; font-weight: 700; letter-spacing: .06em;
+  padding: .15rem .45rem; border-radius: 3px;
+  background: rgba(200,160,58,.18); color: var(--gold);
+  border: 1px solid var(--gold); flex-shrink: 0;
+}
+
+/* ── SEMESTRES GRID ── */
+.sem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+@media (max-width: 700px) { .sem-grid { grid-template-columns: 1fr; } }
+
+.sem-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.sem-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .65rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.sem-label {
+  font-family: var(--f-display); font-size: .95rem;
+  letter-spacing: .08em; color: var(--text);
+}
+.sem-cr {
+  font-family: var(--f-display); font-size: .95rem;
+  letter-spacing: .04em; color: var(--red);
+}
+.sem-body { padding: .75rem; display: flex; flex-direction: column; gap: .65rem; }
+
+.bloque-label {
+  font-size: .58rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; margin-bottom: .35rem;
+}
+.curso {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: .45rem .65rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: .5rem;
+  font-size: .78rem; color: var(--text);
+}
+.curso-name { flex: 1; line-height: 1.35; }
+.curso-cr { font-size: .72rem; color: var(--dim); flex-shrink: 0; }
+.curso .cred-badge { margin-left: .3rem; }
+.curso .ec-badge   { margin-left: .3rem; }
+
+/* ── CREDENCIALES ── */
+.cred-section { margin-top: .5rem; }
+.cred-section-label {
+  font-size: .62rem; font-weight: 700; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--dim);
+  margin-bottom: .75rem; padding-bottom: .4rem;
+  border-bottom: 1px solid var(--border);
+}
+.cred-list { display: flex; flex-direction: column; gap: .6rem; }
+.cred-item {
+  display: flex; align-items: flex-start; gap: .85rem;
   background: var(--surface); border: 1px solid var(--border);
-  color: var(--muted);
+  border-radius: var(--r); padding: .75rem 1rem;
 }
+.cred-item-badge {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .75rem; font-weight: 700; color: #fff;
+  flex-shrink: 0; margin-top: 1px;
+}
+.cred-item-title { font-size: .82rem; font-weight: 700; color: var(--text); margin-bottom: .2rem; }
+.cred-item-desc  { font-size: .76rem; color: var(--muted); line-height: 1.55; }
+.cred-item-desc strong { color: var(--text); font-weight: 600; }
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="icon">🧩</div>
-    <p class="eyebrow">En diseño · Modelo LEGO</p>
-    <h1 class="title">Posgrado<br><em>EEN · Rosario</em></h1>
-    <p class="desc">
-      La propuesta de posgrado se está diseñando sobre el principio de bloques modulares apilables:
-      fundamentos compartidos entre programas, profundizaciones intercambiables
-      y microcredenciales con valor propio —acreditables antes de terminar el posgrado.
-    </p>
-    <div class="chips">
-      <span class="chip">Especializaciones</span>
-      <span class="chip">Maestrías</span>
-      <span class="chip">Doctorado</span>
-      <span class="chip">Microcredenciales</span>
-      <span class="chip">IA para Negocios</span>
-      <span class="chip">Análisis de Datos</span>
-      <span class="chip">Finanzas Cuantitativas</span>
+<div class="page-wrap">
+
+  <p class="page-eyebrow">Modelo LEGO · Bloques apilables</p>
+  <h1 class="page-title">Estructura de un programa de posgrado</h1>
+  <p class="page-sub">36 cr &nbsp;·&nbsp; 4 cursos × 3 cr por semestre &nbsp;·&nbsp; 2 credenciales inter-semestrales</p>
+
+  <p class="intro-text">
+    Todos los programas de posgrado de la Escuela de Economía y Negocios comparten una
+    <strong>arquitectura curricular común</strong>: tres semestres de 12 créditos cada uno,
+    organizados en bloques de <strong>Fundamentos</strong> (base analítica compartida entre programas),
+    <strong>Especialización</strong> (núcleo disciplinar propio de cada programa) y
+    <strong>Electivos</strong> de educación continua. Entre semestres se acreditan
+    <strong>credenciales independientes</strong> — módulos con valor propio que el estudiante
+    puede certificar antes de terminar el posgrado completo.
+  </p>
+
+  <!-- Leyenda -->
+  <div class="legend">
+    <div class="leg-item"><span class="leg-dot" style="background:var(--purple);"></span> Fundamentos</div>
+    <div class="leg-item"><span class="leg-dot" style="background:var(--red);"></span> Especialización</div>
+    <div class="leg-item"><span class="leg-dot" style="background:var(--gold);"></span> Electivos</div>
+    <div class="leg-item"><span class="cred-badge" style="background:var(--teal);">①</span> Credencial 1 · Fund + Fund</div>
+    <div class="leg-item"><span class="cred-badge" style="background:var(--teal); opacity:.75;">②</span> Credencial 2 · Fund + Esp</div>
+    <div class="leg-item"><span class="ec-badge">EC</span> Educación continua</div>
+  </div>
+
+  <!-- Semestres -->
+  <div class="sem-grid">
+
+    <!-- S1 -->
+    <div class="sem-card">
+      <div class="sem-head">
+        <span class="sem-label">Semestre 1</span>
+        <span class="sem-cr">12 CR</span>
+      </div>
+      <div class="sem-body">
+        <div>
+          <div class="bloque-label" style="color:var(--purple);">Fundamentos · 9 CR</div>
+          <div style="display:flex;flex-direction:column;gap:.35rem;">
+            <div class="curso">
+              <span class="curso-name">F1 — Teoría y contexto</span>
+              <span class="curso-cr">3 cr</span>
+            </div>
+            <div class="curso">
+              <span class="curso-name">F2 — Métodos cuantitativos</span>
+              <span class="curso-cr">3 cr</span>
+            </div>
+            <div class="curso">
+              <span class="curso-name">F3 — Análisis estratégico</span>
+              <span class="cred-badge" style="background:var(--teal);font-size:.55rem;">①</span>
+              <span class="curso-cr">3 cr</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="bloque-label" style="color:var(--red);">Especialización · 3 CR</div>
+          <div class="curso">
+            <span class="curso-name">E1 — Núcleo disciplinar I</span>
+            <span class="curso-cr">3 cr</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S2 -->
+    <div class="sem-card">
+      <div class="sem-head">
+        <span class="sem-label">Semestre 2</span>
+        <span class="sem-cr">12 CR</span>
+      </div>
+      <div class="sem-body">
+        <div>
+          <div class="bloque-label" style="color:var(--purple);">Fundamentos · 6 CR</div>
+          <div style="display:flex;flex-direction:column;gap:.35rem;">
+            <div class="curso">
+              <span class="curso-name">F4 — Entorno institucional</span>
+              <span class="cred-badge" style="background:var(--teal);font-size:.55rem;">①</span>
+              <span class="curso-cr">3 cr</span>
+            </div>
+            <div class="curso">
+              <span class="curso-name">F5 — Herramientas integradoras</span>
+              <span class="cred-badge" style="background:var(--teal);opacity:.75;font-size:.55rem;">②</span>
+              <span class="curso-cr">3 cr</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="bloque-label" style="color:var(--red);">Especialización · 3 CR</div>
+          <div class="curso">
+            <span class="curso-name">E2 — Núcleo disciplinar II</span>
+            <span class="curso-cr">3 cr</span>
+          </div>
+        </div>
+        <div>
+          <div class="bloque-label" style="color:var(--gold);">Electivo · 3 CR</div>
+          <div class="curso">
+            <span class="curso-name">Electivo A</span>
+            <span class="ec-badge">EC</span>
+            <span class="curso-cr">3 cr</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S3 -->
+    <div class="sem-card">
+      <div class="sem-head">
+        <span class="sem-label">Semestre 3</span>
+        <span class="sem-cr">12 CR</span>
+      </div>
+      <div class="sem-body">
+        <div>
+          <div class="bloque-label" style="color:var(--red);">Especialización · 6 CR</div>
+          <div style="display:flex;flex-direction:column;gap:.35rem;">
+            <div class="curso">
+              <span class="curso-name">E3 — Aplicaciones avanzadas</span>
+              <span class="cred-badge" style="background:var(--teal);opacity:.75;font-size:.55rem;">②</span>
+              <span class="curso-cr">3 cr</span>
+            </div>
+            <div class="curso">
+              <span class="curso-name">E4 — Proyecto integrador</span>
+              <span class="curso-cr">3 cr</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="bloque-label" style="color:var(--gold);">Electivos · 6 CR</div>
+          <div style="display:flex;flex-direction:column;gap:.35rem;">
+            <div class="curso">
+              <span class="curso-name">Electivo B</span>
+              <span class="ec-badge">EC</span>
+              <span class="curso-cr">3 cr</span>
+            </div>
+            <div class="curso">
+              <span class="curso-name">Electivo C</span>
+              <span class="ec-badge">EC</span>
+              <span class="curso-cr">3 cr</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end sem-grid -->
+
+  <!-- Credenciales -->
+  <div class="cred-section">
+    <div class="cred-section-label">Credenciales inter-semestrales</div>
+    <div class="cred-list">
+      <div class="cred-item">
+        <div class="cred-item-badge" style="background:var(--teal);">①</div>
+        <div>
+          <div class="cred-item-title">Credencial 1 · Fundamentos del campo</div>
+          <p class="cred-item-desc">
+            Acreditable al completar <strong>F3 — Análisis estratégico</strong> (S1) y
+            <strong>F4 — Entorno institucional</strong> (S2).
+            Certifica dominio del marco conceptual y analítico base del programa.
+          </p>
+        </div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-item-badge" style="background:var(--teal);opacity:.8;">②</div>
+        <div>
+          <div class="cred-item-title">Credencial 2 · Aplicación especializada</div>
+          <p class="cred-item-desc">
+            Acreditable al completar <strong>F5 — Herramientas integradoras</strong> (S2) y
+            <strong>E3 — Aplicaciones avanzadas</strong> (S3).
+            Certifica capacidad de aplicar métodos avanzados al campo de especialización.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
+
+</div>
 </body>
 </html>
