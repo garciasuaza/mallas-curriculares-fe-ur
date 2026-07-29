@@ -72,6 +72,7 @@ html, body { height: 100%; font-family: Calibri, 'Trebuchet MS', Arial, sans-ser
 .nav-item.open .nav-arrow { transform: rotate(180deg); }
 .nav-item.open > .nav-btn { color: var(--ur-navy); background: rgba(25,0,86,.04); }
 
+/* ── simple dropdown (Posgrado, etc.) ── */
 .dd-menu {
   display: none;
   position: absolute; top: calc(100% + 2px); left: 0;
@@ -92,14 +93,56 @@ html, body { height: 100%; font-family: Calibri, 'Trebuchet MS', Arial, sans-ser
 }
 .dd-item:hover { background: var(--ur-gray-f); color: var(--ur-navy); }
 .dd-item.active { color: var(--ur-red); font-weight: 600; }
-.dd-group-label {
-  font-size: .58rem; font-weight: 700; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--ur-gray-50);
-  padding: .55rem 1rem .25rem;
-  border-top: 1px solid var(--ur-gray-e);
-  margin-top: .2rem;
+
+/* ── mega-menu (Pregrado) ── */
+.mega-menu {
+  display: none;
+  position: absolute; top: calc(100% + 2px); left: 0;
+  background: #fff;
+  border: 1px solid var(--ur-gray-e);
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.13);
+  z-index: 500;
+  flex-direction: row;
+  min-width: 460px;
+  overflow: hidden;
 }
-.dd-group-label:first-child { border-top: none; margin-top: 0; }
+.nav-item.open .mega-menu { display: flex; }
+.mega-col-left {
+  width: 148px; flex-shrink: 0;
+  background: var(--ur-gray-f);
+  border-right: 1px solid var(--ur-gray-e);
+  padding: .4rem 0;
+}
+.mega-group-btn {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: .55rem 1rem;
+  border: none; border-left: 3px solid transparent;
+  background: none; cursor: pointer;
+  font-family: Calibri, 'Trebuchet MS', Arial, sans-serif;
+  font-size: .78rem; font-weight: 700;
+  color: var(--ur-gray-50); text-align: left;
+  transition: background .1s, color .1s, border-color .1s;
+}
+.mega-group-btn:hover,
+.mega-group-btn.active {
+  background: #fff;
+  border-left-color: var(--ur-red);
+  color: var(--ur-navy);
+}
+.mega-group-arrow { font-size: .55rem; opacity: .4; }
+.mega-col-right {
+  flex: 1; padding: .4rem 0;
+}
+.mega-sub-label {
+  font-size: .6rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ur-gray-50);
+  padding: .4rem 1rem .3rem;
+  border-bottom: 1px solid var(--ur-gray-e);
+  margin-bottom: .2rem;
+}
+.mega-sub-panel { display: none; }
+.mega-sub-panel.active { display: block; }
 
 .dd-chip {
   font-size: .6rem; font-weight: 700; letter-spacing: .04em;
@@ -141,34 +184,55 @@ iframe { width: 100%; height: 100%; border: none; display: block; }
     <button class="nav-btn" onclick="toggleDrop('dd-preg')">
       Pregrado <span class="nav-arrow">▾</span>
     </button>
-    <div class="dd-menu">
-      <div class="dd-group-label">Reformas</div>
-      <button class="dd-item" id="tab-mallas" onclick="switchTab('mallas')">
-        <span class="dd-chip" style="background:#DA0921;">MALLAS</span> Mallas curriculares
-      </button>
-      <button class="dd-item" id="tab-art" onclick="switchTab('art')">
-        <span class="dd-chip" style="background:#3100A0;">ART</span> Articulación
-      </button>
-      <button class="dd-item" id="tab-blq" onclick="switchTab('blq')">
-        <span class="dd-chip" style="background:#065F46;">BLQ</span> Bloques
-      </button>
-      <div class="dd-group-label">Recursos</div>
-      <button class="dd-item" id="tab-nbc" onclick="switchTab('nbc')">
-        <span class="dd-chip" style="background:#3100A0;">NBC</span> Syllabus nuevos cursos
-      </button>
-      <button class="dd-item" id="tab-ped" onclick="switchTab('ped')">
-        <span class="dd-chip" style="background:#E8670C;">PED</span> Modelo Pedagógico
-      </button>
-      <button class="dd-item" id="tab-act" onclick="switchTab('act')">
-        <span class="dd-chip" style="background:#190056;">ACT</span> Actividades
-      </button>
-      <button class="dd-item" id="tab-men" onclick="switchTab('men')">
-        <span class="dd-chip" style="background:#7C3AED;">MEN</span> Menores
-      </button>
-      <div class="dd-group-label">Referentes</div>
-      <button class="dd-item" id="tab-ice" onclick="switchTab('ice')">
-        <span class="dd-chip" style="background:#190056;">IC</span> Icesi
-      </button>
+    <div class="mega-menu">
+      <!-- columna izquierda: grupos -->
+      <div class="mega-col-left">
+        <button class="mega-group-btn active" onmouseenter="showGroup('reformas')">
+          Reformas <span class="mega-group-arrow">›</span>
+        </button>
+        <button class="mega-group-btn" onmouseenter="showGroup('recursos')">
+          Recursos <span class="mega-group-arrow">›</span>
+        </button>
+        <button class="mega-group-btn" onmouseenter="showGroup('referentes')">
+          Referentes <span class="mega-group-arrow">›</span>
+        </button>
+      </div>
+      <!-- columna derecha: sub-ítems -->
+      <div class="mega-col-right">
+        <div class="mega-sub-panel active" id="mega-reformas">
+          <div class="mega-sub-label">Reformas</div>
+          <button class="dd-item" id="tab-mallas" onclick="switchTab('mallas')">
+            <span class="dd-chip" style="background:#DA0921;">MALLAS</span> Mallas curriculares
+          </button>
+          <button class="dd-item" id="tab-art" onclick="switchTab('art')">
+            <span class="dd-chip" style="background:#3100A0;">ART</span> Articulación
+          </button>
+          <button class="dd-item" id="tab-blq" onclick="switchTab('blq')">
+            <span class="dd-chip" style="background:#065F46;">BLQ</span> Bloques
+          </button>
+        </div>
+        <div class="mega-sub-panel" id="mega-recursos">
+          <div class="mega-sub-label">Recursos</div>
+          <button class="dd-item" id="tab-nbc" onclick="switchTab('nbc')">
+            <span class="dd-chip" style="background:#3100A0;">NBC</span> Syllabus nuevos cursos
+          </button>
+          <button class="dd-item" id="tab-ped" onclick="switchTab('ped')">
+            <span class="dd-chip" style="background:#E8670C;">PED</span> Modelo Pedagógico
+          </button>
+          <button class="dd-item" id="tab-act" onclick="switchTab('act')">
+            <span class="dd-chip" style="background:#190056;">ACT</span> Actividades
+          </button>
+          <button class="dd-item" id="tab-men" onclick="switchTab('men')">
+            <span class="dd-chip" style="background:#7C3AED;">MEN</span> Menores
+          </button>
+        </div>
+        <div class="mega-sub-panel" id="mega-referentes">
+          <div class="mega-sub-label">Referentes</div>
+          <button class="dd-item" id="tab-ice" onclick="switchTab('ice')">
+            <span class="dd-chip" style="background:#190056;">IC</span> Icesi
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -260,6 +324,13 @@ function switchTab(key) {
   // close all dropdowns
   document.querySelectorAll('.nav-item').forEach(d => d.classList.remove('open'));
   history.replaceState(null, '', '#' + key);
+}
+
+function showGroup(name) {
+  document.querySelectorAll('.mega-sub-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.mega-group-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('mega-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
 }
 
 function toggleDrop(id) {
