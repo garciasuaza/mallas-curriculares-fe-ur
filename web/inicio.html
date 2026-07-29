@@ -3,188 +3,867 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inicio · Reforma Curricular 2026 · Facultad de Economía UR</title>
+<title>Escuela de Economía y Negocios · UR</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ── TOKENS ─────────────────────────────────────────── */
 :root {
-  --ur-red:      #DA0921;
-  --ur-navy:     #190056;
-  --ur-purple:   #3100A0;
-  --ur-orange:   #E8670C;
-  --ur-white:    #FFFFFF;
-  --ur-gray-f:   #F5F4F2;
-  --ur-gray-e:   #E8E5E0;
-  --ur-gray-70:  #4D4D4D;
-  --ur-gray-50:  #808080;
-}
-html, body { font-family: Calibri, 'Trebuchet MS', Arial, sans-serif; background: var(--ur-gray-f); color: var(--ur-gray-70); overflow-x: hidden; }
+  --red:     #DA0921;
+  --navy:    #190056;
+  --purple:  #3100A0;
+  --gold:    #C8A03A;
+  --teal:    #0E7C6A;
 
-/* ── HERO ─────────────────────────────────────────── */
+  --bg:      #F5F3EF;
+  --surface: #FFFFFF;
+  --border:  #E3E0DA;
+  --text:    #1A1620;
+  --muted:   #6B6478;
+  --dim:     #A099B0;
+  --hero-bg: #0B001E;
+
+  --f-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  --f-body:    'Raleway', 'Trebuchet MS', Arial, sans-serif;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0B001E; --surface: #130033; --border: #261250;
+    --text: #EDE9F5; --muted: #9080B8; --dim: #6A5890; --hero-bg: #06010F;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #F5F3EF; --surface: #FFFFFF; --border: #E3E0DA;
+  --text: #1A1620; --muted: #6B6478; --dim: #A099B0; --hero-bg: #0B001E;
+}
+:root[data-theme="dark"] {
+  --bg: #0B001E; --surface: #130033; --border: #261250;
+  --text: #EDE9F5; --muted: #9080B8; --dim: #6A5890; --hero-bg: #06010F;
+}
+
+/* ── RESET ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--f-body);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* ── HERO ───────────────────────────────────────────── */
 .hero {
-  background: linear-gradient(135deg, var(--ur-navy) 0%, #2a0076 60%, #3100A0 100%);
-  padding: 2rem 2rem 1.75rem;
+  background: var(--hero-bg);
+  padding: 3rem 3rem 2.75rem;
   position: relative;
   overflow: hidden;
 }
 .hero::before {
   content: '';
   position: absolute;
-  top: -40px; right: -60px;
-  width: 280px; height: 280px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.04);
+  width: 500px; height: 500px; border-radius: 50%;
+  top: -160px; right: -100px;
+  background: radial-gradient(circle, rgba(49,0,160,.3) 0%, transparent 65%);
   pointer-events: none;
 }
 .hero::after {
   content: '';
   position: absolute;
-  bottom: -60px; left: 40%;
-  width: 180px; height: 180px;
-  border-radius: 50%;
-  background: rgba(218,9,33,.12);
+  width: 340px; height: 340px; border-radius: 50%;
+  bottom: -120px; left: 22%;
+  background: radial-gradient(circle, rgba(218,9,33,.18) 0%, transparent 65%);
   pointer-events: none;
 }
-.hero-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.6rem; letter-spacing: .05em;
-  color: var(--ur-white); line-height: 1;
-  margin-bottom: .45rem;
+.hero-inner { position: relative; z-index: 1; }
+.hero-eyebrow {
+  font-size: .62rem; font-weight: 700; letter-spacing: .16em;
+  text-transform: uppercase; color: rgba(255,255,255,.32); margin-bottom: .9rem;
 }
-.hero-subtitle {
-  font-size: .85rem; color: rgba(255,255,255,.68);
-  line-height: 1.5;
+.hero-name {
+  font-family: var(--f-display);
+  font-size: clamp(2.6rem, 7vw, 4.8rem);
+  letter-spacing: .04em; line-height: .92;
+  color: #fff; margin-bottom: 1.5rem;
+}
+.hero-name em { color: var(--red); font-style: normal; }
+.hero-divider { width: 40px; height: 2px; background: var(--red); margin-bottom: 1.4rem; }
+.hero-quote {
+  max-width: 520px; font-size: .9rem; font-weight: 400;
+  color: rgba(255,255,255,.62); line-height: 1.75;
+}
+.hero-quote strong { color: rgba(255,255,255,.9); font-weight: 600; }
+.hero-attr {
+  margin-top: 1.1rem; font-size: .63rem;
+  letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.25);
 }
 
-/* ── SECTIONS GRID ────────────────────────────────── */
-.sections-wrap {
-  padding: 1.5rem 1.5rem 2rem;
+/* ── SHARED SECTION ─────────────────────────────────── */
+.q-section {
+  padding: 3.25rem 3rem;
+  border-bottom: 1px solid var(--border);
+  max-width: 100%;
 }
-.sections-title {
-  font-size: .63rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--ur-gray-50); margin-bottom: 1rem;
+.q-section:last-child { border-bottom: none; }
+
+.q-number {
+  font-size: .6rem; font-weight: 700; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--red); margin-bottom: .5rem;
 }
-.sections-grid {
+.q-heading {
+  font-family: var(--f-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  letter-spacing: .04em; color: var(--text);
+  line-height: 1; margin-bottom: 2rem; text-wrap: balance;
+}
+.inner { max-width: 860px; }
+
+/* ── CONECTAR SECTION ───────────────────────────────── */
+.conectar-intro {
+  font-size: .88rem;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 640px;
+  margin-bottom: 2rem;
+}
+.conectar-intro strong { color: var(--text); font-weight: 600; }
+
+.conectar-nodes {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: .75rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  max-width: 860px;
 }
-.sec-card {
-  background: var(--ur-white);
-  border: 1px solid var(--ur-gray-e);
-  border-radius: 6px;
-  padding: 1rem 1.1rem;
-  display: flex; flex-direction: column; gap: .5rem;
-  transition: box-shadow .15s, transform .1s;
+@media (max-width: 640px) { .conectar-nodes { grid-template-columns: 1fr; } }
+
+.node-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid;
+  border-radius: 0 0 var(--r) var(--r);
+  padding: 1.25rem 1.25rem 1.4rem;
 }
-.sec-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,.10); transform: translateY(-1px); }
-.sec-card-top { display: flex; align-items: center; gap: .65rem; }
-.sec-chip {
-  font-size: .58rem; font-weight: 700; letter-spacing: .05em;
-  padding: 2px 7px; border-radius: 3px; color: #fff; flex-shrink: 0;
-  font-family: 'Bebas Neue', sans-serif;
+.node-card-label {
+  font-size: .62rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--dim);
+  margin-bottom: .5rem;
 }
-.sec-name { font-size: .88rem; font-weight: 700; color: var(--ur-gray-70); line-height: 1.2; }
-.sec-desc { font-size: .75rem; color: var(--ur-gray-50); line-height: 1.45; }
-.sec-btn {
+.node-card-title {
+  font-size: .92rem; font-weight: 700;
+  color: var(--text); margin-bottom: .5rem; line-height: 1.3;
+}
+.node-card-desc {
+  font-size: .8rem; color: var(--muted); line-height: 1.65;
+}
+.node-card-desc strong { color: var(--text); font-weight: 600; }
+
+/* ── WHY SECTION ────────────────────────────────────── */
+.why-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 860px;
+}
+@media (max-width: 640px) { .why-grid { grid-template-columns: 1fr; } }
+.why-col-label {
+  font-size: .62rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--dim);
+  margin-bottom: .75rem; padding-bottom: .5rem; border-bottom: 1px solid var(--border);
+}
+.why-col p { font-size: .86rem; color: var(--muted); line-height: 1.75; margin-bottom: .85rem; }
+.why-col p:last-child { margin-bottom: 0; }
+.why-col strong { color: var(--text); font-weight: 600; }
+
+.opportunity-box {
+  margin-top: 2rem; max-width: 860px;
+  background: var(--navy); border-radius: var(--r);
+  padding: 1.5rem 1.75rem;
+  display: flex; gap: 1.25rem; align-items: flex-start;
+}
+.opp-icon {
+  flex-shrink: 0; width: 36px; height: 36px;
+  background: rgba(218,9,33,.2); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; margin-top: 2px;
+}
+.opp-label {
+  font-size: .62rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: rgba(255,255,255,.32); margin-bottom: .4rem;
+}
+.opp-text { font-size: .86rem; color: rgba(255,255,255,.7); line-height: 1.7; }
+.opp-text strong { color: #fff; font-weight: 600; }
+
+/* ── DEFINE SECTION ─────────────────────────────────── */
+.define-list { max-width: 760px; display: flex; flex-direction: column; gap: 0; }
+.define-item {
+  display: flex; gap: 1.5rem; padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border); align-items: flex-start;
+}
+.define-item:last-child { border-bottom: none; }
+.define-num {
+  font-family: var(--f-display); font-size: 2.4rem;
+  letter-spacing: .02em; line-height: 1; color: var(--border);
+  flex-shrink: 0; width: 44px; text-align: right; padding-top: 2px;
+  transition: color .2s;
+}
+.define-item:hover .define-num { color: var(--red); }
+.define-title { font-size: .92rem; font-weight: 700; color: var(--text); margin-bottom: .4rem; line-height: 1.3; }
+.define-desc { font-size: .83rem; color: var(--muted); line-height: 1.7; }
+.define-desc strong { color: var(--text); font-weight: 600; }
+.define-tag {
+  display: inline-block; margin-top: .5rem;
+  font-size: .6rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  padding: .22rem .65rem; border-radius: 100px; border: 1px solid;
+}
+
+/* ── MODELS SECTION ─────────────────────────────────── */
+.demand-intro {
+  font-size: .88rem; color: var(--muted); line-height: 1.75; max-width: 640px; margin-bottom: 2rem;
+}
+.demand-intro strong { color: var(--text); font-weight: 600; }
+
+.demand-cols {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 860px; margin-bottom: 2.5rem;
+}
+@media (max-width: 640px) { .demand-cols { grid-template-columns: 1fr; } }
+
+.demand-col {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r);
+  padding: 1.25rem 1.25rem 1.4rem;
+}
+.demand-col-head {
+  display: flex; align-items: center; gap: .6rem; margin-bottom: 1rem;
+  padding-bottom: .75rem; border-bottom: 1px solid var(--border);
+}
+.demand-badge {
+  font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  padding: .22rem .65rem; border-radius: 3px; color: #fff;
+}
+.demand-col-title { font-size: .82rem; font-weight: 700; color: var(--text); }
+
+.demand-list { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+.demand-list li { display: flex; gap: .7rem; align-items: flex-start; }
+.demand-bullet {
+  width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: .55rem;
+}
+.demand-list-text { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+.demand-list-text strong { color: var(--text); font-weight: 600; }
+
+/* Common demands strip */
+.common-strip {
+  max-width: 860px; margin-bottom: 2.5rem;
+  background: var(--bg); border: 1px solid var(--border); border-radius: var(--r);
+  padding: .9rem 1.25rem;
+  display: flex; flex-wrap: wrap; gap: .6rem; align-items: center;
+}
+.common-label {
+  font-size: .62rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--dim); margin-right: .4rem;
+}
+.common-chip {
+  font-size: .72rem; font-weight: 600; padding: .28rem .75rem;
+  border-radius: 100px; background: var(--surface); border: 1px solid var(--border);
+  color: var(--text);
+}
+
+/* Model cards */
+.model-pair {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 860px;
+}
+@media (max-width: 640px) { .model-pair { grid-template-columns: 1fr; } }
+
+.model-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r);
+  overflow: hidden;
+}
+.model-card-head {
+  padding: 1.1rem 1.25rem .9rem;
+  border-bottom: 1px solid var(--border);
+}
+.model-card-badge {
+  font-size: .6rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  padding: .2rem .65rem; border-radius: 3px; color: #fff; display: inline-block; margin-bottom: .6rem;
+}
+.model-card-name {
+  font-family: var(--f-display); font-size: 1.5rem; letter-spacing: .04em;
+  color: var(--text); line-height: 1; margin-bottom: .3rem;
+}
+.model-card-sub { font-size: .78rem; color: var(--muted); line-height: 1.5; }
+
+.model-visual-area {
+  padding: 1.5rem; display: flex; justify-content: center; background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.model-card-body { padding: 1.1rem 1.25rem; }
+.model-card-body-title {
+  font-size: .65rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--dim); margin-bottom: .75rem;
+}
+.model-response { display: flex; flex-direction: column; gap: .65rem; }
+.resp-item { display: flex; gap: .65rem; align-items: flex-start; }
+.resp-dot {
+  width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-top: .55rem;
+}
+.resp-text { font-size: .8rem; color: var(--muted); line-height: 1.6; }
+.resp-text strong { color: var(--text); font-weight: 600; }
+
+.model-cite {
+  margin-top: .85rem; padding-top: .85rem; border-top: 1px solid var(--border);
+  font-size: .75rem; color: var(--dim); font-style: italic; line-height: 1.55;
+}
+.model-cite strong { color: var(--muted); font-style: normal; }
+
+/* ── PREGRADO DETAIL ────────────────────────────────── */
+.pregrado-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2.5rem;
+  align-items: start;
+  max-width: 860px;
+}
+@media (max-width: 680px) { .pregrado-grid { grid-template-columns: 1fr; } }
+
+.preg-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .85rem;
+}
+.preg-visual-legend {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
   align-self: flex-start;
-  margin-top: .15rem;
-  font-size: .68rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
-  padding: 4px 12px; border-radius: 3px;
-  border: none; cursor: pointer;
-  color: var(--ur-white);
-  transition: opacity .15s;
 }
-.sec-btn:hover { opacity: .82; }
+.preg-leg-item {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .7rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+.preg-leg-dot {
+  width: 8px; height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.preg-diffs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.preg-diff-card {
+  display: flex;
+  gap: .9rem;
+  align-items: flex-start;
+  padding: 1rem 1.1rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent, var(--navy));
+  border-radius: 0 var(--r) var(--r) 0;
+  transition: border-left-width .15s, padding-left .15s;
+}
+.preg-diff-card:hover {
+  border-left-width: 5px;
+  padding-left: .9rem;
+}
+.preg-diff-icon {
+  width: 30px; height: 30px; flex-shrink: 0;
+  border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 1px;
+}
+.preg-diff-title {
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: .3rem;
+}
+.preg-diff-desc {
+  font-size: .79rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
 </style>
 </head>
 <body>
 
-<!-- ── HERO ─────────────────────────────────────────── -->
+<!-- ── HERO ──────────────────────────────────────────── -->
 <section class="hero">
-  <div class="hero-title">Reforma Curricular 2026</div>
-  <div class="hero-subtitle">Propuesta de rediseño integrado · Facultad de Economía · Universidad del Rosario</div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Universidad del Rosario · Reforma Curricular 2026</p>
+    <h1 class="hero-name">Escuela de<br><em>Economía</em><br>&amp; Negocios</h1>
+    <div class="hero-divider"></div>
+    <p class="hero-quote">
+      Un <strong>laboratorio académico y social</strong> donde el conocimiento se convierte en acción:
+      datos, teoría e interdisciplinariedad al servicio de los grandes problemas del presente.
+    </p>
+    <p class="hero-attr">Propuesta estratégica · EEN · UR · 2026</p>
+  </div>
 </section>
 
-<!-- ── SECTIONS GRID ────────────────────────────────── -->
-<div class="sections-wrap">
-  <div class="sections-title">Secciones disponibles</div>
-  <div class="sections-grid">
+<!-- ── EL OBJETIVO: CONECTAR ─────────────────────────── -->
+<section class="q-section">
+  <div class="inner">
+    <p class="q-number">Objetivo de las mallas</p>
+    <h2 class="q-heading">¿Qué deben lograr<br>los nuevos currículos?</h2>
 
-    <div class="sec-card">
-      <div class="sec-card-top">
-        <span class="sec-chip" style="background:#DA0921;">MALLAS</span>
-        <span class="sec-name">Mallas curriculares</span>
+    <p class="conectar-intro">
+      Las mallas curriculares no son listas de materias: son la arquitectura de una promesa.
+      El objetivo central es convertir la Escuela en un <strong>nodo interdisciplinario</strong>
+      donde la economía y las finanzas ofrecen el <strong>lenguaje cuantitativo y el pensamiento sistémico</strong>
+      para conectarse con la ingeniería, la ciencia de datos, la salud pública, la ciencia política y las humanidades.
+      Integrar no es sumar: es <strong>abordar los problemas como sistemas</strong>, no como fragmentos separados.
+    </p>
+
+    <div class="conectar-nodes">
+      <div class="node-card" style="border-top-color:var(--navy);">
+        <div class="node-card-label">Integración interna</div>
+        <div class="node-card-title">Articulación con otras escuelas y facultades</div>
+        <p class="node-card-desc">Fomentar sinergias existentes y co-construir nuevas con las demás unidades académicas de la Universidad, desde proyectos compartidos hasta cursos conjuntos.</p>
       </div>
-      <div class="sec-desc">Visualización semestre a semestre de los 4 programas actuales más la propuesta ENB.</div>
-      <button class="sec-btn" style="background:#DA0921;" onclick="parent.switchTab('mallas')">Ver mallas</button>
-    </div>
-
-    <div class="sec-card">
-      <div class="sec-card-top">
-        <span class="sec-chip" style="background:#3100A0;">ART</span>
-        <span class="sec-name">Articulación</span>
+      <div class="node-card" style="border-top-color:var(--red);">
+        <div class="node-card-label">Conexión externa</div>
+        <div class="node-card-title">Gobiernos, empresas y organismos multilaterales</div>
+        <p class="node-card-desc">Aprovechar la trayectoria de la Facultad con la <strong>OCDE, el Consejo Privado de Competitividad</strong> y el sector privado para llevar problemas reales al aula y llevar soluciones reales al mundo.</p>
       </div>
-      <div class="sec-desc">Cursos compartidos entre programas organizados por bloque curricular.</div>
-      <button class="sec-btn" style="background:#3100A0;" onclick="parent.switchTab('art')">Ver articulación</button>
-    </div>
-
-    <div class="sec-card">
-      <div class="sec-card-top">
-        <span class="sec-chip" style="background:#065F46;">BLQ</span>
-        <span class="sec-name">Bloques</span>
+      <div class="node-card" style="border-top-color:var(--purple);">
+        <div class="node-card-label">Currículos abiertos</div>
+        <div class="node-card-title">Trayectorias que combinan disciplinas</div>
+        <p class="node-card-desc">Estructuras flexibles que permitan a los estudiantes combinar economía y finanzas con <strong>política pública, ciencias naturales, ingeniería o humanidades</strong>, sin perder el rigor de su núcleo.</p>
       </div>
-      <div class="sec-desc">Distribución de créditos por área formativa en cada programa de la Facultad.</div>
-      <button class="sec-btn" style="background:#065F46;" onclick="parent.switchTab('blq')">Ver bloques</button>
     </div>
-
-    <div class="sec-card">
-      <div class="sec-card-top">
-        <span class="sec-chip" style="background:#3100A0;">NBC</span>
-        <span class="sec-name">Syllabus nuevos cursos</span>
-      </div>
-      <div class="sec-desc">Los cursos del Núcleo Básico Común compartidos entre los programas de la Escuela.</div>
-      <button class="sec-btn" style="background:#3100A0;" onclick="parent.switchTab('nbc')">Ver syllabus</button>
-    </div>
-
-    <div class="sec-card">
-      <div class="sec-card-top">
-        <span class="sec-chip" style="background:#E8670C;">PED</span>
-        <span class="sec-name">Modelo Pedagógico</span>
-      </div>
-      <div class="sec-desc">Los principios pedagógicos que fundamentan la propuesta de reforma curricular.</div>
-      <button class="sec-btn" style="background:#E8670C;" onclick="parent.switchTab('ped')">Ver modelo</button>
-    </div>
-
-    <div class="sec-card">
-      <div class="sec-card-top">
-        <span class="sec-chip" style="background:#190056;">ACT</span>
-        <span class="sec-name">Actividades</span>
-      </div>
-      <div class="sec-desc">Estado de las 13 actividades del proceso de reforma en curso.</div>
-      <button class="sec-btn" style="background:#190056;" onclick="parent.switchTab('act')">Ver actividades</button>
-    </div>
-
-    <div class="sec-card">
-      <div class="sec-card-top">
-        <span class="sec-chip" style="background:#7C3AED;">MEN</span>
-        <span class="sec-name">Menores</span>
-      </div>
-      <div class="sec-desc">Menores de pregrado disponibles en la Escuela de Administración.</div>
-      <button class="sec-btn" style="background:#7C3AED;" onclick="parent.switchTab('men')">Ver menores</button>
-    </div>
-
-    <div class="sec-card">
-      <div class="sec-card-top">
-        <span class="sec-chip" style="background:#190056;">IC</span>
-        <span class="sec-name">Referencia Icesi</span>
-      </div>
-      <div class="sec-desc">Mallas de referencia de Icesi para benchmarking curricular comparativo.</div>
-      <button class="sec-btn" style="background:#190056;" onclick="parent.switchTab('ice')">Ver Icesi</button>
-    </div>
-
   </div>
-</div>
+</section>
+
+<!-- ── 01: POR QUÉ ───────────────────────────────────── -->
+<section class="q-section">
+  <div class="inner">
+    <p class="q-number">01 · Diagnóstico</p>
+    <h2 class="q-heading">¿Por qué es urgente<br>transformar la formación?</h2>
+
+    <div class="why-grid">
+      <div class="why-col">
+        <div class="why-col-label">El problema</div>
+        <p>Los <strong>marcos tradicionales de formación económica son insuficientes</strong> para comprender y transformar la realidad actual. La enseñanza se concentró en el enfoque neoclásico, dejando por fuera perspectivas históricas, institucionales y socioambientales.</p>
+        <p>La crisis financiera de 2008, la pandemia, la transición energética y las desigualdades han expuesto esas limitaciones. Los programas actuales <strong>forman especialistas en silos</strong>, incapaces de responder a fenómenos que cruzan fronteras entre Estado, empresas y sociedad.</p>
+      </div>
+      <div class="why-col">
+        <div class="why-col-label">El perfil que el mundo necesita</div>
+        <p>Los empleadores ya no buscan repetidores de modelos. Buscan profesionales con <strong>análisis de datos, IA y pensamiento sistémico</strong> ante problemas inéditos.</p>
+        <p>Fenómenos como el <strong>cambio climático, la informalidad laboral, el envejecimiento poblacional</strong> no tienen solución desde una sola disciplina. Requieren economistas que piensen con ingenieros, politólogos y científicos de datos.</p>
+        <p>Ningún competidor local satisface esa demanda de forma integral. Esa es la ventana.</p>
+      </div>
+    </div>
+
+    <div class="opportunity-box">
+      <div class="opp-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M8 2L14 5.5v5L8 14 2 10.5v-5L8 2z" stroke="#DA0921" stroke-width="1.5" fill="none"/>
+          <circle cx="8" cy="8" r="2" fill="#DA0921"/>
+        </svg>
+      </div>
+      <div>
+        <div class="opp-label">La oportunidad · Momento decisivo</div>
+        <p class="opp-text">La UR tiene décadas de excelencia, alianzas activas y laboratorios operativos como <strong>SCORE, TicTank y LaboUR</strong>. Iniciativas como CORE Econ demuestran que la renovación es posible. La Fase 1 arranca en septiembre 2025 con resultados visibles antes de diciembre 2026.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 02: QUÉ NOS DEFINE ────────────────────────────── -->
+<section class="q-section">
+  <div class="inner">
+    <p class="q-number">02 · Propuesta</p>
+    <h2 class="q-heading">¿Qué nos hace<br>distintos?</h2>
+
+    <div class="define-list">
+      <div class="define-item">
+        <div class="define-num">1</div>
+        <div>
+          <div class="define-title">Rigor analítico con herramientas del presente</div>
+          <p class="define-desc">La programación y el análisis de datos no son cursos opcionales: son el <strong>centro del aprendizaje</strong>. El dominio cuantitativo avanzado se construye transversalmente, no como un añadido técnico sino como el lenguaje de la disciplina.</p>
+          <span class="define-tag" style="color:var(--navy);border-color:var(--navy);">Datos · IA · Econometría</span>
+        </div>
+      </div>
+      <div class="define-item">
+        <div class="define-num">2</div>
+        <div>
+          <div class="define-title">Conexión real con otras disciplinas</div>
+          <p class="define-desc">Abordar el <strong>cambio climático, la transición energética, la informalidad laboral o el envejecimiento poblacional</strong> exige cruzar fronteras disciplinares. La Escuela activa esa conexión con alianzas reales, no con retórica interdisciplinar.</p>
+          <span class="define-tag" style="color:var(--purple);border-color:var(--purple);">Interdisciplinariedad aplicada</span>
+        </div>
+      </div>
+      <div class="define-item">
+        <div class="define-num">3</div>
+        <div>
+          <div class="define-title">Competencias que se aprenden haciendo</div>
+          <p class="define-desc"><strong>Pensamiento crítico, creatividad, trabajo en equipo y resolución colaborativa</strong> no se enseñan en cursos aislados: se incorporan en el hacer cotidiano de la malla. Proyectos con organizaciones reales y retos concretos son el método, no el complemento.</p>
+          <span class="define-tag" style="color:var(--red);border-color:var(--red);">Aprendizaje activo</span>
+        </div>
+      </div>
+      <div class="define-item">
+        <div class="define-num">4</div>
+        <div>
+          <div class="define-title">Formación humanista, ética y sensibilidad social</div>
+          <p class="define-desc">El conocimiento se crea y se transmite de manera <strong>colectiva</strong>. Formar economistas sin ética, sin perspectiva histórica ni compromiso social produce profesionales que saben calcular pero no preguntar. La dimensión humana no es adorno: es parte del rigor.</p>
+          <span class="define-tag" style="color:var(--gold);border-color:var(--gold);">Humanics · Aoun 2017</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 03: MODELOS PEDAGÓGICOS ───────────────────────── -->
+<section class="q-section">
+  <div class="inner">
+    <p class="q-number">03 · Modelos</p>
+    <h2 class="q-heading">¿Cómo se traduce<br>en pregrado y posgrado?</h2>
+
+    <p class="demand-intro">
+      Las demandas sobre la formación no son iguales en ambos niveles.
+      El pregrado y el posgrado responden a <strong>momentos distintos de la trayectoria profesional</strong>,
+      a audiencias con experiencias distintas y a propósitos formativos que requieren
+      estructuras curriculares diferentes. Los modelos Jenga y LEGO ofrecen una respuesta específica a cada conjunto de demandas.
+    </p>
+
+    <!-- Demandas por nivel -->
+    <div class="demand-cols">
+      <div class="demand-col">
+        <div class="demand-col-head">
+          <span class="demand-badge" style="background:var(--navy);">Pregrado</span>
+          <span class="demand-col-title">¿Qué se le pide?</span>
+        </div>
+        <ul class="demand-list">
+          <li>
+            <span class="demand-bullet" style="background:var(--navy);"></span>
+            <span class="demand-list-text"><strong>Ciudadanos globales y profesionales sólidos:</strong> adaptables, interdisciplinarios y con capacidad de actuar en entornos cambiantes.</span>
+          </li>
+          <li>
+            <span class="demand-bullet" style="background:var(--navy);"></span>
+            <span class="demand-list-text"><strong>Currículo flexible y modular</strong> que combine teoría, práctica y proyectos por retos, sin sacrificar la base analítica.</span>
+          </li>
+          <li>
+            <span class="demand-bullet" style="background:var(--navy);"></span>
+            <span class="demand-list-text"><strong>Internacionalización como diferenciador:</strong> doble titulación y experiencias de movilidad con universidades de prestigio.</span>
+          </li>
+        </ul>
+      </div>
+      <div class="demand-col">
+        <div class="demand-col-head">
+          <span class="demand-badge" style="background:var(--purple);">Posgrado</span>
+          <span class="demand-col-title">¿Qué se le pide?</span>
+        </div>
+        <ul class="demand-list">
+          <li>
+            <span class="demand-bullet" style="background:var(--purple);"></span>
+            <span class="demand-list-text"><strong>Líderes y especialistas que transforman:</strong> con capacidad de incidir en organizaciones, políticas y mercados.</span>
+          </li>
+          <li>
+            <span class="demand-bullet" style="background:var(--purple);"></span>
+            <span class="demand-list-text"><strong>Oferta flexible y segmentada:</strong> programas presenciales, híbridos, virtuales y formatos intensivos para profesionales en actividad.</span>
+          </li>
+          <li>
+            <span class="demand-bullet" style="background:var(--purple);"></span>
+            <span class="demand-list-text"><strong>Aprendizaje a lo largo de la vida:</strong> microcredenciales, actualizaciones y rutas de especialización progresiva.</span>
+          </li>
+          <li>
+            <span class="demand-bullet" style="background:var(--purple);"></span>
+            <span class="demand-list-text"><strong>Puente hacia la investigación avanzada</strong> como diferenciador frente a la oferta privada.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Ejes comunes -->
+    <div class="common-strip">
+      <span class="common-label">Ejes transversales</span>
+      <span class="common-chip">Internacionalización</span>
+      <span class="common-chip">Investigación aplicada</span>
+      <span class="common-chip">Innovación pedagógica</span>
+      <span class="common-chip">Flexibilidad curricular</span>
+    </div>
+
+    <!-- Modelos Jenga / LEGO -->
+    <div class="model-pair">
+
+      <!-- JENGA -->
+      <div class="model-card">
+        <div class="model-card-head">
+          <span class="model-card-badge" style="background:var(--navy);">Pregrado</span>
+          <div class="model-card-name">Modelo Jenga</div>
+          <p class="model-card-sub">Un núcleo sólido que sustenta todo. Las piezas superiores se colocan —y pueden reubicarse— sin comprometer la base.</p>
+        </div>
+        <div class="model-visual-area">
+          <svg viewBox="0 0 180 210" width="160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Base: 3 rows of solid blocks (núcleo obligatorio) -->
+            <rect x="8" y="176" width="48" height="18" rx="2" fill="#190056"/>
+            <rect x="64" y="176" width="48" height="18" rx="2" fill="#190056"/>
+            <rect x="120" y="176" width="48" height="18" rx="2" fill="#190056"/>
+            <rect x="8" y="154" width="48" height="18" rx="2" fill="#190056"/>
+            <rect x="64" y="154" width="48" height="18" rx="2" fill="#190056"/>
+            <rect x="120" y="154" width="48" height="18" rx="2" fill="#190056"/>
+            <rect x="8" y="132" width="48" height="18" rx="2" fill="#190056"/>
+            <rect x="64" y="132" width="48" height="18" rx="2" fill="#190056"/>
+            <rect x="120" y="132" width="48" height="18" rx="2" fill="#190056"/>
+            <!-- Concentración rows -->
+            <rect x="8" y="110" width="48" height="18" rx="2" fill="#3100A0"/>
+            <rect x="64" y="110" width="48" height="18" rx="2" fill="#3100A0"/>
+            <rect x="120" y="113" width="48" height="18" rx="2" fill="#3100A0" opacity=".28" stroke="#3100A0" stroke-width="1" stroke-dasharray="3 2"/>
+            <rect x="8" y="88" width="48" height="18" rx="2" fill="#3100A0"/>
+            <rect x="70" y="88" width="48" height="18" rx="2" fill="#DA0921"/>
+            <rect x="124" y="88" width="48" height="18" rx="2" fill="#3100A0"/>
+            <!-- Electivas -->
+            <rect x="18" y="66" width="48" height="18" rx="2" fill="#DA0921" opacity=".85"/>
+            <rect x="78" y="66" width="48" height="18" rx="2" fill="#DA0921" opacity=".85"/>
+            <rect x="112" y="66" width="40" height="18" rx="2" fill="#DA0921" opacity=".4" stroke="#DA0921" stroke-width="1" stroke-dasharray="3 2"/>
+            <!-- Top: integradora -->
+            <rect x="42" y="44" width="92" height="18" rx="2" fill="#C8A03A" opacity=".9"/>
+            <rect x="60" y="22" width="56" height="18" rx="2" fill="#C8A03A" opacity=".65"/>
+            <!-- Legend -->
+            <rect x="8" y="4" width="8" height="8" rx="1" fill="#190056"/>
+            <text x="20" y="12" font-family="Raleway,sans-serif" font-size="7" fill="#6B6478">Núcleo</text>
+            <rect x="62" y="4" width="8" height="8" rx="1" fill="#3100A0"/>
+            <text x="74" y="12" font-family="Raleway,sans-serif" font-size="7" fill="#6B6478">Concentración</text>
+            <rect x="130" y="4" width="8" height="8" rx="1" fill="#DA0921"/>
+            <text x="142" y="12" font-family="Raleway,sans-serif" font-size="7" fill="#6B6478">Electiva</text>
+          </svg>
+        </div>
+        <div class="model-card-body">
+          <div class="model-card-body-title">Cómo responde a las demandas</div>
+          <div class="model-response">
+            <div class="resp-item">
+              <span class="resp-dot" style="background:var(--navy);"></span>
+              <p class="resp-text"><strong>Base inamovible:</strong> núcleo de rigor analítico, datos y pensamiento crítico que garantiza solidez profesional.</p>
+            </div>
+            <div class="resp-item">
+              <span class="resp-dot" style="background:var(--purple);"></span>
+              <p class="resp-text"><strong>Concentraciones intercambiables:</strong> el estudiante elige su énfasis sin desestabilizar la estructura.</p>
+            </div>
+            <div class="resp-item">
+              <span class="resp-dot" style="background:var(--red);"></span>
+              <p class="resp-text"><strong>Electivas y proyectos integradores</strong> en la cúspide: internacionalización, retos reales, doble titulación.</p>
+            </div>
+          </div>
+          <p class="model-cite">
+            <strong>"Currículo flexible y modular que combina teoría, práctica y proyectos por retos"</strong>
+            — Propuesta Estratégica EEN, 2025
+          </p>
+        </div>
+      </div>
+
+      <!-- LEGO -->
+      <div class="model-card">
+        <div class="model-card-head">
+          <span class="model-card-badge" style="background:var(--purple);">Posgrado</span>
+          <div class="model-card-name">Modelo LEGO</div>
+          <p class="model-card-sub">Bloques compatibles que se ensamblan en trayectorias distintas. Cada módulo tiene valor propio y se articula con otros sin perder identidad.</p>
+        </div>
+        <div class="model-visual-area">
+          <svg viewBox="0 0 200 210" width="180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- S1 row -->
+            <rect x="8" y="156" width="56" height="28" rx="3" fill="#190056"/>
+            <circle cx="24" cy="154" r="5" fill="#0f003a" stroke="#08001f" stroke-width="1"/>
+            <circle cx="40" cy="154" r="5" fill="#0f003a" stroke="#08001f" stroke-width="1"/>
+            <circle cx="56" cy="154" r="5" fill="#0f003a" stroke="#08001f" stroke-width="1"/>
+            <text x="36" y="174" font-family="Raleway,sans-serif" font-size="6.5" fill="rgba(255,255,255,.6)" text-anchor="middle">Fundamentos</text>
+
+            <rect x="72" y="156" width="56" height="28" rx="3" fill="#190056"/>
+            <circle cx="88" cy="154" r="5" fill="#0f003a" stroke="#08001f" stroke-width="1"/>
+            <circle cx="104" cy="154" r="5" fill="#0f003a" stroke="#08001f" stroke-width="1"/>
+            <circle cx="120" cy="154" r="5" fill="#0f003a" stroke="#08001f" stroke-width="1"/>
+            <text x="100" y="174" font-family="Raleway,sans-serif" font-size="6.5" fill="rgba(255,255,255,.6)" text-anchor="middle">Fundamentos</text>
+
+            <rect x="136" y="156" width="56" height="28" rx="3" fill="#C8A03A"/>
+            <circle cx="152" cy="154" r="5" fill="#8a6a10" stroke="#5a440a" stroke-width="1"/>
+            <circle cx="168" cy="154" r="5" fill="#8a6a10" stroke="#5a440a" stroke-width="1"/>
+            <circle cx="184" cy="154" r="5" fill="#8a6a10" stroke="#5a440a" stroke-width="1"/>
+            <text x="164" y="174" font-family="Raleway,sans-serif" font-size="6.5" fill="rgba(255,255,255,.75)" text-anchor="middle">Electiva</text>
+
+            <!-- S2 row -->
+            <rect x="8" y="118" width="56" height="28" rx="3" fill="#3100A0"/>
+            <circle cx="24" cy="116" r="5" fill="#220070" stroke="#180050" stroke-width="1"/>
+            <circle cx="40" cy="116" r="5" fill="#220070" stroke="#180050" stroke-width="1"/>
+            <circle cx="56" cy="116" r="5" fill="#220070" stroke="#180050" stroke-width="1"/>
+            <text x="36" y="136" font-family="Raleway,sans-serif" font-size="6.5" fill="rgba(255,255,255,.65)" text-anchor="middle">Profundización</text>
+
+            <rect x="72" y="118" width="56" height="28" rx="3" fill="#3100A0"/>
+            <circle cx="88" cy="116" r="5" fill="#220070" stroke="#180050" stroke-width="1"/>
+            <circle cx="104" cy="116" r="5" fill="#220070" stroke="#180050" stroke-width="1"/>
+            <circle cx="120" cy="116" r="5" fill="#220070" stroke="#180050" stroke-width="1"/>
+            <text x="100" y="136" font-family="Raleway,sans-serif" font-size="6.5" fill="rgba(255,255,255,.65)" text-anchor="middle">Profundización</text>
+
+            <rect x="136" y="118" width="56" height="28" rx="3" fill="#C8A03A"/>
+            <circle cx="152" cy="116" r="5" fill="#8a6a10" stroke="#5a440a" stroke-width="1"/>
+            <circle cx="168" cy="116" r="5" fill="#8a6a10" stroke="#5a440a" stroke-width="1"/>
+            <circle cx="184" cy="116" r="5" fill="#8a6a10" stroke="#5a440a" stroke-width="1"/>
+            <text x="164" y="136" font-family="Raleway,sans-serif" font-size="6.5" fill="rgba(255,255,255,.75)" text-anchor="middle">Electiva</text>
+
+            <!-- S3 row: electivas + microcredencial -->
+            <rect x="8" y="80" width="56" height="28" rx="3" fill="#DA0921"/>
+            <circle cx="24" cy="78" r="5" fill="#9a0617" stroke="#700410" stroke-width="1"/>
+            <circle cx="40" cy="78" r="5" fill="#9a0617" stroke="#700410" stroke-width="1"/>
+            <circle cx="56" cy="78" r="5" fill="#9a0617" stroke="#700410" stroke-width="1"/>
+            <text x="36" y="98" font-family="Raleway,sans-serif" font-size="6.5" fill="rgba(255,255,255,.75)" text-anchor="middle">Electiva</text>
+
+            <rect x="72" y="80" width="56" height="28" rx="3" fill="#DA0921" opacity=".85"/>
+            <circle cx="88" cy="78" r="5" fill="#9a0617" stroke="#700410" stroke-width="1"/>
+            <circle cx="104" cy="78" r="5" fill="#9a0617" stroke="#700410" stroke-width="1"/>
+            <circle cx="120" cy="78" r="5" fill="#9a0617" stroke="#700410" stroke-width="1"/>
+            <text x="100" y="92" font-family="Raleway,sans-serif" font-size="6" fill="rgba(255,255,255,.75)" text-anchor="middle">Micro-</text>
+            <text x="100" y="101" font-family="Raleway,sans-serif" font-size="6" fill="rgba(255,255,255,.75)" text-anchor="middle">credencial</text>
+
+            <!-- Floating optional block -->
+            <rect x="136" y="68" width="56" height="28" rx="3" fill="none" stroke="#3100A0" stroke-width="1.5" stroke-dasharray="4 2" opacity=".6"/>
+            <text x="164" y="84" font-family="Raleway,sans-serif" font-size="6.5" fill="#3100A0" text-anchor="middle" opacity=".7">+ módulo</text>
+            <text x="164" y="93" font-family="Raleway,sans-serif" font-size="6.5" fill="#3100A0" text-anchor="middle" opacity=".5">opcional</text>
+
+            <!-- Sem labels -->
+            <text x="4" y="177" font-family="Raleway,sans-serif" font-size="6" fill="#A099B0" writing-mode="tb">S1</text>
+            <text x="4" y="140" font-family="Raleway,sans-serif" font-size="6" fill="#A099B0" writing-mode="tb">S2</text>
+            <text x="4" y="103" font-family="Raleway,sans-serif" font-size="6" fill="#A099B0" writing-mode="tb">S3</text>
+
+            <!-- Legend -->
+            <rect x="8" y="4" width="8" height="8" rx="1" fill="#190056"/>
+            <text x="20" y="12" font-family="Raleway,sans-serif" font-size="6.5" fill="#6B6478">Fund.</text>
+            <rect x="58" y="4" width="8" height="8" rx="1" fill="#3100A0"/>
+            <text x="70" y="12" font-family="Raleway,sans-serif" font-size="6.5" fill="#6B6478">Profund.</text>
+            <rect x="118" y="4" width="8" height="8" rx="1" fill="#C8A03A"/>
+            <text x="130" y="12" font-family="Raleway,sans-serif" font-size="6.5" fill="#6B6478">Electiva</text>
+            <rect x="8" y="18" width="8" height="8" rx="1" fill="#DA0921"/>
+            <text x="20" y="26" font-family="Raleway,sans-serif" font-size="6.5" fill="#6B6478">Microcredencial</text>
+
+            <!-- Baseline -->
+            <rect x="8" y="186" width="184" height="4" rx="2" fill="#E3E0DA" opacity=".5"/>
+          </svg>
+        </div>
+        <div class="model-card-body">
+          <div class="model-card-body-title">Cómo responde a las demandas</div>
+          <div class="model-response">
+            <div class="resp-item">
+              <span class="resp-dot" style="background:var(--navy);"></span>
+              <p class="resp-text"><strong>Fundamentos compartidos entre programas:</strong> economía y finanzas como base que conecta distintas especializaciones.</p>
+            </div>
+            <div class="resp-item">
+              <span class="resp-dot" style="background:var(--purple);"></span>
+              <p class="resp-text"><strong>Profundizaciones apilables:</strong> cada módulo añade valor independientemente — el estudiante construye su trayectoria.</p>
+            </div>
+            <div class="resp-item">
+              <span class="resp-dot" style="background:var(--red);"></span>
+              <p class="resp-text"><strong>Microcredenciales con valor comercial propio:</strong> IA para Negocios, Análisis de Datos, Finanzas Cuantitativas — acreditables antes de terminar el posgrado.</p>
+            </div>
+          </div>
+          <p class="model-cite">
+            <strong>"Trayectorias formativas flexibles... aprendizaje a lo largo de la vida"</strong>
+            — Propuesta Estratégica EEN, 2025
+          </p>
+        </div>
+      </div>
+
+    </div><!-- end model-pair -->
+  </div>
+</section>
+
+<!-- ── 04: PREGRADO — DETALLE ────────────────────────── -->
+<section class="q-section" style="background:var(--surface);">
+  <div class="inner">
+    <p class="q-number" style="color:var(--navy);">04 · Pregrado</p>
+    <h2 class="q-heading">Modelo Jenga:<br>base sólida, trayectoria propia</h2>
+
+    <p class="demand-intro">
+      El pregrado forma <strong>ciudadanos globales y profesionales sólidos</strong>: personas capaces de actuar
+      en entornos cambiantes, con rigor analítico, perspectiva interdisciplinaria y compromiso social.
+      La estructura curricular garantiza una base inamovible y permite al estudiante construir su énfasis
+      sin comprometer la coherencia del conjunto.
+    </p>
+
+    <div class="pregrado-grid">
+
+      <!-- Visual Jenga ampliado -->
+      <div class="preg-visual">
+        <div class="preg-visual-legend">
+          <span class="preg-leg-item"><span class="preg-leg-dot" style="background:var(--navy);"></span>Núcleo analítico</span>
+          <span class="preg-leg-item"><span class="preg-leg-dot" style="background:var(--purple);"></span>Concentración</span>
+          <span class="preg-leg-item"><span class="preg-leg-dot" style="background:var(--red);"></span>Electivas</span>
+          <span class="preg-leg-item"><span class="preg-leg-dot" style="background:var(--gold);"></span>Integración</span>
+        </div>
+        <svg viewBox="0 0 220 240" width="100%" style="max-width:240px;" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Núcleo obligatorio: 3 rows -->
+          <rect x="10" y="198" width="60" height="20" rx="2" fill="#190056"/>
+          <rect x="80" y="198" width="60" height="20" rx="2" fill="#190056"/>
+          <rect x="150" y="198" width="60" height="20" rx="2" fill="#190056"/>
+          <rect x="10" y="174" width="60" height="20" rx="2" fill="#190056"/>
+          <rect x="80" y="174" width="60" height="20" rx="2" fill="#190056"/>
+          <rect x="150" y="174" width="60" height="20" rx="2" fill="#190056"/>
+          <rect x="10" y="150" width="60" height="20" rx="2" fill="#190056"/>
+          <rect x="80" y="150" width="60" height="20" rx="2" fill="#190056"/>
+          <rect x="150" y="150" width="60" height="20" rx="2" fill="#190056"/>
+          <!-- Concentración rows -->
+          <rect x="10" y="126" width="60" height="20" rx="2" fill="#3100A0"/>
+          <rect x="80" y="126" width="60" height="20" rx="2" fill="#3100A0"/>
+          <rect x="150" y="129" width="60" height="20" rx="2" fill="#3100A0" opacity=".3" stroke="#3100A0" stroke-width="1" stroke-dasharray="3 2"/>
+          <rect x="10" y="102" width="60" height="20" rx="2" fill="#3100A0"/>
+          <rect x="86" y="102" width="60" height="20" rx="2" fill="#DA0921"/>
+          <rect x="152" y="102" width="60" height="20" rx="2" fill="#3100A0"/>
+          <!-- Electivas -->
+          <rect x="18" y="78" width="58" height="20" rx="2" fill="#DA0921" opacity=".85"/>
+          <rect x="86" y="78" width="58" height="20" rx="2" fill="#DA0921" opacity=".85"/>
+          <rect x="122" y="78" width="46" height="20" rx="2" fill="#DA0921" opacity=".35" stroke="#DA0921" stroke-width="1" stroke-dasharray="3 2"/>
+          <!-- Integradora top -->
+          <rect x="46" y="54" width="128" height="20" rx="2" fill="#C8A03A" opacity=".9"/>
+          <rect x="68" y="30" width="84" height="20" rx="2" fill="#C8A03A" opacity=".65"/>
+          <!-- Bracket labels -->
+          <line x1="6" y1="148" x2="6" y2="220" stroke="#190056" stroke-width="2" stroke-linecap="round"/>
+          <text x="2" y="190" font-family="Raleway,sans-serif" font-size="6.5" fill="#190056" writing-mode="tb-rl" text-anchor="middle" transform="rotate(180 3 188)">Núcleo</text>
+          <line x1="6" y1="100" x2="6" y2="146" stroke="#3100A0" stroke-width="2" stroke-linecap="round"/>
+          <text x="2" y="130" font-family="Raleway,sans-serif" font-size="6.5" fill="#3100A0" writing-mode="tb-rl" text-anchor="middle" transform="rotate(180 3 126)">Conc.</text>
+          <line x1="6" y1="52" x2="6" y2="98" stroke="#DA0921" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <!-- 4 diferenciadores -->
+      <div class="preg-diffs">
+        <div class="preg-diff-card" style="--accent:var(--navy);">
+          <div class="preg-diff-icon" style="background:rgba(25,0,86,.1);">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="11" width="14" height="3" rx="1" fill="#190056"/><rect x="1" y="7" width="14" height="3" rx="1" fill="#190056" opacity=".6"/><rect x="1" y="3" width="14" height="3" rx="1" fill="#190056" opacity=".3"/></svg>
+          </div>
+          <div>
+            <div class="preg-diff-title">Núcleo de formación crítica</div>
+            <p class="preg-diff-desc">Pensamiento crítico, literacidad de datos y fundamentos económico-financieros forman la base irreducible. No se negocian — son la garantía de solidez profesional sin importar la concentración elegida.</p>
+          </div>
+        </div>
+        <div class="preg-diff-card" style="--accent:var(--purple);">
+          <div class="preg-diff-icon" style="background:rgba(49,0,160,.1);">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 8h12" stroke="#3100A0" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <div class="preg-diff-title">Currículo flexible y modular</div>
+            <p class="preg-diff-desc">Concentraciones y electivas permiten profundizar sin desestabilizar la estructura. El estudiante elige su énfasis dentro de un marco coherente: economía aplicada, finanzas, negocios internacionales o política pública.</p>
+          </div>
+        </div>
+        <div class="preg-diff-card" style="--accent:var(--red);">
+          <div class="preg-diff-icon" style="background:rgba(218,9,33,.1);">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="#DA0921" stroke-width="1.5"/><path d="M5.5 8.5l2 2 3-3.5" stroke="#DA0921" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="preg-diff-title">Aprendizaje por retos reales</div>
+            <p class="preg-diff-desc">Proyectos integrados con organizaciones, entidades públicas y emprendimientos desde semestres tempranos. La teoría encuentra fricción con el mundo real: no como añadido sino como método central.</p>
+          </div>
+        </div>
+        <div class="preg-diff-card" style="--accent:var(--gold);">
+          <div class="preg-diff-icon" style="background:rgba(200,160,58,.12);">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L14 6v5L8 14 2 11V6L8 2z" stroke="#C8A03A" stroke-width="1.5" fill="none"/></svg>
+          </div>
+          <div>
+            <div class="preg-diff-title">Ciudadanos globales con criterio</div>
+            <p class="preg-diff-desc">El objetivo no es solo empleabilidad: es la formación de personas con ética, capacidad analítica y visión global. Internacionalización, doble titulación y movilidad como diferenciadores concretos.</p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end pregrado-grid -->
+  </div>
+</section>
 
 </body>
 </html>
