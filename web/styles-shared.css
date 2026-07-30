@@ -1,0 +1,85 @@
+/* ══════════════════════════════════════════
+   EEN UR · Shared Design Tokens
+   Import this file first in every page:
+   <link rel="stylesheet" href="styles-shared.css">
+══════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@300;400;500;600;700&display=swap');
+
+/* ── Brand & semantic tokens ── */
+:root {
+  /* Brand colors */
+  --navy:    #190056;
+  --purple:  #3100A0;
+  --red:     #DA0921;
+  --gold:    #C8A03A;
+  --teal:    #0A6B5A;
+  --orange:  #E8670C;
+
+  /* Semantic surface tokens */
+  --bg:      #F5F3EF;
+  --surface: #FFFFFF;
+  --white:   #FFFFFF;
+  --border:  #E3E0DA;
+  --text:    #1A1620;
+  --muted:   #6B6478;
+  --dim:     #A099B0;
+
+  /* Legacy aliases for --ur-* pages (keep during migration) */
+  --ur-navy:    var(--navy);
+  --ur-red:     var(--red);
+  --ur-purple:  var(--purple);
+  --ur-gold:    var(--gold);
+  --ur-orange:  var(--orange);
+  --ur-teal:    var(--teal);
+  --ur-white:   var(--white);
+  --ur-gray-f:  var(--bg);
+  --ur-gray-e:  var(--border);
+  --ur-gray-70: var(--text);
+  --ur-gray-50: var(--muted);
+
+  /* Typography */
+  --f-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  --f-body:    'Raleway', 'Trebuchet MS', Arial, sans-serif;
+
+  /* Shared radius */
+  --r: 6px;
+}
+
+/* ── Dark mode ── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:      #0B001E;
+    --surface: #130033;
+    --border:  #261250;
+    --text:    #EDE9F5;
+    --muted:   #9080B8;
+    --dim:     #6A5890;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:      #0B001E;
+  --surface: #130033;
+  --border:  #261250;
+  --text:    #EDE9F5;
+  --muted:   #9080B8;
+  --dim:     #6A5890;
+}
+:root[data-theme="light"] {
+  --bg:      #F5F3EF;
+  --surface: #FFFFFF;
+  --border:  #E3E0DA;
+  --text:    #1A1620;
+  --muted:   #6B6478;
+  --dim:     #A099B0;
+}
+
+/* ── Base reset & typography ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--f-body);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.65;
+}
