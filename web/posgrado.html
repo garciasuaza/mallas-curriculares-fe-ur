@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Posgrado · Escuela de Economía y Negocios · UR</title>
+<title>Estructura tipo · Posgrado EEN · UR</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -293,205 +293,12 @@ body {
 </head>
 <body>
 
-<!-- ── TAB BAR ── -->
-<div class="tab-bar">
-  <button class="tab-btn active" onclick="switchTab('arq')">Arquitectura general</button>
-  <button class="tab-btn" onclick="switchTab('ej')">Ejemplo de programa</button>
-</div>
+<!-- (tab bar removed — solo Estructura tipo) -->
 
-<!-- ══════════════════════════════════════════
-     TAB 1 · ARQUITECTURA GENERAL
-═══════════════════════════════════════════ -->
-<div class="tab-panel active" id="tp-arq">
+<div id="tp-ej">
 <div class="page-wrap">
 
-  <p class="page-eyebrow">Modelo LEGO · Bloques apilables</p>
-  <h1 class="page-title">Estructura de un programa de posgrado</h1>
-  <p class="page-sub">36 cr &nbsp;·&nbsp; Maestría completa &nbsp;·&nbsp; Especialización embebida en S1–S2</p>
-
-  <p class="intro-text">
-    Todos los programas de posgrado de la Escuela de Economía y Negocios son <strong>maestrías de 36 créditos</strong>
-    con una <strong>especialización embebida</strong>: los primeros dos semestres (24 cr) constituyen
-    una salida intermedia acreditable como especialización. El tercer semestre completa la maestría con
-    cursos de <strong>Profundización</strong> avanzada y <strong>Electivos</strong> de educación continua.
-    Los bloques de <strong>Fundamentos</strong> (F1–F5) son compartidos entre todos los programas de la Escuela.
-  </p>
-
-  <!-- Leyenda -->
-  <div class="legend">
-    <div class="leg-item"><span class="leg-dot" style="background:var(--purple);"></span> Fundamentos</div>
-    <div class="leg-item"><span class="leg-dot" style="background:var(--red);"></span> Profundización</div>
-    <div class="leg-item"><span class="leg-dot" style="background:var(--gold);"></span> Electivos</div>
-    <div class="leg-item"><span class="cred-badge" style="background:var(--teal);">①</span> Credencial 1 · Fund + Fund</div>
-    <div class="leg-item"><span class="cred-badge" style="background:var(--teal); opacity:.75;">②</span> Credencial 2 · Fund + Prof</div>
-    <div class="leg-item"><span class="ec-badge">EC</span> Educación continua</div>
-  </div>
-
-  <!-- Semestres -->
-  <div class="sem-grid">
-
-    <!-- S1 -->
-    <div class="sem-card">
-      <div class="sem-head">
-        <span class="sem-label">Semestre 1</span>
-        <span class="sem-cr">12 CR</span>
-      </div>
-      <div class="sem-body">
-        <div>
-          <div class="bloque-label" style="color:var(--purple);">Fundamentos · 9 CR</div>
-          <div style="display:flex;flex-direction:column;gap:.35rem;">
-            <div class="curso">
-              <span class="curso-name">F1 — Teoría y contexto</span>
-              <span class="curso-cr">3 cr</span>
-            </div>
-            <div class="curso">
-              <span class="curso-name">F2 — Métodos cuantitativos</span>
-              <span class="curso-cr">3 cr</span>
-            </div>
-            <div class="curso">
-              <span class="curso-name">F3 — Análisis estratégico</span>
-              <span class="cred-badge" style="background:var(--teal);font-size:.55rem;">①</span>
-              <span class="curso-cr">3 cr</span>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="bloque-label" style="color:var(--red);">Profundización · 3 CR</div>
-          <div class="curso">
-            <span class="curso-name">E1 — Núcleo disciplinar I</span>
-            <span class="curso-cr">3 cr</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- S2 -->
-    <div class="sem-card">
-      <div class="sem-head">
-        <span class="sem-label">Semestre 2</span>
-        <span class="sem-cr">12 CR</span>
-      </div>
-      <div class="sem-body">
-        <div>
-          <div class="bloque-label" style="color:var(--purple);">Fundamentos · 6 CR</div>
-          <div style="display:flex;flex-direction:column;gap:.35rem;">
-            <div class="curso">
-              <span class="curso-name">F4 — Entorno institucional</span>
-              <span class="cred-badge" style="background:var(--teal);font-size:.55rem;">①</span>
-              <span class="curso-cr">3 cr</span>
-            </div>
-            <div class="curso">
-              <span class="curso-name">F5 — Herramientas integradoras</span>
-              <span class="cred-badge" style="background:var(--teal);opacity:.75;font-size:.55rem;">②</span>
-              <span class="curso-cr">3 cr</span>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="bloque-label" style="color:var(--red);">Profundización · 3 CR</div>
-          <div class="curso">
-            <span class="curso-name">E2 — Núcleo disciplinar II</span>
-            <span class="curso-cr">3 cr</span>
-          </div>
-        </div>
-        <div>
-          <div class="bloque-label" style="color:var(--gold);">Electivo · 3 CR</div>
-          <div class="curso">
-            <span class="curso-name">Electivo A</span>
-            <span class="ec-badge">EC</span>
-            <span class="curso-cr">3 cr</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- S3 -->
-    <div class="sem-card">
-      <div class="sem-head">
-        <span class="sem-label">Semestre 3</span>
-        <span class="sem-cr">12 CR</span>
-      </div>
-      <div class="sem-body">
-        <div>
-          <div class="bloque-label" style="color:var(--red);">Profundización · 6 CR</div>
-          <div style="display:flex;flex-direction:column;gap:.35rem;">
-            <div class="curso">
-              <span class="curso-name">E3 — Aplicaciones avanzadas</span>
-              <span class="cred-badge" style="background:var(--teal);opacity:.75;font-size:.55rem;">②</span>
-              <span class="curso-cr">3 cr</span>
-            </div>
-            <div class="curso">
-              <span class="curso-name">E4 — Proyecto integrador</span>
-              <span class="curso-cr">3 cr</span>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="bloque-label" style="color:var(--gold);">Electivos · 6 CR</div>
-          <div style="display:flex;flex-direction:column;gap:.35rem;">
-            <div class="curso">
-              <span class="curso-name">Electivo B</span>
-              <span class="ec-badge">EC</span>
-              <span class="curso-cr">3 cr</span>
-            </div>
-            <div class="curso">
-              <span class="curso-name">Electivo C</span>
-              <span class="ec-badge">EC</span>
-              <span class="curso-cr">3 cr</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- end sem-grid -->
-
-  <!-- Nota especialización embebida -->
-  <div style="display:flex;align-items:flex-start;gap:.65rem;margin:.5rem 0 1.25rem;padding:.65rem .85rem;border-left:3px solid var(--gold);background:rgba(200,160,58,.06);border-radius:0 var(--r) var(--r) 0;">
-    <span style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a6a10;white-space:nowrap;padding-top:.05rem;">Especialización</span>
-    <span style="font-size:.78rem;color:var(--muted);">Al completar <strong style="color:var(--text);">S1 + S2 (24 cr)</strong> el estudiante puede optar por la salida como <strong style="color:var(--text);">Especialización</strong>. Continuar con S3 (12 cr adicionales) completa la <strong style="color:var(--text);">Maestría</strong>.</span>
-  </div>
-
-  <!-- Credenciales -->
-  <div class="cred-section">
-    <div class="cred-section-label">Credenciales inter-semestrales</div>
-    <div class="cred-list">
-      <div class="cred-item">
-        <div class="cred-item-badge" style="background:var(--teal);">①</div>
-        <div>
-          <div class="cred-item-title">Credencial 1 · Fundamentos del campo</div>
-          <p class="cred-item-desc">
-            Acreditable al completar <strong>F3 — Análisis estratégico</strong> (S1) y
-            <strong>F4 — Entorno institucional</strong> (S2).
-            Certifica dominio del marco conceptual y analítico base del programa.
-          </p>
-        </div>
-      </div>
-      <div class="cred-item">
-        <div class="cred-item-badge" style="background:var(--teal);opacity:.8;">②</div>
-        <div>
-          <div class="cred-item-title">Credencial 2 · Aplicación especializada</div>
-          <p class="cred-item-desc">
-            Acreditable al completar <strong>F5 — Herramientas integradoras</strong> (S2) y
-            <strong>E3 — Aplicaciones avanzadas</strong> (S3).
-            Certifica capacidad de aplicar métodos avanzados al campo de especialización.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-</div><!-- /tp-arq -->
-
-
-<!-- ══════════════════════════════════════════
-     TAB 2 · EJEMPLO DE PROGRAMA
-═══════════════════════════════════════════ -->
-<div class="tab-panel" id="tp-ej">
-<div class="page-wrap">
-
-  <p class="page-eyebrow">Aplicación del modelo · Caso real UR</p>
+  <p class="page-eyebrow">Estructura tipo · Caso real UR</p>
   <h1 class="page-title">Maestría en Analítica de Negocios</h1>
   <p class="page-sub">36 cr &nbsp;·&nbsp; Maestría completa &nbsp;·&nbsp; Especialización embebida S1–S2 · Plan vigente</p>
 
@@ -700,14 +507,5 @@ body {
 </div>
 </div><!-- /tp-ej -->
 
-<script>
-function switchTab(key) {
-  document.querySelectorAll('.tab-btn').forEach((btn, i) => {
-    btn.classList.toggle('active', ['arq','ej'][i] === key);
-  });
-  document.getElementById('tp-arq').classList.toggle('active', key === 'arq');
-  document.getElementById('tp-ej').classList.toggle('active', key === 'ej');
-}
-</script>
 </body>
 </html>
