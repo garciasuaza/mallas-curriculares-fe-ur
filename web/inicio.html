@@ -4,9 +4,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Escuela de Economía y Negocios · UR</title>
-<link rel="stylesheet" href="styles-shared.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ── DARK MODE OVERRIDES ─────────────────────────────── */
+/* ── TOKENS ─────────────────────────────────────────── */
+:root {
+  --red:     #DA0921;
+  --navy:    #190056;
+  --purple:  #3100A0;
+  --gold:    #C8A03A;
+  --teal:    #0E7C6A;
+
+  --bg:      #F5F3EF;
+  --surface: #FFFFFF;
+  --border:  #E3E0DA;
+  --text:    #1A1620;
+  --muted:   #6B6478;
+  --dim:     #A099B0;
+  --hero-bg: #0B001E;
+
+  --f-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  --f-body:    'Raleway', 'Trebuchet MS', Arial, sans-serif;
+  --r: 6px;
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #0B001E; --surface: #130033; --border: #261250;
@@ -23,8 +42,14 @@
 }
 
 /* ── RESET ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
+  font-family: var(--f-body);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.65;
   overflow-x: hidden;
 }
 

@@ -4,13 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Estructura tipo · Posgrado EEN · UR</title>
-<link rel="stylesheet" href="styles-shared.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+:root {
+  --navy:   #190056;
+  --purple: #3100A0;
+  --red:    #DA0921;
+  --gold:   #C8A03A;
+  --teal:   #0A6B5A;
+  --bg:     #F5F3EF;
+  --surface:#FFFFFF;
+  --border: #E3E0DA;
+  --text:   #1A1620;
+  --muted:  #6B6478;
+  --dim:    #A099B0;
+  --r: 6px;
+  --f-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  --f-body:    'Raleway', 'Trebuchet MS', Arial, sans-serif;
+}
 @media (prefers-color-scheme: dark) {
   :root { --bg:#0B001E; --surface:#130033; --border:#261250; --text:#EDE9F5; --muted:#9080B8; --dim:#6A5890; }
 }
-:root[data-theme="dark"] { --bg:#0B001E; --surface:#130033; --border:#261250; --text:#EDE9F5; --muted:#9080B8; --dim:#6A5890; }
-:root[data-theme="light"] { --bg:#F5F3EF; --surface:#FFFFFF; --border:#E3E0DA; --text:#1A1620; --muted:#6B6478; --dim:#A099B0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--f-body);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.65;
+}
 
 /* ── TAB SELECTOR ── */
 .tab-bar {
