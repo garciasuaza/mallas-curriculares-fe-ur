@@ -17,7 +17,7 @@ html, body { font-family: Calibri, 'Trebuchet MS', Arial, sans-serif; background
 
 /* ── KPIs ─────────────────────────────────────── */
 .kpi-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
-.kpi { background: #fff; border: 1px solid var(--ur-gray-e); border-radius: 4px; padding: .75rem 1rem; min-width: 140px; flex: 1; }
+.kpi { background: #fff; border: 1px solid var(--ur-gray-e); border-radius: 6px; padding: .75rem 1rem; min-width: 140px; flex: 1; }
 .kpi-val { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: .04em; line-height: 1; }
 .kpi-label { font-size: .68rem; color: var(--ur-gray-50); margin-top: 2px; line-height: 1.35; }
 
@@ -25,11 +25,11 @@ html, body { font-family: Calibri, 'Trebuchet MS', Arial, sans-serif; background
 .art-section { margin-bottom: .75rem; }
 .sec-toggle {
   width: 100%; display: flex; align-items: center; justify-content: space-between;
-  border: 1px solid var(--ur-gray-e); border-radius: 4px;
+  border: 1px solid var(--ur-gray-e); border-radius: 6px;
   padding: .65rem 1rem; cursor: pointer; gap: .75rem; text-align: left;
   transition: background .12s;
 }
-.art-section.open .sec-toggle { border-radius: 4px 4px 0 0; border-bottom-color: transparent; }
+.art-section.open .sec-toggle { border-radius: 6px 6px 0 0; border-bottom-color: transparent; }
 .sec-left { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
 .sec-badge { font-family: 'Bebas Neue', sans-serif; font-size: .9rem; letter-spacing: .05em; padding: 2px 10px; border-radius: 3px; color: #fff; white-space: nowrap; }
 .sec-label { font-size: .8rem; font-weight: 600; color: var(--ur-gray-70); }
@@ -37,7 +37,7 @@ html, body { font-family: Calibri, 'Trebuchet MS', Arial, sans-serif; background
 .sec-chevron { font-size: 1rem; color: var(--ur-gray-50); transition: transform .18s; flex-shrink: 0; }
 .art-section:not(.open) .sec-chevron { transform: rotate(-90deg); }
 
-.sec-body { display: none; background: #fff; border: 1px solid var(--ur-gray-e); border-top: none; border-radius: 0 0 4px 4px; overflow: auto; }
+.sec-body { display: none; background: #fff; border: 1px solid var(--ur-gray-e); border-top: none; border-radius: 0 0 6px 6px; overflow: auto; }
 .art-section.open .sec-body { display: block; }
 
 /* ── TABLE ─────────────────────────────────────── */
@@ -57,7 +57,7 @@ html, body { font-family: Calibri, 'Trebuchet MS', Arial, sans-serif; background
 .mx-grid { display: grid; grid-template-columns: 72px repeat(6, 1fr); gap: 5px; }
 .mx-colhdr { background: var(--ur-navy); border-radius: 5px; padding: 9px 0; text-align: center; font-size: 12px; font-weight: 600; color: #fff; letter-spacing: .08em; }
 .mx-rowhdr { display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; font-size: 12px; font-weight: 600; color: var(--ur-navy); letter-spacing: .08em; }
-.mx-cell { border-radius: 7px; padding: 11px 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; min-height: 64px; }
+.mx-cell { border-radius: 6px; padding: 11px 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; min-height: 64px; }
 .mx-cell.diag { background: var(--ur-gray-e); }
 .mx-cell.diag .mx-cr { font-size: 15px; font-weight: 400; color: var(--ur-gray-50); font-style: italic; }
 .mx-cell.diag .mx-pct { font-size: 12px; color: var(--ur-gray-50); }
