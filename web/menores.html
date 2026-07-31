@@ -59,13 +59,13 @@ html, body { font-family: Calibri, 'Trebuchet MS', Arial, sans-serif; background
 }
 .courses-table th:last-child { text-align: center; width: 90px; }
 .courses-table tbody tr { border-bottom: 1px solid var(--ur-gray-e); }
-.courses-table tbody tr:last-child.total-row { border-top: 2px solid var(--ur-navy); border-bottom: none; background: #f0f0f8; }
+.courses-table tbody tr:last-child.total-row { border-top: 2px solid var(--ur-navy); border-bottom: none; background: rgba(49,0,160,0.05); }
 .courses-table td { padding: 8px 14px; font-size: .8rem; }
 .courses-table td:last-child { text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--ur-navy); }
 .courses-table tbody tr:hover:not(.total-row) td { background: rgba(25,0,86,.03); }
 .total-row td { font-weight: 700; font-size: .82rem; color: var(--ur-navy); }
 .total-row td:last-child { font-size: 1.2rem; color: var(--ur-red); }
-.tag-eng { font-size: .6rem; background: #EEF2FF; color: #3730A3; padding: 1px 5px; border-radius: 2px; font-weight: 600; margin-left: 4px; vertical-align: middle; }
+.tag-eng { font-size: .6rem; background: rgba(49,0,160,0.1); color: #3100A0; padding: 1px 5px; border-radius: 2px; font-weight: 600; margin-left: 4px; vertical-align: middle; }
 
 /* ── ESTRUCTURA DEL MENOR ─────────────────────────────── */
 .struct-grid { display: flex; gap: .75rem; margin-bottom: 1.5rem; flex-wrap: wrap; align-items: stretch; }
@@ -78,7 +78,7 @@ html, body { font-family: Calibri, 'Trebuchet MS', Arial, sans-serif; background
 .struct-block.total .struct-cr { color: var(--ur-red); font-size: 2.3rem; }
 .struct-detail { font-size: .71rem; line-height: 1.55; color: var(--ur-gray-70); }
 .struct-detail strong { color: var(--ur-navy); font-weight: 700; }
-.ancla-badge { display: inline-block; font-size: .6rem; font-weight: 700; padding: 1px 5px; border-radius: 2px; margin-right: 2px; margin-bottom: 2px; }
+.ancla-badge { display: inline-block; font-size: .6rem; font-weight: 700; padding: 1px 5px; border-radius: 2px; margin-right: 2px; margin-bottom: 2px; background: #E8E6E1; color: #190056; }
 
 /* ── TABLA DE DISPONIBILIDAD ──────────────────────────── */
 .section-label { font-family: 'Bebas Neue', sans-serif; font-size: .9rem; letter-spacing: .06em; color: var(--ur-navy); margin: 1.25rem 0 .6rem; }
@@ -95,13 +95,13 @@ html, body { font-family: Calibri, 'Trebuchet MS', Arial, sans-serif; background
 .pool-table td.num { text-align: center; font-weight: 700; color: var(--ur-gray-50); width: 24px; font-size: .68rem; }
 .pool-table td.orig-cell { font-size: .62rem; color: var(--ur-gray-50); font-weight: 600; white-space: nowrap; }
 .pool-table td.avail-cell { text-align: center; }
-.pool-table tfoot tr { background: #F0F0F8; border-top: 2px solid var(--ur-navy); }
+.pool-table tfoot tr { background: rgba(49,0,160,0.05); border-top: 2px solid var(--ur-navy); }
 .pool-table tfoot td { padding: 7px 8px; font-weight: 700; font-size: .7rem; text-align: center; color: var(--ur-navy); }
 .pool-table tfoot td.flabel { text-align: left; color: var(--ur-gray-50); font-size: .63rem; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
 .cell-ancla { display: inline-block; background: var(--ur-navy); color: #fff; font-size: .58rem; font-weight: 700; padding: 2px 5px; border-radius: 2px; letter-spacing: .03em; }
-.cell-avail { color: #15803D; font-weight: 700; font-size: 1rem; }
-.cell-taken { color: #D1D5DB; font-size: .85rem; }
-.note-box { margin-top: 1.25rem; background: #EEF2FF; border-left: 3px solid #3730A3; padding: 8px 12px; border-radius: 3px; font-size: .72rem; color: #312E81; line-height: 1.55; }
+.cell-avail { color: #0A6B5A; font-weight: 700; font-size: 1rem; }
+.cell-taken { color: #E8E6E1; font-size: .85rem; }
+.note-box { margin-top: 1.25rem; background: rgba(49,0,160,0.06); border-left: 3px solid #3100A0; padding: 8px 12px; border-radius: 3px; font-size: .72rem; color: #190056; line-height: 1.55; }
 
 /* ── PLACEHOLDER ─────────────────────────────────────── */
 .coming-soon { padding: 3rem 1.5rem; text-align: center; color: var(--ur-gray-50); }
@@ -197,7 +197,7 @@ html, body { font-family: Calibri, 'Trebuchet MS', Arial, sans-serif; background
       <span class="meta-chip">12 créditos</span>
       <span class="meta-chip">1 ancla + 3 electivas</span>
       <span class="meta-chip gray">Todos los programas</span>
-      <span class="meta-chip" style="background:#7C3AED;">PROPUESTA</span>
+      <span class="meta-chip" style="background:#3100A0;">PROPUESTA</span>
     </div>
   </div>
 
@@ -209,20 +209,20 @@ html, body { font-family: Calibri, 'Trebuchet MS', Arial, sans-serif; background
       <div class="struct-detail">
         <div style="margin-bottom:.4rem">Curso fijo según programa:</div>
         <div style="margin-bottom:.4rem">
-          <span class="ancla-badge" style="background:#E0F2FE;color:#0C4A6E;">ANI</span>
-          <span class="ancla-badge" style="background:#FEF0E7;color:#7C2D12;">MND</span>
-          <span class="ancla-badge" style="background:#DCFCE7;color:#14532D;">ADM</span>
-          <span class="ancla-badge" style="background:#FEF9C3;color:#713F12;">EMP</span>
+          <span class="ancla-badge">ANI</span>
+          <span class="ancla-badge">MND</span>
+          <span class="ancla-badge">ADM</span>
+          <span class="ancla-badge">EMP</span>
           <br>
           <strong>Principios de Macroeconomía</strong>
         </div>
         <div style="margin-bottom:.4rem">
-          <span class="ancla-badge" style="background:#EDE9FE;color:#3730A3;">ECON</span>
+          <span class="ancla-badge">ECON</span>
           <br>
           <strong>Valoración de Empresas y Proyectos</strong>
         </div>
         <div>
-          <span class="ancla-badge" style="background:#DBEAFE;color:#1e3a8a;">FIN</span>
+          <span class="ancla-badge">FIN</span>
           <br>
           <span style="color:var(--ur-gray-50);font-style:italic">Sin ancla fija → elige 4 del pool</span>
         </div>

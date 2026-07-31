@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -66,7 +66,7 @@ html, body { font-family: Calibri, 'Trebuchet MS', Arial, sans-serif; background
 .mx-legend { display: flex; align-items: center; gap: 5px; margin-top: .6rem; font-size: 12px; color: var(--ur-gray-50); }
 .mx-legend-box { width: 14px; height: 7px; border-radius: 1px; }
 
-.nota { margin-top: .75rem; background: #F0F9FF; border-left: 3px solid #3100A0; padding: 8px 12px; border-radius: 3px; font-size: .72rem; color: #190056; line-height: 1.5; }
+.nota { margin-top: .75rem; background: rgba(49,0,160,0.05); border-left: 3px solid #3100A0; padding: 8px 12px; border-radius: 3px; font-size: .72rem; color: #190056; line-height: 1.5; }
 </style>
 </head>
 <body>
@@ -124,8 +124,8 @@ html, body { font-family: Calibri, 'Trebuchet MS', Arial, sans-serif; background
 const BLOQUES = [
   { key:'ros',  label:'Formación Rosarista',            color:'#DA0921', bg:'#FEF5F5' },
   { key:'nbc',  label:'Núcleo Básico Común de Escuela', color:'#3100A0', bg:'#F3F0FE' },
-  { key:'dcom', label:'Disciplinar-Departamento',       color:'#065F46', bg:'#F0FBF6' },
-  { key:'desp', label:'Disciplinar específica',         color:'#B8460A', bg:'#FFF7F0' },
+  { key:'dcom', label:'Disciplinar-Departamento',       color:'#0A6B5A', bg:'#F0FBF6' },
+  { key:'desp', label:'Disciplinar específica',         color:'#E8670C', bg:'#FFF7F0' },
 ];
 
 // ═══════════════════════════════════════════════════════
@@ -214,8 +214,8 @@ function renderKPIs() {
     { val: total,          color:'#190056', label: 'cursos compartidos\nentre programas' },
     { val: crRos + ' cr',  color:'#DA0921', label: `en Formación Rosarista\ncompartida (${nRos} cursos)` },
     { val: crNbc + ' cr',  color:'#3100A0', label: `en Núcleo Básico Común\ncompartido (${nNbc} cursos)` },
-    { val: crDcom + ' cr', color:'#065F46', label: `en Disciplinar-Departamento\ncompartida (${nDcom} cursos)` },
-    { val: crDesp + ' cr', color:'#B8460A', label: `en Disciplinar específica\ncompartida (${nDesp} cursos)` },
+    { val: crDcom + ' cr', color:'#0A6B5A', label: `en Disciplinar-Departamento\ncompartida (${nDcom} cursos)` },
+    { val: crDesp + ' cr', color:'#E8670C', label: `en Disciplinar específica\ncompartida (${nDesp} cursos)` },
   ];
   const row = document.getElementById('kpi-row');
   kpis.forEach(k => {

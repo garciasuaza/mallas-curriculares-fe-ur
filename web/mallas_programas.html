@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -118,11 +118,11 @@ html, body { font-family: Calibri, 'Trebuchet MS', Arial, sans-serif; background
 <nav class="prog-nav" role="tablist">
   <button class="prog-tab active" onclick="showProg('ani')" id="ptab-ani"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#DA0921;margin-right:5px;vertical-align:middle;"></span>ANI — Adm. de Negocios Internacionales</button>
   <button class="prog-tab" onclick="showProg('econ')" id="ptab-econ"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3100A0;margin-right:5px;vertical-align:middle;"></span>ECON — Economía</button>
-  <button class="prog-tab" onclick="showProg('fin')" id="ptab-fin"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#1D4ED8;margin-right:5px;vertical-align:middle;"></span>FIN — Finanzas</button>
+  <button class="prog-tab" onclick="showProg('fin')" id="ptab-fin"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3100A0;margin-right:5px;vertical-align:middle;"></span>FIN — Finanzas</button>
   <button class="prog-tab" onclick="showProg('mnd')" id="ptab-mnd"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#E8670C;margin-right:5px;vertical-align:middle;"></span>MND — Marketing y Negocios Digitales</button>
-  <button class="prog-tab" onclick="showProg('adm')" id="ptab-adm"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#0D9488;margin-right:5px;vertical-align:middle;"></span>ADM — Administración de Empresas</button>
-  <button class="prog-tab" onclick="showProg('emp')" id="ptab-emp"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#B45309;margin-right:5px;vertical-align:middle;"></span>EMP — Emprendimiento</button>
-  <button class="prog-tab" onclick="showProg('enb')" id="ptab-enb" style="border-left:2px solid var(--ur-gray-e);"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#7C3AED;margin-right:5px;vertical-align:middle;"></span>ENB — Economía de los Negocios <span style="font-size:.62rem;font-weight:700;padding:1px 6px;border-radius:3px;background:#7C3AED;color:#fff;margin-left:4px;vertical-align:middle;">PROPUESTA</span></button>
+  <button class="prog-tab" onclick="showProg('adm')" id="ptab-adm"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#0A6B5A;margin-right:5px;vertical-align:middle;"></span>ADM — Administración de Empresas</button>
+  <button class="prog-tab" onclick="showProg('emp')" id="ptab-emp"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#C8A03A;margin-right:5px;vertical-align:middle;"></span>EMP — Emprendimiento</button>
+  <button class="prog-tab" onclick="showProg('enb')" id="ptab-enb" style="border-left:2px solid var(--ur-gray-e);"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3100A0;margin-right:5px;vertical-align:middle;"></span>ENB — Economía de los Negocios <span style="font-size:.62rem;font-weight:700;padding:1px 6px;border-radius:3px;background:#3100A0;color:#fff;margin-left:4px;vertical-align:middle;">PROPUESTA</span></button>
 </nav>
 
 
@@ -215,12 +215,12 @@ html, body { font-family: Calibri, 'Trebuchet MS', Arial, sans-serif; background
 ═══════════════════════════════════════════════════ -->
 <div class="prog-pane" id="prog-enb">
   <div class="prog-header">
-    <div class="prog-name" style="color:#7C3AED;">Economía de los Negocios</div>
+    <div class="prog-name" style="color:#3100A0;">Economía de los Negocios</div>
     <div class="prog-meta">
       <span class="meta-chip">8 semestres</span>
       <span class="meta-chip">128 créditos</span>
       <span class="meta-chip gray">ENB</span>
-      <span class="meta-chip" style="background:#7C3AED;">PROPUESTA PRELIMINAR</span>
+      <span class="meta-chip" style="background:#3100A0;">PROPUESTA PRELIMINAR</span>
     </div>
     <div class="prog-legend" id="pleg-enb"></div>
     <p style="margin-top:.5rem;font-size:.72rem;color:var(--ur-gray-50);max-width:620px;">
@@ -240,7 +240,7 @@ html, body { font-family: Calibri, 'Trebuchet MS', Arial, sans-serif; background
 ═══════════════════════════════════════════════════ -->
 <div class="prog-pane" id="prog-adm">
   <div class="prog-header">
-    <div class="prog-name" style="color:#0D9488;">Administración de Empresas</div>
+    <div class="prog-name" style="color:#0A6B5A;">Administración de Empresas</div>
     <div class="prog-meta">
       <span class="meta-chip">8 semestres</span>
       <span class="meta-chip">140 créditos</span>
@@ -261,7 +261,7 @@ html, body { font-family: Calibri, 'Trebuchet MS', Arial, sans-serif; background
 ═══════════════════════════════════════════════════ -->
 <div class="prog-pane" id="prog-emp">
   <div class="prog-header">
-    <div class="prog-name" style="color:#B45309;">Emprendimiento</div>
+    <div class="prog-name" style="color:#C8A03A;">Emprendimiento</div>
     <div class="prog-meta">
       <span class="meta-chip">8 semestres</span>
       <span class="meta-chip">140 créditos</span>
@@ -285,8 +285,8 @@ html, body { font-family: Calibri, 'Trebuchet MS', Arial, sans-serif; background
 const BLOQUES = [
   { key:'ros',  label:'Formación Rosarista',            color:'#DA0921', bg:'#FEE8EA' },
   { key:'nbc',  label:'Núcleo Básico Común de Escuela', color:'#3100A0', bg:'#EDE9FE' },
-  { key:'dcom', label:'Disciplinar-Departamento',        color:'#065F46', bg:'#D1FAE5' },
-  { key:'desp', label:'Disciplinar específica',         color:'#B8460A', bg:'#FEF0E7' },
+  { key:'dcom', label:'Disciplinar-Departamento',        color:'#0A6B5A', bg:'#D1FAE5' },
+  { key:'desp', label:'Disciplinar específica',         color:'#E8670C', bg:'#FEF0E7' },
   { key:'elec', label:'Electividad / Profundización',   color:'#713F12', bg:'#FEF9C3' },
   { key:'grad', label:'Opción de grado',                color:'#0C4A6E', bg:'#E0F2FE' },
   { key:'prac', label:'Prácticas obligatorias',         color:'#4D1A7A', bg:'#F5F0FE' },
