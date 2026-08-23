@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Estructura tipo · Posgrado EEN · UR</title>
+<title>Posgrado EEN · Modelo Híbrido 3+2 · UR</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -21,513 +21,780 @@
   --r: 6px;
   --f-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
   --f-body:    'Raleway', 'Trebuchet MS', Arial, sans-serif;
+
+  /* tipo colores */
+  --c-fund:  #3100A0;
+  --c-prof:  #DA0921;
+  --c-elec:  #C8A03A;
+  --c-pe:    #0A6B5A;
+
+  --cb-fund: #EDE9FB;
+  --cb-prof: #FDECEA;
+  --cb-elec: #FBF4E0;
+  --cb-pe:   #E4F5F1;
 }
 @media (prefers-color-scheme: dark) {
-  :root { --bg:#0B001E; --surface:#130033; --border:#261250; --text:#EDE9F5; --muted:#9080B8; --dim:#6A5890; }
+  :root { --bg:#0B001E; --surface:#130033; --border:#261250; --text:#EDE9F5; --muted:#9080B8; --dim:#6A5890; --cb-fund:#1a0050; --cb-prof:#3a0008; --cb-elec:#2a2000; --cb-pe:#003020; }
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: var(--f-body);
-  background: var(--bg);
-  color: var(--text);
-  font-size: 15px;
-  line-height: 1.65;
-}
+body { font-family: var(--f-body); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
 
-/* ── TAB SELECTOR ── */
+/* ── NAV ── */
+nav.top-nav {
+  background:#190056; height:44px; display:flex; align-items:center;
+  justify-content:space-between; padding:0 24px; position:sticky; top:0; z-index:200;
+  font-family:Calibri,'Trebuchet MS',Arial; flex-shrink:0;
+}
+nav.top-nav a { color:#fff; text-decoration:none; padding:2px 8px; font-size:12px; }
+nav.top-nav a.active { color:#190056; background:#fff; border-radius:3px; font-weight:600; }
+nav.top-nav .brand { color:#fff; font-size:13px; font-weight:600; letter-spacing:.5px; }
+.nav-sep { color:rgba(255,255,255,.35); }
+
+/* ── TAB BAR ── */
 .tab-bar {
-  background: var(--surface);
-  border-bottom: 2px solid var(--border);
-  padding: 0 2.75rem;
-  display: flex;
-  gap: 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  background: var(--surface); border-bottom: 2px solid var(--border);
+  padding: 0 2.75rem; display: flex; gap: 0; position: sticky; top: 44px; z-index:100;
 }
 .tab-btn {
-  padding: .75rem 1.4rem .75rem 0;
-  margin-right: 1.75rem;
-  border: none; border-bottom: 3px solid transparent;
-  background: none; cursor: pointer;
-  font-family: var(--f-body);
-  font-size: .78rem; font-weight: 700;
-  color: var(--dim);
-  letter-spacing: .05em; text-transform: uppercase;
-  transition: color .15s, border-color .15s;
-  margin-bottom: -2px;
-  white-space: nowrap;
+  padding: .75rem 1.4rem .75rem 0; margin-right: 1.75rem;
+  border: none; border-bottom: 3px solid transparent; background: none; cursor: pointer;
+  font-family: var(--f-body); font-size: .78rem; font-weight: 700;
+  color: var(--dim); letter-spacing: .05em; text-transform: uppercase;
+  transition: color .15s, border-color .15s; margin-bottom: -2px; white-space: nowrap;
 }
 .tab-btn:hover { color: var(--text); }
 .tab-btn.active { color: var(--purple); border-bottom-color: var(--purple); }
-
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
 
-/* ── SHARED LAYOUT ── */
-.page-wrap { max-width: 960px; padding: 2.75rem 3rem 4rem; }
+/* ── LAYOUT ── */
+.page-wrap { max-width: 980px; padding: 2.5rem 2.75rem 4rem; }
 
-.page-eyebrow {
+.eyebrow {
   font-size: .6rem; font-weight: 700; letter-spacing: .18em;
-  text-transform: uppercase; color: var(--purple);
-  margin-bottom: .6rem;
+  text-transform: uppercase; color: var(--purple); margin-bottom: .5rem;
 }
 .page-title {
-  font-family: var(--f-display);
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  letter-spacing: .04em; line-height: 1;
-  color: var(--text); margin-bottom: .5rem;
+  font-family: var(--f-display); font-size: clamp(1.8rem,4vw,2.8rem);
+  letter-spacing: .04em; line-height: 1; color: var(--text); margin-bottom: .4rem;
 }
-.page-sub {
-  font-size: .78rem; color: var(--dim);
-  margin-bottom: 2rem; letter-spacing: .04em;
+.page-sub { font-size: .78rem; color: var(--dim); margin-bottom: 1.75rem; letter-spacing: .03em; }
+.intro-box {
+  background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--purple);
+  border-radius: var(--r); padding: 1rem 1.25rem; margin-bottom: 1.75rem;
+  font-size: .84rem; color: var(--muted); line-height: 1.75;
 }
-.intro-text {
-  max-width: 680px;
-  font-size: .88rem; color: var(--muted); line-height: 1.8;
-  margin-bottom: 2.5rem;
-  border-left: 3px solid var(--purple);
-  padding-left: 1.1rem;
-}
-.intro-text strong { color: var(--text); font-weight: 600; }
-
-/* ── LEYENDA ── */
-.legend {
-  display: flex; flex-wrap: wrap; gap: .6rem 1.4rem;
-  align-items: center; margin-bottom: 2rem;
-}
-.leg-item { display: flex; align-items: center; gap: .45rem; font-size: .75rem; color: var(--muted); }
-.leg-dot  { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
-.cred-badge {
-  width: 22px; height: 22px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: .6rem; font-weight: 700; color: #fff;
-  flex-shrink: 0;
-}
-.ec-badge {
-  font-size: .58rem; font-weight: 700; letter-spacing: .06em;
-  padding: .15rem .45rem; border-radius: 3px;
-  background: rgba(200,160,58,.18); color: var(--gold);
-  border: 1px solid var(--gold); flex-shrink: 0;
+.intro-box strong { color: var(--text); font-weight: 600; }
+.intro-box .source-tag {
+  display:inline-block; font-size:.65rem; font-weight:700; letter-spacing:.06em;
+  text-transform:uppercase; background:rgba(49,0,160,.1); color:var(--purple);
+  padding:1px 7px; border-radius:3px; margin-left:.4rem; vertical-align:middle;
 }
 
-/* ── SEMESTRES GRID ── */
-.sem-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-@media (max-width: 700px) { .sem-grid { grid-template-columns: 1fr; } }
+/* ── TIPO LEGEND ── */
+.legend { display:flex; flex-wrap:wrap; gap:.55rem 1.5rem; margin-bottom:1.75rem; align-items:center; }
+.leg { display:flex; align-items:center; gap:.4rem; font-size:.75rem; color:var(--muted); }
+.leg-dot { width:11px; height:11px; border-radius:2px; flex-shrink:0; }
 
-.sem-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  overflow: hidden;
+/* ── TIPO SUMMARY CARDS ── */
+.tipo-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:.75rem; margin-bottom:2rem; }
+@media(max-width:680px){ .tipo-grid{grid-template-columns:1fr 1fr;} }
+.tipo-card {
+  border-radius:var(--r); padding:.85rem 1rem; border:1px solid var(--border);
+  display:flex; flex-direction:column; gap:.3rem;
 }
-.sem-head {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: .65rem 1rem;
-  border-bottom: 1px solid var(--border);
+.tipo-label {
+  font-size:.6rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; opacity:.7;
 }
-.sem-label {
-  font-family: var(--f-display); font-size: .95rem;
-  letter-spacing: .08em; color: var(--text);
-}
-.sem-cr {
-  font-family: var(--f-display); font-size: .95rem;
-  letter-spacing: .04em; color: var(--red);
-}
-.sem-body { padding: .75rem; display: flex; flex-direction: column; gap: .65rem; }
-
-.bloque-label {
-  font-size: .58rem; font-weight: 700; letter-spacing: .14em;
-  text-transform: uppercase; margin-bottom: .35rem;
-}
-.curso {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: .45rem .65rem;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: .5rem;
-  font-size: .78rem; color: var(--text);
-}
-.curso-name { flex: 1; line-height: 1.35; }
-.curso-cr { font-size: .72rem; color: var(--dim); flex-shrink: 0; }
-.curso .cred-badge { margin-left: .3rem; }
-.curso .ec-badge   { margin-left: .3rem; }
-
-/* ── CREDENCIALES ── */
-.cred-section { margin-top: .5rem; }
-.cred-section-label {
-  font-size: .62rem; font-weight: 700; letter-spacing: .16em;
-  text-transform: uppercase; color: var(--dim);
-  margin-bottom: .75rem; padding-bottom: .4rem;
-  border-bottom: 1px solid var(--border);
-}
-.cred-list { display: flex; flex-direction: column; gap: .6rem; }
-.cred-item {
-  display: flex; align-items: flex-start; gap: .85rem;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r); padding: .75rem 1rem;
-}
-.cred-item-badge {
-  width: 32px; height: 32px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: .75rem; font-weight: 700; color: #fff;
-  flex-shrink: 0; margin-top: 1px;
-}
-.cred-item-title { font-size: .82rem; font-weight: 700; color: var(--text); margin-bottom: .2rem; }
-.cred-item-desc  { font-size: .76rem; color: var(--muted); line-height: 1.55; }
-.cred-item-desc strong { color: var(--text); font-weight: 600; }
-
-/* ── EJEMPLO: diagrama visual ── */
-.diagram-wrap {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  padding: 2rem 2rem 1.5rem;
-  margin-bottom: 2rem;
-  overflow-x: auto;
-}
-.diagram-title {
-  font-size: .62rem; font-weight: 700; letter-spacing: .16em;
-  text-transform: uppercase; color: var(--dim);
-  margin-bottom: 1.5rem; padding-bottom: .5rem;
-  border-bottom: 1px solid var(--border);
+.tipo-name { font-size:.88rem; font-weight:700; line-height:1.2; }
+.tipo-meta { font-size:.72rem; color:var(--dim); }
+.tipo-cr {
+  font-family:var(--f-display); font-size:1.4rem; letter-spacing:.04em; margin-top:.2rem;
 }
 
-/* semestre row layout */
-.diag-table { width: 100%; min-width: 560px; border-collapse: separate; border-spacing: 0; }
-.diag-sem-label {
-  font-family: var(--f-display); font-size: 1rem; letter-spacing: .08em;
-  color: var(--text); width: 90px; padding-right: 1rem; vertical-align: top;
-  padding-top: .55rem;
+/* ── ESTRUCTURA TIPO TABLE ── */
+.sem-table { width:100%; border-collapse:collapse; margin-bottom:2rem; }
+.sem-table th {
+  font-size:.62rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--dim); padding:.5rem .85rem; text-align:left;
+  border-bottom:2px solid var(--border); background:var(--bg);
 }
-.diag-sem-cr {
-  font-size: .68rem; color: var(--dim); display: block;
-  font-family: var(--f-body); letter-spacing: 0; margin-top: .15rem;
+.sem-table td { padding:.55rem .85rem; font-size:.82rem; vertical-align:middle; }
+.sem-table tr:not(:last-child) td { border-bottom:1px solid var(--border); }
+.sem-table tr.sem-row td { border-top:2px solid var(--border); background:var(--bg); }
+.sem-label-cell {
+  font-family:var(--f-display); font-size:.95rem; letter-spacing:.08em;
+  white-space:nowrap; color:var(--text); width:90px;
 }
-.diag-courses { display: flex; gap: .6rem; flex: 1; }
+.cr-cell { font-family:var(--f-display); font-size:.95rem; color:var(--red); white-space:nowrap; }
+.tipo-chip {
+  font-size:.6rem; font-weight:700; padding:2px 7px; border-radius:3px;
+  text-transform:uppercase; letter-spacing:.05em; display:inline-block;
+}
+.tc-fund { background:var(--cb-fund); color:var(--c-fund); }
+.tc-prof { background:var(--cb-prof); color:var(--c-prof); }
+.tc-elec { background:var(--cb-elec); color:var(--c-elec); }
+.tc-pe   { background:var(--cb-pe);   color:var(--c-pe); }
 
-.diag-block {
-  flex: 1; border-radius: 5px; padding: .6rem .7rem .55rem;
-  display: flex; flex-direction: column; justify-content: space-between;
-  min-height: 72px; position: relative; cursor: default;
+.course-cell { font-size:.82rem; }
+.course-generic { color:var(--muted); font-style:italic; }
+.course-note { font-size:.7rem; color:var(--dim); margin-top:.1rem; }
+
+/* total row */
+.total-row td {
+  background:var(--navy); color:#fff; font-weight:700; font-size:.82rem;
+  border-radius:0;
 }
-.diag-block-code {
-  font-family: var(--f-display); font-size: 1.05rem; letter-spacing: .06em; color: #fff; line-height: 1;
+.total-row td:first-child { border-radius:var(--r) 0 0 var(--r); }
+.total-row td:last-child  { border-radius:0 var(--r) var(--r) 0; }
+
+/* ── SEMESTRE VISUAL CARDS ── */
+.sem-visual { display:flex; flex-direction:column; gap:1rem; margin-bottom:2rem; }
+.sem-row-visual {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--r);
+  overflow:hidden;
 }
-.diag-block-name {
-  font-size: .66rem; color: rgba(255,255,255,.75); line-height: 1.3; margin-top: .25rem;
+.sem-row-head {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:.6rem 1rem; border-bottom:1px solid var(--border); background:var(--bg);
 }
-.diag-block-cr {
-  font-size: .6rem; color: rgba(255,255,255,.5); margin-top: .3rem;
+.sem-row-label { font-family:var(--f-display); font-size:1rem; letter-spacing:.08em; color:var(--text); }
+.sem-row-cr    { font-family:var(--f-display); font-size:1rem; color:var(--red); }
+.sem-row-body  { display:flex; gap:.65rem; padding:.75rem; flex-wrap:wrap; }
+
+.course-block {
+  flex:1; min-width:140px; border-radius:5px; padding:.6rem .75rem .55rem;
+  display:flex; flex-direction:column; gap:.2rem; position:relative;
 }
-.diag-cred-pin {
-  position: absolute; top: -10px; right: -10px;
-  width: 22px; height: 22px; border-radius: 50%;
-  background: var(--teal); border: 2px solid var(--surface);
-  display: flex; align-items: center; justify-content: center;
-  font-size: .58rem; font-weight: 700; color: #fff;
-  z-index: 2;
+.cb-fund { background:var(--c-fund); }
+.cb-prof { background:var(--c-prof); }
+.cb-elec { background:var(--c-elec); }
+.cb-pe   { background:var(--c-pe);   }
+.cb-open { background:var(--border); }
+
+.block-code { font-family:var(--f-display); font-size:1.05rem; letter-spacing:.06em; color:#fff; line-height:1; }
+.block-name { font-size:.68rem; color:rgba(255,255,255,.82); line-height:1.3; margin-top:.2rem; }
+.block-cr   { font-size:.6rem; color:rgba(255,255,255,.52); margin-top:.25rem; }
+.block-tag  {
+  position:absolute; top:-9px; right:-9px; font-size:.55rem; font-weight:700;
+  padding:1px 5px; border-radius:3px; border:2px solid var(--surface);
+  background:var(--dim); color:#fff; letter-spacing:.04em;
+}
+.block-tag.shared { background:var(--teal); }
+
+/* ── PRINCIPLES ── */
+.principles { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; margin-top:2rem; }
+@media(max-width:600px){ .principles{grid-template-columns:1fr;} }
+.principle-card {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--r);
+  padding:.9rem 1rem;
+}
+.pc-head { display:flex; align-items:center; gap:.5rem; margin-bottom:.4rem; }
+.pc-icon { font-size:1rem; flex-shrink:0; }
+.pc-title { font-size:.8rem; font-weight:700; color:var(--text); }
+.pc-body { font-size:.76rem; color:var(--muted); line-height:1.6; }
+.pc-body strong { color:var(--text); font-weight:600; }
+
+/* ── SECTION DIVIDER ── */
+.section-divider {
+  margin:2rem 0 1.5rem; padding-bottom:.6rem; border-bottom:1px solid var(--border);
+  display:flex; align-items:baseline; gap:.75rem;
+}
+.section-divider h2 {
+  font-family:var(--f-display); font-size:1.3rem; letter-spacing:.06em; color:var(--text);
+}
+.section-divider span {
+  font-size:.65rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--dim);
 }
 
-/* type colors */
-.db-fund  { background: var(--purple); }
-.db-esp   { background: var(--red); }
-.db-elec  { background: var(--gold); }
+/* ── PROGRAM HEADER BAND ── */
+.prog-band {
+  background:var(--navy); border-radius:var(--r); padding:1.25rem 1.5rem;
+  margin-bottom:1.5rem; display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+}
+.prog-band-left h2 {
+  font-family:var(--f-display); font-size:clamp(1.4rem,3vw,2rem); letter-spacing:.04em;
+  color:#fff; line-height:1; margin-bottom:.25rem;
+}
+.prog-band-left p { font-size:.75rem; color:rgba(255,255,255,.5); }
+.prog-band-right { display:flex; flex-direction:column; gap:.3rem; align-items:flex-end; }
+.prog-stat { font-size:.68rem; color:rgba(255,255,255,.55); text-align:right; }
+.prog-stat strong { font-family:var(--f-display); font-size:1.4rem; color:rgba(255,255,255,.9); letter-spacing:.04em; display:block; line-height:1; }
 
-/* cred connector arrow */
-.diag-cred-row td { padding: .2rem 0 .2rem 90px; }
-.cred-connector {
-  display: flex; align-items: center; gap: .5rem;
-  padding: .3rem 0;
-}
-.cred-arrow {
-  display: flex; align-items: center; gap: 4px;
-  font-size: .7rem; color: var(--teal); font-weight: 600;
-}
-.cred-arrow svg { flex-shrink: 0; }
-.cred-connector-desc {
-  font-size: .72rem; color: var(--muted);
-  padding: .2rem .65rem; border-radius: 100px;
-  background: rgba(10,107,90,.08); border: 1px solid rgba(10,107,90,.2);
-}
+/* course name in BA view */
+.block-name-sm { font-size:.63rem; color:rgba(255,255,255,.8); line-height:1.3; margin-top:.2rem; }
+.block-open { background:rgba(200,160,58,.25); border:1.5px dashed var(--gold); }
+.block-open .block-code { color:var(--gold); }
+.block-open .block-name { color:rgba(200,160,58,.7); }
+.block-open .block-cr   { color:rgba(200,160,58,.5); }
 
-/* totals row */
-.diag-total-row { margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border); }
-.diag-total-inner { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
-.diag-total-pill {
-  font-size: .72rem; font-weight: 600; padding: .3rem .85rem;
-  border-radius: 100px; display: flex; align-items: center; gap: .45rem;
+/* ── PLAN TABLE ── */
+.plan-table-wrap { overflow-x:auto; margin-bottom:1.5rem; }
+.plan-table { width:100%; border-collapse:collapse; min-width:460px; }
+.plan-table th {
+  font-size:.62rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--dim); padding:.5rem .75rem; text-align:left;
+  background:var(--bg); border-bottom:2px solid var(--border);
 }
-.diag-total-dot { width: 8px; height: 8px; border-radius: 2px; }
+.plan-table td { padding:.5rem .75rem; font-size:.82rem; border-bottom:1px solid var(--border); }
+.plan-table .sem-group-cell {
+  writing-mode:vertical-rl; transform:rotate(180deg);
+  font-family:var(--f-display); font-size:.85rem; letter-spacing:.08em;
+  color:var(--text); text-align:center; width:36px; white-space:nowrap;
+  border-right:3px solid var(--red); background:var(--bg);
+}
+.plan-table .cr-col { font-family:var(--f-display); font-size:.95rem; color:var(--red); text-align:right; }
+.plan-table tfoot td { font-weight:700; background:var(--navy); color:#fff; }
+.plan-table tfoot .cr-col { color:var(--gold); }
 
-/* legend tab 2 */
-.diag-legend {
-  display: flex; flex-wrap: wrap; gap: .5rem 1.2rem;
-  margin-bottom: 1.75rem; align-items: center;
+/* shared badge in plan table */
+.shared-badge {
+  font-size:.6rem; font-weight:700; padding:1px 5px; border-radius:2px;
+  background:rgba(10,107,90,.12); color:var(--teal); border:1px solid rgba(10,107,90,.25);
+  margin-left:.4rem;
 }
-
-/* desc cards below diagram */
-.eg-cards {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
-  margin-top: 1.5rem;
-}
-@media (max-width: 600px) { .eg-cards { grid-template-columns: 1fr; } }
-.eg-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r); padding: .9rem 1rem;
-}
-.eg-card-title {
-  font-size: .75rem; font-weight: 700; color: var(--text); margin-bottom: .35rem;
-  display: flex; align-items: center; gap: .5rem;
-}
-.eg-card-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
-.eg-card-desc { font-size: .76rem; color: var(--muted); line-height: 1.6; }
-.eg-card-desc strong { color: var(--text); font-weight: 600; }
 </style>
 </head>
 <body>
-<nav style="background:#190056;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:100;font-family:Calibri,'Trebuchet MS',Arial;flex-shrink:0;">
-  <span style="color:#fff;font-size:13px;font-weight:600;letter-spacing:.5px;">EEN · UR</span>
+
+<!-- ── NAV ── -->
+<nav class="top-nav">
+  <span class="brand">EEN · UR</span>
   <div style="display:flex;align-items:center;gap:6px;font-size:12px;">
-    <a href="inicio.html" style="color:#fff;text-decoration:none;padding:2px 8px;">Inicio</a>
-    <span style="color:#ffffff66;">·</span>
-    <a href="nbc.html" style="color:#fff;text-decoration:none;padding:2px 8px;">NBC</a>
-    <span style="color:#ffffff66;">·</span>
-    <a href="bloques.html" style="color:#fff;text-decoration:none;padding:2px 8px;">Bloques</a>
-    <span style="color:#ffffff66;">·</span>
-    <a href="actividades.html" style="color:#fff;text-decoration:none;padding:2px 8px;">Actividades</a>
-    <span style="color:#ffffff66;">·</span>
-    <a href="articulacion.html" style="color:#fff;text-decoration:none;padding:2px 8px;">Articulación</a>
-    <span style="color:#ffffff66;">·</span>
-    <a href="pedagogia.html" style="color:#fff;text-decoration:none;padding:2px 8px;">Pedagogía</a>
-    <span style="color:#ffffff66;">·</span>
-    <a href="posgrado.html" style="color:#190056;background:#fff;text-decoration:none;padding:2px 8px;border-radius:3px;font-weight:600;">Posgrado</a>
-    <span style="color:#ffffff66;">·</span>
-    <a href="menores.html" style="color:#fff;text-decoration:none;padding:2px 8px;">Menores</a>
-    <span style="color:#ffffff66;">·</span>
-    <a href="mallas_programas.html" style="color:#fff;text-decoration:none;padding:2px 8px;">Mallas</a>
+    <a href="inicio.html">Inicio</a><span class="nav-sep">·</span>
+    <a href="nbc.html">NBC</a><span class="nav-sep">·</span>
+    <a href="bloques.html">Bloques</a><span class="nav-sep">·</span>
+    <a href="actividades.html">Actividades</a><span class="nav-sep">·</span>
+    <a href="articulacion.html">Articulación</a><span class="nav-sep">·</span>
+    <a href="pedagogia.html">Pedagogía</a><span class="nav-sep">·</span>
+    <a href="posgrado.html" class="active">Posgrado</a><span class="nav-sep">·</span>
+    <a href="menores.html">Menores</a><span class="nav-sep">·</span>
+    <a href="mallas_programas.html">Mallas</a>
   </div>
 </nav>
 
-<!-- (tab bar removed — solo Estructura tipo) -->
+<!-- ── TABS ── -->
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="showTab('modelo')">Modelo Híbrido 3+2</button>
+  <button class="tab-btn" onclick="showTab('ba')">Maestría en Business Analytics</button>
+</div>
 
-<div id="tp-ej">
+
+<!-- ════════════════════════════════════════════════════
+     TAB 1 — MODELO HÍBRIDO 3+2
+     ════════════════════════════════════════════════════ -->
+<div class="tab-panel active" id="panel-modelo">
 <div class="page-wrap">
 
-  <p class="page-eyebrow">Estructura tipo · Caso real UR</p>
-  <h1 class="page-title">Maestría en Analítica de Negocios</h1>
-  <p class="page-sub">36 cr &nbsp;·&nbsp; Maestría completa &nbsp;·&nbsp; Especialización embebida S1–S2 · Plan vigente</p>
+  <p class="eyebrow">Escuela de Economía y Negocios · EEN · Posgrado</p>
+  <h1 class="page-title">Modelo Híbrido 3+2</h1>
+  <p class="page-sub">Estructura tipo para programas de maestría · 33 créditos · 3 semestres de 11 cr</p>
 
-  <ul style="font-size:.88rem;color:var(--muted);line-height:1.7;padding-left:1.25rem;margin-bottom:1.5rem;border-left:3px solid var(--border);">
-    <li>Esta <strong style="color:var(--text);">maestría</strong> usa la arquitectura LEGO: bloques apilables compartidos entre programas.</li>
-    <li>S1 + S2 (24 cr) = <strong style="color:var(--text);">Especialización embebida</strong> — salida intermedia acreditable sin completar la maestría.</li>
-    <li>S3 (12 cr) añade <strong style="color:var(--text);">Profundización</strong> (E1–E4) propia del programa y cierra la Maestría completa.</li>
-    <li><strong style="color:var(--text);">Fundamentos</strong> (F1–F5) son comunes a todos los programas de la Escuela.</li>
-    <li><strong style="color:var(--text);">Electivos</strong> se toman de la oferta de educación continua — por definir.</li>
-  </ul>
-
-  <!-- leyenda diagrama con créditos -->
-  <div class="diag-legend">
-    <div class="leg-item"><span class="leg-dot" style="background:var(--purple);"></span> Fundamentos (F) &nbsp;<strong>15 cr</strong></div>
-    <div class="leg-item"><span class="leg-dot" style="background:var(--red);"></span> Profundización (E) &nbsp;<strong>12 cr</strong></div>
-    <div class="leg-item"><span class="leg-dot" style="background:var(--gold);"></span> Electivos &nbsp;<strong>9 cr</strong></div>
-    <div class="leg-item"><span class="leg-dot" style="background:var(--teal);border-radius:3px;"></span> Especialización embebida S1+S2 &nbsp;<strong>24 cr</strong></div>
-    <div class="leg-item">
-      <span class="cred-badge" style="background:var(--teal);width:18px;height:18px;font-size:.55rem;">①</span>
-      &nbsp;<span class="cred-badge" style="background:var(--teal);opacity:.75;width:18px;height:18px;font-size:.55rem;">②</span>
-      &nbsp;Credenciales inter-semestrales
-    </div>
-    <div class="leg-item"><span class="ec-badge">EC</span> Educación continua</div>
+  <div class="intro-box">
+    El benchmarking de arquitecturas curriculares de posgrado en Colombia
+    <span class="source-tag">Benchmarking EEN · ago 2026</span>
+    identifica el <strong>Modelo C — Híbrido 3+2</strong> como el punto de equilibrio entre
+    rigor académico y flexibilidad modular: un <strong>núcleo de fundamentos en bloques de 3 créditos</strong>
+    (profundidad, compartibles entre programas) y una <strong>capa de profundización y electivas en módulos
+    de 2 créditos</strong> (combinabilidad, articulación con educación continua y microcredenciales).
+    La Javeriana opera este esquema en su MBA con resultados documentados.
+    La UR ya tiene piezas de un ecosistema acumulable (coterminal, MicroMaster edX); este modelo las integra.
   </div>
 
-  <!-- DIAGRAMA VISUAL -->
-  <div class="diagram-wrap">
-    <div class="diagram-title">Mapa curricular · 3 semestres · 12 cr / semestre</div>
+  <!-- TIPO CARDS -->
+  <div class="tipo-grid">
+    <div class="tipo-card" style="border-left:3px solid var(--c-fund);">
+      <div class="tipo-label" style="color:var(--c-fund);">Fundamentos</div>
+      <div class="tipo-name">Núcleo compartido</div>
+      <div class="tipo-cr" style="color:var(--c-fund);">3 cr</div>
+      <div class="tipo-meta">4 cursos · 12 cr total<br>Idénticos en todos los programas</div>
+    </div>
+    <div class="tipo-card" style="border-left:3px solid var(--c-prof);">
+      <div class="tipo-label" style="color:var(--c-prof);">Profundización</div>
+      <div class="tipo-name">Disciplinar del programa</div>
+      <div class="tipo-cr" style="color:var(--c-prof);">2 cr</div>
+      <div class="tipo-meta">5 cursos · 10 cr total<br>Específicos de cada maestría</div>
+    </div>
+    <div class="tipo-card" style="border-left:3px solid var(--c-elec);">
+      <div class="tipo-label" style="color:var(--c-elec);">Electivas</div>
+      <div class="tipo-name">Módulos flexibles</div>
+      <div class="tipo-cr" style="color:var(--c-elec);">2 cr</div>
+      <div class="tipo-meta">4 cursos · 8 cr total<br>Catálogo educación continua</div>
+    </div>
+    <div class="tipo-card" style="border-left:3px solid var(--c-pe);">
+      <div class="tipo-label" style="color:var(--c-pe);">Proyecto Empresarial</div>
+      <div class="tipo-name">Integración aplicada</div>
+      <div class="tipo-cr" style="color:var(--c-pe);">3 cr</div>
+      <div class="tipo-meta">1 proyecto · S3<br>Aplicación al entorno real</div>
+    </div>
+  </div>
 
-    <!-- Wrapper Especialización S1+S2 -->
-    <div style="position:relative;border:1.5px dashed var(--gold);border-radius:8px;padding:.9rem .6rem .6rem;margin-bottom:.5rem;">
-      <div style="position:absolute;top:-10px;left:10px;background:var(--bg);padding:0 6px;font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8a6a10;">Especialización · S1+S2 · 24 cr</div>
+  <!-- VISUAL SEMESTRES -->
+  <div class="section-divider"><h2>Distribución por semestre</h2><span>Estructura tipo · genérica</span></div>
+
+  <div class="legend">
+    <div class="leg"><span class="leg-dot" style="background:var(--c-fund);"></span> Fundamento (3 cr)</div>
+    <div class="leg"><span class="leg-dot" style="background:var(--c-prof);"></span> Profundización (2 cr)</div>
+    <div class="leg"><span class="leg-dot" style="background:var(--c-elec);"></span> Electiva (2 cr)</div>
+    <div class="leg"><span class="leg-dot" style="background:var(--c-pe);border-radius:50%;"></span> Proyecto Empresarial (3 cr)</div>
+  </div>
+
+  <div class="sem-visual">
 
     <!-- S1 -->
-    <div style="display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.5rem;">
-      <div style="width:88px;flex-shrink:0;padding-top:.55rem;">
-        <div style="font-family:var(--f-display);font-size:.95rem;letter-spacing:.08em;color:var(--text);">Semestre 1</div>
-        <div style="font-size:.65rem;color:var(--dim);margin-top:.1rem;">12 cr</div>
+    <div class="sem-row-visual">
+      <div class="sem-row-head">
+        <span class="sem-row-label">Semestre 1</span>
+        <span class="sem-row-cr">11 cr</span>
       </div>
-      <div style="flex:1;display:flex;gap:.6rem;">
-        <div class="diag-block db-fund" style="flex:1;">
-          <div class="diag-block-code">F1</div>
-          <div class="diag-block-name">Fundamentos de Estadística para Negocios</div>
-          <div class="diag-block-cr">3 cr</div>
+      <div class="sem-row-body">
+        <div class="course-block cb-fund" style="flex:1.2;">
+          <div class="block-code">F1</div>
+          <div class="block-name">Fundamento 1</div>
+          <div class="block-cr">3 cr · compartido</div>
+          <span class="block-tag shared">COMÚN</span>
         </div>
-        <div class="diag-block db-fund" style="flex:1;">
-          <div class="diag-block-code">F2</div>
-          <div class="diag-block-name">Visualización de Datos</div>
-          <div class="diag-block-cr">3 cr</div>
+        <div class="course-block cb-fund" style="flex:1.2;">
+          <div class="block-code">F2</div>
+          <div class="block-name">Fundamento 2</div>
+          <div class="block-cr">3 cr · compartido</div>
+          <span class="block-tag shared">COMÚN</span>
         </div>
-        <div class="diag-block db-fund" style="flex:1;position:relative;">
-          <div class="diag-cred-pin">①</div>
-          <div class="diag-block-code">F3</div>
-          <div class="diag-block-name">Inteligencia de Negocios</div>
-          <div class="diag-block-cr">3 cr</div>
+        <div class="course-block cb-fund" style="flex:1.2;">
+          <div class="block-code">F3</div>
+          <div class="block-name">Fundamento 3</div>
+          <div class="block-cr">3 cr · compartido</div>
+          <span class="block-tag shared">COMÚN</span>
         </div>
-        <div class="diag-block db-esp" style="flex:1;">
-          <div class="diag-block-code">E1</div>
-          <div class="diag-block-name">Gestión Ágil de Proyectos</div>
-          <div class="diag-block-cr">3 cr</div>
+        <div class="course-block cb-prof" style="flex:1;">
+          <div class="block-code">P1</div>
+          <div class="block-name">Profundización 1</div>
+          <div class="block-cr">2 cr</div>
         </div>
-      </div>
-    </div>
-
-    <!-- Credencial 1 connector -->
-    <div style="display:flex;align-items:center;gap:.75rem;margin:-.1rem 0 .4rem;">
-      <div style="width:88px;flex-shrink:0;"></div>
-      <div style="flex:1;display:flex;gap:.6rem;">
-        <div style="flex:1;"></div>
-        <div style="flex:1;"></div>
-        <div style="flex:1;display:flex;justify-content:center;">
-          <svg width="2" height="20" viewBox="0 0 2 20"><line x1="1" y1="0" x2="1" y2="20" stroke="#0A6B5A" stroke-width="1.5" stroke-dasharray="3 2"/></svg>
-        </div>
-        <div style="flex:1;"></div>
       </div>
     </div>
 
     <!-- S2 -->
-    <div style="display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.5rem;">
-      <div style="width:88px;flex-shrink:0;padding-top:.55rem;">
-        <div style="font-family:var(--f-display);font-size:.95rem;letter-spacing:.08em;color:var(--text);">Semestre 2</div>
-        <div style="font-size:.65rem;color:var(--dim);margin-top:.1rem;">12 cr</div>
+    <div class="sem-row-visual">
+      <div class="sem-row-head">
+        <span class="sem-row-label">Semestre 2</span>
+        <span class="sem-row-cr">11 cr</span>
       </div>
-      <div style="flex:1;display:flex;gap:.6rem;">
-        <div class="diag-block db-fund" style="flex:1;position:relative;">
-          <div class="diag-cred-pin">①</div>
-          <div class="diag-block-code">F4</div>
-          <div class="diag-block-name">Analítica Predictiva</div>
-          <div class="diag-block-cr">3 cr</div>
+      <div class="sem-row-body">
+        <div class="course-block cb-fund" style="flex:1.2;">
+          <div class="block-code">F4</div>
+          <div class="block-name">Fundamento 4</div>
+          <div class="block-cr">3 cr · compartido</div>
+          <span class="block-tag shared">COMÚN</span>
         </div>
-        <div class="diag-block db-fund" style="flex:1;position:relative;">
-          <div class="diag-cred-pin" style="opacity:.75;">②</div>
-          <div class="diag-block-code">F5</div>
-          <div class="diag-block-name">Gobernanza de Sistemas de Información</div>
-          <div class="diag-block-cr">3 cr</div>
+        <div class="course-block cb-prof">
+          <div class="block-code">P2</div>
+          <div class="block-name">Profundización 2</div>
+          <div class="block-cr">2 cr</div>
         </div>
-        <div class="diag-block db-esp" style="flex:1;">
-          <div class="diag-block-code">E2</div>
-          <div class="diag-block-name">Modelos Estadísticos para Decisiones</div>
-          <div class="diag-block-cr">3 cr</div>
+        <div class="course-block cb-prof">
+          <div class="block-code">P3</div>
+          <div class="block-name">Profundización 3</div>
+          <div class="block-cr">2 cr</div>
         </div>
-        <div class="diag-block db-elec" style="flex:1;">
-          <div class="diag-block-code" style="font-size:.85rem;">Elec A</div>
-          <div class="diag-block-name" style="color:rgba(255,255,255,.85);">[Por definir]</div>
-          <div class="diag-block-cr" style="color:rgba(255,255,255,.55);">3 cr · EC</div>
+        <div class="course-block cb-elec">
+          <div class="block-code">E1</div>
+          <div class="block-name">Electiva 1</div>
+          <div class="block-cr">2 cr · ed. continua</div>
         </div>
-      </div>
-    </div>
-
-    </div><!-- /wrapper Especialización -->
-
-    <!-- Credencial 2 connector -->
-    <div style="display:flex;align-items:center;gap:.75rem;margin:-.1rem 0 .4rem;">
-      <div style="width:88px;flex-shrink:0;"></div>
-      <div style="flex:1;display:flex;gap:.6rem;">
-        <div style="flex:1;"></div>
-        <div style="flex:1;display:flex;justify-content:center;">
-          <svg width="2" height="20" viewBox="0 0 2 20"><line x1="1" y1="0" x2="1" y2="20" stroke="#0A6B5A" stroke-width="1.5" stroke-dasharray="3 2" opacity=".65"/></svg>
+        <div class="course-block cb-elec">
+          <div class="block-code">E2</div>
+          <div class="block-name">Electiva 2</div>
+          <div class="block-cr">2 cr · ed. continua</div>
         </div>
-        <div style="flex:1;"></div>
-        <div style="flex:1;"></div>
       </div>
     </div>
 
     <!-- S3 -->
-    <div style="display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1.25rem;">
-      <div style="width:88px;flex-shrink:0;padding-top:.55rem;">
-        <div style="font-family:var(--f-display);font-size:.95rem;letter-spacing:.08em;color:var(--text);">Semestre 3</div>
-        <div style="font-size:.65rem;color:var(--dim);margin-top:.1rem;">12 cr</div>
+    <div class="sem-row-visual">
+      <div class="sem-row-head">
+        <span class="sem-row-label">Semestre 3</span>
+        <span class="sem-row-cr">11 cr</span>
       </div>
-      <div style="flex:1;display:flex;gap:.6rem;">
-        <div class="diag-block db-esp" style="flex:1;position:relative;">
-          <div class="diag-cred-pin" style="opacity:.75;">②</div>
-          <div class="diag-block-code">E3</div>
-          <div class="diag-block-name">Analytics Life Cycle Management</div>
-          <div class="diag-block-cr">3 cr</div>
+      <div class="sem-row-body">
+        <div class="course-block cb-prof">
+          <div class="block-code">P4</div>
+          <div class="block-name">Profundización 4</div>
+          <div class="block-cr">2 cr</div>
         </div>
-        <div class="diag-block db-esp" style="flex:1;">
-          <div class="diag-block-code">E4</div>
-          <div class="diag-block-name">Analytics Product Management</div>
-          <div class="diag-block-cr">3 cr</div>
+        <div class="course-block cb-prof">
+          <div class="block-code">P5</div>
+          <div class="block-name">Profundización 5</div>
+          <div class="block-cr">2 cr</div>
         </div>
-        <div class="diag-block db-elec" style="flex:1;">
-          <div class="diag-block-code" style="font-size:.85rem;">Elec B</div>
-          <div class="diag-block-name" style="color:rgba(255,255,255,.85);">[Por definir]</div>
-          <div class="diag-block-cr" style="color:rgba(255,255,255,.55);">3 cr · EC</div>
+        <div class="course-block cb-elec">
+          <div class="block-code">E3</div>
+          <div class="block-name">Electiva 3</div>
+          <div class="block-cr">2 cr · ed. continua</div>
         </div>
-        <div class="diag-block db-elec" style="flex:1;">
-          <div class="diag-block-code" style="font-size:.85rem;">Elec C</div>
-          <div class="diag-block-name" style="color:rgba(255,255,255,.85);">[Por definir]</div>
-          <div class="diag-block-cr" style="color:rgba(255,255,255,.55);">3 cr · EC</div>
+        <div class="course-block cb-elec">
+          <div class="block-code">E4</div>
+          <div class="block-name">Electiva 4</div>
+          <div class="block-cr">2 cr · ed. continua</div>
+        </div>
+        <div class="course-block cb-pe">
+          <div class="block-code">PE</div>
+          <div class="block-name">Proyecto Empresarial</div>
+          <div class="block-cr">3 cr</div>
         </div>
       </div>
     </div>
 
-  </div><!-- /diagram-wrap -->
+  </div><!-- /sem-visual -->
 
-  <!-- tarjetas explicativas -->
-  <div class="eg-cards">
-    <div class="eg-card">
-      <div class="eg-card-title">
-        <span class="eg-card-dot" style="background:var(--teal);border-radius:50%;"></span>
-        Credencial 1 · Analista de Datos
-      </div>
-      <p class="eg-card-desc">
-        Se obtiene al completar <strong>F3 Inteligencia de Negocios</strong> (S1) y
-        <strong>F4 Analítica Predictiva</strong> (S2). Certifica dominio de las herramientas
-        analíticas base — acreditable sin terminar el posgrado completo.
-      </p>
+  <!-- TOTALS TABLE -->
+  <div class="plan-table-wrap">
+    <table class="sem-table">
+      <thead>
+        <tr>
+          <th>Sem.</th>
+          <th>Fundamentos (3 cr)</th>
+          <th>Profundización (2 cr)</th>
+          <th>Electivas (2 cr)</th>
+          <th>Proyecto (3 cr)</th>
+          <th style="text-align:right;">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="sem-label-cell">S 1</td>
+          <td>3 cursos</td>
+          <td>1 curso</td>
+          <td>—</td>
+          <td>—</td>
+          <td class="cr-cell" style="text-align:right;">11 cr</td>
+        </tr>
+        <tr>
+          <td class="sem-label-cell">S 2</td>
+          <td>1 curso</td>
+          <td>2 cursos</td>
+          <td>2 cursos</td>
+          <td>—</td>
+          <td class="cr-cell" style="text-align:right;">11 cr</td>
+        </tr>
+        <tr>
+          <td class="sem-label-cell">S 3</td>
+          <td>—</td>
+          <td>2 cursos</td>
+          <td>2 cursos</td>
+          <td>1 proyecto</td>
+          <td class="cr-cell" style="text-align:right;">11 cr</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr class="total-row">
+          <td>Total</td>
+          <td>4 cursos · 12 cr</td>
+          <td>5 cursos · 10 cr</td>
+          <td>4 cursos · 8 cr</td>
+          <td>1 proyecto · 3 cr</td>
+          <td class="cr-cell" style="text-align:right;color:var(--gold);">33 cr</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <!-- PRINCIPIOS -->
+  <div class="section-divider"><h2>Principios del modelo</h2><span>Rationale de diseño</span></div>
+
+  <div class="principles">
+    <div class="principle-card">
+      <div class="pc-head"><span class="pc-icon">⬛</span><span class="pc-title">Fundamentos compartidos entre programas</span></div>
+      <p class="pc-body">Los 4 cursos de fundamentos (F1–F4, 3 cr cada uno) son <strong>idénticos en todas las maestrías</strong> de la EEN. Un estudiante de Business Analytics y uno de Finanzas cursan el mismo núcleo. Esto genera economías de escala, facilita la coterminal y construye el lenguaje común de la Escuela.</p>
     </div>
-    <div class="eg-card">
-      <div class="eg-card-title">
-        <span class="eg-card-dot" style="background:var(--teal);border-radius:50%;opacity:.7;"></span>
-        Credencial 2 · Analytics Manager
-      </div>
-      <p class="eg-card-desc">
-        Se obtiene al completar <strong>F5 Gobernanza de Sistemas</strong> (S2) y
-        <strong>E3 Analytics Life Cycle Management</strong> (S3). Certifica capacidad de
-        gestionar ciclos de vida analíticos en organizaciones.
-      </p>
+    <div class="principle-card">
+      <div class="pc-head"><span class="pc-icon">🔴</span><span class="pc-title">Profundización propia de cada programa</span></div>
+      <p class="pc-body">Los 5 módulos de profundización (P1–P5, 2 cr cada uno) son <strong>específicos de la maestría</strong>. La granularidad de 2 créditos permite compartir módulos entre programas afines sin imponer toda la carga de un curso de 3 créditos, y facilita el diseño de itinerarios diferenciados.</p>
     </div>
-    <div class="eg-card">
-      <div class="eg-card-title">
-        <span class="eg-card-dot" style="background:var(--purple);"></span>
-        Fundamentos comunes entre programas
-      </div>
-      <p class="eg-card-desc">
-        F1–F5 son <strong>compartidos</strong> entre todas las especializaciones de la Escuela.
-        Un estudiante de Finanzas y uno de Analítica cursan los mismos fundamentos —
-        la diferencia está en los bloques E y Electivos.
-      </p>
+    <div class="principle-card">
+      <div class="pc-head"><span class="pc-icon">🟡</span><span class="pc-title">Electivas como puente con educación continua</span></div>
+      <p class="pc-body">Las 4 electivas (E1–E4, 2 cr cada una) se toman del <strong>catálogo de educación continua</strong> de la EEN. El mismo módulo puede cursarse de forma independiente (EC) o dentro de la maestría: el crédito es el mismo. Esto monetiza la oferta EC y amplía rutas de entrada al posgrado.</p>
     </div>
-    <div class="eg-card">
-      <div class="eg-card-title">
-        <span class="eg-card-dot" style="background:var(--gold);"></span>
-        Electivos como educación continua
-      </div>
-      <p class="eg-card-desc">
-        Los electivos (A, B, C) se definen de la oferta de <strong>educación continua</strong>
-        de la Escuela. Pueden cursarse de forma independiente o dentro del posgrado —
-        el crédito es el mismo en ambos casos.
-      </p>
+    <div class="principle-card">
+      <div class="pc-head"><span class="pc-icon">🟢</span><span class="pc-title">Proyecto Empresarial integrador en S3</span></div>
+      <p class="pc-body">El Proyecto Empresarial (3 cr) cierra la maestría en el semestre 3. Concentra la integración aplicada al final, cuando el estudiante ya tiene el núcleo y la profundización completos. La lógica es la misma que el <strong>capstone project</strong> de los MBA internacionales de referencia.</p>
     </div>
   </div>
 
-</div>
-</div><!-- /tp-ej -->
+</div><!-- /page-wrap -->
+</div><!-- /panel-modelo -->
 
+
+<!-- ════════════════════════════════════════════════════
+     TAB 2 — MAESTRÍA EN BUSINESS ANALYTICS
+     ════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="panel-ba">
+<div class="page-wrap">
+
+  <p class="eyebrow">Caso · Aplicación del Modelo Híbrido 3+2</p>
+
+  <!-- PROG BAND -->
+  <div class="prog-band">
+    <div class="prog-band-left">
+      <h2>Maestría en Business Analytics</h2>
+      <p>Universidad del Rosario · EEN · Versión de trabajo — julio 2026</p>
+    </div>
+    <div class="prog-band-right">
+      <div class="prog-stat"><strong>33</strong> créditos totales</div>
+      <div class="prog-stat"><strong>3</strong> semestres · 11 cr / sem.</div>
+    </div>
+  </div>
+
+  <div class="intro-box" style="border-left-color:var(--red);">
+    El núcleo disciplinar integra un <strong>Analytics Track</strong> (herramientas de analítica de datos en entornos empresariales)
+    y un <strong>Management Track</strong> (gestión de proyectos y productos de analítica, y comunicación de resultados a tomadores de decisiones).
+    Ambos componentes están guiados por el nuevo modelo pedagógico de la EEN.<br><br>
+    Los <strong>4 fundamentos son compartidos</strong> con otros programas de la Escuela
+    <span class="source-tag">COMÚN EEN</span>.
+    Las electivas provienen del catálogo de educación continua y pueden cursarse de forma independiente o dentro del programa.
+  </div>
+
+  <!-- VISUAL SEMESTRES BA -->
+  <div class="section-divider"><h2>Mapa curricular</h2><span>3 semestres · 11 cr / semestre</span></div>
+
+  <div class="legend">
+    <div class="leg"><span class="leg-dot" style="background:var(--c-fund);"></span> Fundamento · 3 cr · compartido</div>
+    <div class="leg"><span class="leg-dot" style="background:var(--c-prof);"></span> Profundización · 2 cr</div>
+    <div class="leg"><span class="leg-dot" style="background:var(--c-elec);"></span> Electiva · 2 cr · ed. continua</div>
+    <div class="leg"><span class="leg-dot" style="background:var(--c-pe);border-radius:50%;"></span> Proyecto Empresarial · 3 cr</div>
+  </div>
+
+  <div class="sem-visual">
+
+    <!-- S1 -->
+    <div class="sem-row-visual">
+      <div class="sem-row-head">
+        <span class="sem-row-label">Semestre 1</span>
+        <span class="sem-row-cr">11 cr</span>
+      </div>
+      <div class="sem-row-body">
+        <div class="course-block cb-fund" style="flex:1.15;">
+          <span class="block-tag shared">COMÚN</span>
+          <div class="block-code">F1</div>
+          <div class="block-name-sm">Fundamentos de Estadística para Negocios</div>
+          <div class="block-cr">3 cr</div>
+        </div>
+        <div class="course-block cb-fund" style="flex:1.15;">
+          <span class="block-tag shared">COMÚN</span>
+          <div class="block-code">F2</div>
+          <div class="block-name-sm">Visualización de Datos</div>
+          <div class="block-cr">3 cr</div>
+        </div>
+        <div class="course-block cb-fund" style="flex:1.15;">
+          <span class="block-tag shared">COMÚN</span>
+          <div class="block-code">F3</div>
+          <div class="block-name-sm">Inteligencia de Negocios</div>
+          <div class="block-cr">3 cr</div>
+        </div>
+        <div class="course-block cb-prof" style="flex:1;">
+          <div class="block-code">P1</div>
+          <div class="block-name-sm">Ética, Seguridad y Aspectos Legales de los Datos</div>
+          <div class="block-cr">2 cr</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S2 -->
+    <div class="sem-row-visual">
+      <div class="sem-row-head">
+        <span class="sem-row-label">Semestre 2</span>
+        <span class="sem-row-cr">11 cr</span>
+      </div>
+      <div class="sem-row-body">
+        <div class="course-block cb-fund" style="flex:1.15;">
+          <span class="block-tag shared">COMÚN</span>
+          <div class="block-code">F4</div>
+          <div class="block-name-sm">Modelos Estadísticos para Toma de Decisiones</div>
+          <div class="block-cr">3 cr</div>
+        </div>
+        <div class="course-block cb-prof">
+          <div class="block-code">P2</div>
+          <div class="block-name-sm">Gestión Ágil de Proyectos</div>
+          <div class="block-cr">2 cr</div>
+        </div>
+        <div class="course-block cb-prof">
+          <div class="block-code">P3</div>
+          <div class="block-name-sm">Analítica Predictiva</div>
+          <div class="block-cr">2 cr</div>
+        </div>
+        <div class="course-block cb-elec">
+          <div class="block-code">E1</div>
+          <div class="block-name-sm">Analytics Life Cycle Management</div>
+          <div class="block-cr">2 cr · EC</div>
+        </div>
+        <div class="course-block cb-elec">
+          <div class="block-code">E2</div>
+          <div class="block-name-sm">Gobernanza de Sistemas de Información</div>
+          <div class="block-cr">2 cr · EC</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S3 -->
+    <div class="sem-row-visual">
+      <div class="sem-row-head">
+        <span class="sem-row-label">Semestre 3</span>
+        <span class="sem-row-cr">11 cr</span>
+      </div>
+      <div class="sem-row-body">
+        <div class="course-block cb-prof">
+          <div class="block-code">P4</div>
+          <div class="block-name-sm">Análisis de Riesgos para Toma de Decisiones</div>
+          <div class="block-cr">2 cr</div>
+        </div>
+        <div class="course-block cb-prof">
+          <div class="block-code">P5</div>
+          <div class="block-name-sm">Analytics Product Management</div>
+          <div class="block-cr">2 cr</div>
+        </div>
+        <div class="course-block cb-elec">
+          <div class="block-code">E3</div>
+          <div class="block-name-sm">Data Storytelling</div>
+          <div class="block-cr">2 cr · EC</div>
+        </div>
+        <div class="course-block block-open">
+          <div class="block-code">E4</div>
+          <div class="block-name">Electiva libre</div>
+          <div class="block-cr">2 cr · EC</div>
+        </div>
+        <div class="course-block cb-pe">
+          <div class="block-code">PE</div>
+          <div class="block-name-sm">Proyecto Empresarial</div>
+          <div class="block-cr">3 cr</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /sem-visual -->
+
+  <!-- PLAN DE ESTUDIOS TABLE -->
+  <div class="section-divider"><h2>Plan de estudios</h2><span>Detalle · 33 cr totales</span></div>
+
+  <div class="plan-table-wrap">
+    <table class="plan-table">
+      <thead>
+        <tr>
+          <th style="width:36px;"></th>
+          <th>Asignatura</th>
+          <th>Tipo</th>
+          <th style="text-align:right;">Cr.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- S1 -->
+        <tr>
+          <td class="sem-group-cell" rowspan="4">SEM I</td>
+          <td>Fundamentos de Estadística para Negocios<span class="shared-badge">COMÚN</span></td>
+          <td><span class="tipo-chip tc-fund">Fundamento</span></td>
+          <td class="cr-col">3</td>
+        </tr>
+        <tr>
+          <td>Visualización de Datos<span class="shared-badge">COMÚN</span></td>
+          <td><span class="tipo-chip tc-fund">Fundamento</span></td>
+          <td class="cr-col">3</td>
+        </tr>
+        <tr>
+          <td>Inteligencia de Negocios<span class="shared-badge">COMÚN</span></td>
+          <td><span class="tipo-chip tc-fund">Fundamento</span></td>
+          <td class="cr-col">3</td>
+        </tr>
+        <tr>
+          <td>Ética, Seguridad y Aspectos Legales de los Datos</td>
+          <td><span class="tipo-chip tc-prof">Profundización</span></td>
+          <td class="cr-col">2</td>
+        </tr>
+        <!-- S2 -->
+        <tr>
+          <td class="sem-group-cell" rowspan="5">SEM II</td>
+          <td>Modelos Estadísticos para Toma de Decisiones<span class="shared-badge">COMÚN</span></td>
+          <td><span class="tipo-chip tc-fund">Fundamento</span></td>
+          <td class="cr-col">3</td>
+        </tr>
+        <tr>
+          <td>Gestión Ágil de Proyectos</td>
+          <td><span class="tipo-chip tc-prof">Profundización</span></td>
+          <td class="cr-col">2</td>
+        </tr>
+        <tr>
+          <td>Analítica Predictiva</td>
+          <td><span class="tipo-chip tc-prof">Profundización</span></td>
+          <td class="cr-col">2</td>
+        </tr>
+        <tr>
+          <td>Analytics Life Cycle Management</td>
+          <td><span class="tipo-chip tc-elec">Electiva</span></td>
+          <td class="cr-col">2</td>
+        </tr>
+        <tr>
+          <td>Gobernanza de Sistemas de Información</td>
+          <td><span class="tipo-chip tc-elec">Electiva</span></td>
+          <td class="cr-col">2</td>
+        </tr>
+        <!-- S3 -->
+        <tr>
+          <td class="sem-group-cell" rowspan="5">SEM III</td>
+          <td>Análisis de Riesgos para Toma de Decisiones</td>
+          <td><span class="tipo-chip tc-prof">Profundización</span></td>
+          <td class="cr-col">2</td>
+        </tr>
+        <tr>
+          <td>Analytics Product Management</td>
+          <td><span class="tipo-chip tc-prof">Profundización</span></td>
+          <td class="cr-col">2</td>
+        </tr>
+        <tr>
+          <td>Data Storytelling</td>
+          <td><span class="tipo-chip tc-elec">Electiva</span></td>
+          <td class="cr-col">2</td>
+        </tr>
+        <tr>
+          <td style="color:var(--dim);font-style:italic;">[Electiva libre del catálogo EC]</td>
+          <td><span class="tipo-chip tc-elec">Electiva</span></td>
+          <td class="cr-col">2</td>
+        </tr>
+        <tr>
+          <td>Proyecto Empresarial</td>
+          <td><span class="tipo-chip tc-pe">Proyecto</span></td>
+          <td class="cr-col">3</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" style="font-size:.75rem;letter-spacing:.04em;">TOTAL CRÉDITOS</td>
+          <td class="cr-col" style="color:var(--gold);font-size:1.1rem;">33</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <p style="font-size:.7rem;color:var(--dim);margin-top:.75rem;">
+    La Universidad del Rosario se reserva el derecho de modificar el plan de estudios.<br>
+    Las asignaturas marcadas <span class="shared-badge">COMÚN</span> son compartidas con otros programas de maestría de la EEN.
+    Las electivas pueden cursarse de forma independiente como módulos de educación continua (EC).
+  </p>
+
+</div><!-- /page-wrap -->
+</div><!-- /panel-ba -->
+
+
+<script>
+function showTab(key) {
+  document.querySelectorAll('.tab-btn').forEach((b,i) => {
+    b.classList.toggle('active', (i===0 && key==='modelo') || (i===1 && key==='ba'));
+  });
+  document.getElementById('panel-modelo').classList.toggle('active', key==='modelo');
+  document.getElementById('panel-ba').classList.toggle('active', key==='ba');
+  history.replaceState(null,'','#'+key);
+}
+(function(){
+  const h = location.hash.replace('#','');
+  if(h==='ba') showTab('ba');
+})();
+</script>
 </body>
 </html>
