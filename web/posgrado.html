@@ -59,7 +59,7 @@ nav.top-nav .brand { color:#fff; font-size:13px; font-weight:600; letter-spacing
   padding: .75rem 1.4rem .75rem 0; margin-right: 1.75rem;
   border: none; border-bottom: 3px solid transparent; background: none; cursor: pointer;
   font-family: var(--f-body); font-size: .78rem; font-weight: 700;
-  color: var(--dim); letter-spacing: .05em; text-transform: uppercase;
+  color: var(--dim); letter-spacing: .01em;
   transition: color .15s, border-color .15s; margin-bottom: -2px; white-space: nowrap;
 }
 .tab-btn:hover { color: var(--text); }
@@ -275,7 +275,7 @@ nav.top-nav .brand { color:#fff; font-size:13px; font-weight:600; letter-spacing
 
 <!-- ── TABS ── -->
 <div class="tab-bar">
-  <button class="tab-btn active" onclick="showTab('modelo')">Modelo Híbrido 3+2</button>
+  <button class="tab-btn active" onclick="showTab('modelo')">Modelo híbrido 3+2</button>
   <button class="tab-btn" onclick="showTab('ba')">Maestría en Business Analytics</button>
 </div>
 
@@ -287,18 +287,18 @@ nav.top-nav .brand { color:#fff; font-size:13px; font-weight:600; letter-spacing
 <div class="page-wrap">
 
   <p class="eyebrow">Escuela de Economía y Negocios · EEN · Posgrado</p>
-  <h1 class="page-title">Modelo Híbrido 3+2</h1>
-  <p class="page-sub">Estructura tipo para programas de maestría · 33 créditos · 3 semestres de 11 cr</p>
+  <h1 class="page-title">Modelo de programas profesionalizantes: trayectorias de especialización y maestría</h1>
+  <p class="page-sub">Estructura tipo · arquitectura híbrida 3+2 · 33 créditos · 3 semestres de 11 cr</p>
 
   <div class="intro-box">
-    El benchmarking de arquitecturas curriculares de posgrado en Colombia
-    <span class="source-tag">Benchmarking EEN · ago 2026</span>
-    identifica el <strong>Modelo C — Híbrido 3+2</strong> como el punto de equilibrio entre
-    rigor académico y flexibilidad modular: un <strong>núcleo de fundamentos en bloques de 3 créditos</strong>
-    (profundidad, compartibles entre programas) y una <strong>capa de profundización y electivas en módulos
-    de 2 créditos</strong> (combinabilidad, articulación con educación continua y microcredenciales).
-    La Javeriana opera este esquema en su MBA con resultados documentados.
-    La UR ya tiene piezas de un ecosistema acumulable (coterminal, MicroMaster edX); este modelo las integra.
+    La combinación de créditos de <strong>3 y 2</strong> responde a dos necesidades distintas del diseño curricular.
+    Los <strong>cursos de fundamentos en bloques de 3 créditos</strong> garantizan la profundidad conceptual
+    propia de una maestría y simplifican la programación al reducir el número de asignaturas por semestre,
+    favoreciendo una mayor dedicación por curso. Los <strong>módulos de profundización y electivas de 2 créditos</strong>
+    aportan granularidad: permiten que un mismo módulo circule entre distintos programas, se articule
+    con la oferta de educación continua o se acumule hacia una credencial intermedia.
+    La arquitectura resultante <strong>maximiza la reutilización del núcleo compartido</strong> sin sacrificar
+    la especialización ni la flexibilidad de rutas de los estudiantes.
   </div>
 
   <!-- TIPO CARDS -->
@@ -322,7 +322,7 @@ nav.top-nav .brand { color:#fff; font-size:13px; font-weight:600; letter-spacing
       <div class="tipo-meta">4 cursos · 8 cr total<br>Catálogo educación continua</div>
     </div>
     <div class="tipo-card" style="border-left:3px solid var(--c-pe);">
-      <div class="tipo-label" style="color:var(--c-pe);">Proyecto Empresarial</div>
+      <div class="tipo-label" style="color:var(--c-pe);">Proyecto Integrador/Práctico</div>
       <div class="tipo-name">Integración aplicada</div>
       <div class="tipo-cr" style="color:var(--c-pe);">3 cr</div>
       <div class="tipo-meta">1 proyecto · S3<br>Aplicación al entorno real</div>
@@ -336,7 +336,7 @@ nav.top-nav .brand { color:#fff; font-size:13px; font-weight:600; letter-spacing
     <div class="leg"><span class="leg-dot" style="background:var(--c-fund);"></span> Fundamento (3 cr)</div>
     <div class="leg"><span class="leg-dot" style="background:var(--c-prof);"></span> Profundización (2 cr)</div>
     <div class="leg"><span class="leg-dot" style="background:var(--c-elec);"></span> Electiva (2 cr)</div>
-    <div class="leg"><span class="leg-dot" style="background:var(--c-pe);border-radius:50%;"></span> Proyecto Empresarial (3 cr)</div>
+    <div class="leg"><span class="leg-dot" style="background:var(--c-pe);border-radius:50%;"></span> Proyecto Integrador/Práctico (3 cr)</div>
   </div>
 
   <div class="sem-visual">
@@ -439,7 +439,7 @@ nav.top-nav .brand { color:#fff; font-size:13px; font-weight:600; letter-spacing
         </div>
         <div class="course-block cb-pe">
           <div class="block-code">PE</div>
-          <div class="block-name">Proyecto Empresarial</div>
+          <div class="block-name">Proyecto Integrador/Práctico</div>
           <div class="block-cr">3 cr</div>
         </div>
       </div>
@@ -516,8 +516,8 @@ nav.top-nav .brand { color:#fff; font-size:13px; font-weight:600; letter-spacing
       <p class="pc-body">Las 4 electivas (E1–E4, 2 cr cada una) se toman del <strong>catálogo de educación continua</strong> de la EEN. El mismo módulo puede cursarse de forma independiente (EC) o dentro de la maestría: el crédito es el mismo. Esto monetiza la oferta EC y amplía rutas de entrada al posgrado.</p>
     </div>
     <div class="principle-card">
-      <div class="pc-head"><span class="pc-icon">🟢</span><span class="pc-title">Proyecto Empresarial integrador en S3</span></div>
-      <p class="pc-body">El Proyecto Empresarial (3 cr) cierra la maestría en el semestre 3. Concentra la integración aplicada al final, cuando el estudiante ya tiene el núcleo y la profundización completos. La lógica es la misma que el <strong>capstone project</strong> de los MBA internacionales de referencia.</p>
+      <div class="pc-head"><span class="pc-icon">🟢</span><span class="pc-title">Proyecto Integrador/Práctico en S3</span></div>
+      <p class="pc-body">El Proyecto (3 cr) cierra la maestría en el semestre 3. Concentra la integración aplicada al final, cuando el estudiante ya completó el núcleo y la profundización. La lógica es la misma que el <strong>capstone project</strong> de los MBA internacionales de referencia.</p>
     </div>
   </div>
 
@@ -561,7 +561,7 @@ nav.top-nav .brand { color:#fff; font-size:13px; font-weight:600; letter-spacing
     <div class="leg"><span class="leg-dot" style="background:var(--c-fund);"></span> Fundamento · 3 cr · compartido</div>
     <div class="leg"><span class="leg-dot" style="background:var(--c-prof);"></span> Profundización · 2 cr</div>
     <div class="leg"><span class="leg-dot" style="background:var(--c-elec);"></span> Electiva · 2 cr · ed. continua</div>
-    <div class="leg"><span class="leg-dot" style="background:var(--c-pe);border-radius:50%;"></span> Proyecto Empresarial · 3 cr</div>
+    <div class="leg"><span class="leg-dot" style="background:var(--c-pe);border-radius:50%;"></span> Proyecto Integrador/Práctico · 3 cr</div>
   </div>
 
   <div class="sem-visual">
@@ -664,7 +664,7 @@ nav.top-nav .brand { color:#fff; font-size:13px; font-weight:600; letter-spacing
         </div>
         <div class="course-block cb-pe">
           <div class="block-code">PE</div>
-          <div class="block-name-sm">Proyecto Empresarial</div>
+          <div class="block-name-sm">Proyecto Integrador/Práctico</div>
           <div class="block-cr">3 cr</div>
         </div>
       </div>
@@ -758,7 +758,7 @@ nav.top-nav .brand { color:#fff; font-size:13px; font-weight:600; letter-spacing
           <td class="cr-col">2</td>
         </tr>
         <tr>
-          <td>Proyecto Empresarial</td>
+          <td>Proyecto Integrador/Práctico</td>
           <td><span class="tipo-chip tc-pe">Proyecto</span></td>
           <td class="cr-col">3</td>
         </tr>
