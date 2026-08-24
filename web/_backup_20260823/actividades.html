@@ -13,7 +13,7 @@
   --ur-gray-f: #F5F4F2; --ur-gray-e: #E8E6E1;
   --ur-gray-70:#1A1620; --ur-gray-50:#6B6478; --ur-white:#FFFFFF;
 }
-html, body { font-family: 'Raleway', 'Trebuchet MS', Arial, sans-serif; background: var(--ur-gray-f); color: var(--ur-gray-70); }
+html, body { font-family: Calibri, 'Trebuchet MS', Arial, sans-serif; background: var(--ur-gray-f); color: var(--ur-gray-70); }
 .page { max-width: 980px; margin: 0 auto; padding: 1.75rem 1.5rem 3rem; }
 
 /* ── INTRO BANNER ─────────────────────────────────── */
@@ -111,40 +111,42 @@ html, body { font-family: 'Raleway', 'Trebuchet MS', Arial, sans-serif; backgrou
 .purpose-text  { font-size: .78rem; line-height: 1.65; color: var(--ur-gray-70); }
 .purpose-note  { margin-top: .5rem; font-size: .72rem; font-style: italic; color: var(--ur-orange); }
 .act-card.pending-act .purpose-note { color: var(--ur-gray-50); }
-/* ── SITE NAV ──────────────────────────────────────── */
-.site-nav { height: 44px; background: #190056; display: flex; align-items: center; justify-content: space-between; padding: 0 1.25rem; position: sticky; top: 0; z-index: 300; }
-.nav-brand { color: rgba(255,255,255,.5); font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-.nav-links { display: flex; align-items: center; gap: 2px; }
-.nav-link { color: rgba(255,255,255,.55); text-decoration: none; font-size: .75rem; padding: 4px 10px; border-radius: 3px; transition: background .12s, color .12s; }
-.nav-link:hover { color: #fff; background: rgba(255,255,255,.08); }
-.nav-link.active { color: #fff; background: rgba(255,255,255,.13); font-weight: 600; }
-/* ── PAGE HEAD ─────────────────────────────────────── */
-.page-head { padding: 1.25rem 1.5rem .9rem; background: #fff; border-bottom: 1px solid #E8E5E0; }
-.page-eyebrow { font-size: .58rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #DA0921; margin-bottom: .25rem; }
-.page-title { font-family: 'Bebas Neue', 'Arial Narrow', sans-serif; font-size: clamp(1.3rem, 2.5vw, 1.8rem); letter-spacing: .04em; color: #1A1620; line-height: 1; }
-.page-sub { font-size: .73rem; color: #A099B0; margin-top: .2rem; }
 </style>
 </head>
 <body>
-<nav class="site-nav">
-  <span class="nav-brand">EEN · UR</span>
-  <div class="nav-links">
-    <a href="nbc.html" class="nav-link">NBC</a>
-    <a href="bloques.html" class="nav-link">Bloques</a>
-    <a href="actividades.html" class="nav-link active">Actividades</a>
-    <a href="articulacion.html" class="nav-link">Articulación</a>
-    <a href="pedagogia.html" class="nav-link">Pedagogía</a>
-    <a href="posgrado.html" class="nav-link">Posgrado</a>
-    <a href="menores.html" class="nav-link">Menores</a>
-    <a href="mallas_programas.html" class="nav-link">Mallas</a>
+<nav style="background:#190056;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:100;font-family:Calibri,'Trebuchet MS',Arial;flex-shrink:0;">
+  <span style="color:#fff;font-size:13px;font-weight:600;letter-spacing:.5px;">EEN · UR</span>
+  <div style="display:flex;align-items:center;gap:6px;font-size:12px;">
+    <a href="inicio.html" style="color:#fff;text-decoration:none;padding:2px 8px;">Inicio</a>
+    <span style="color:#ffffff66;">·</span>
+    <a href="nbc.html" style="color:#fff;text-decoration:none;padding:2px 8px;">NBC</a>
+    <span style="color:#ffffff66;">·</span>
+    <a href="bloques.html" style="color:#fff;text-decoration:none;padding:2px 8px;">Bloques</a>
+    <span style="color:#ffffff66;">·</span>
+    <a href="actividades.html" style="color:#190056;background:#fff;text-decoration:none;padding:2px 8px;border-radius:3px;font-weight:600;">Actividades</a>
+    <span style="color:#ffffff66;">·</span>
+    <a href="articulacion.html" style="color:#fff;text-decoration:none;padding:2px 8px;">Articulación</a>
+    <span style="color:#ffffff66;">·</span>
+    <a href="pedagogia.html" style="color:#fff;text-decoration:none;padding:2px 8px;">Pedagogía</a>
+    <span style="color:#ffffff66;">·</span>
+    <a href="posgrado.html" style="color:#fff;text-decoration:none;padding:2px 8px;">Posgrado</a>
+    <span style="color:#ffffff66;">·</span>
+    <a href="menores.html" style="color:#fff;text-decoration:none;padding:2px 8px;">Menores</a>
+    <span style="color:#ffffff66;">·</span>
+    <a href="mallas_programas.html" style="color:#fff;text-decoration:none;padding:2px 8px;">Mallas</a>
   </div>
 </nav>
-<div class="page-head">
-  <div class="page-eyebrow">Reforma Curricular 2026</div>
-  <div class="page-title">Actividades pendientes</div>
-  <div class="page-sub">Grupos de trabajo · responsables · estado de avance</div>
-</div>
 <div class="page">
+
+  <!-- INTRO -->
+  <div class="intro-banner">
+    <div class="intro-accent"></div>
+    <div>
+      <div class="intro-label">Reforma Curricular 2026</div>
+      <div class="intro-title">Actividades pendientes</div>
+      <p class="intro-text">Grupos de trabajo del proceso de reforma curricular. Las actividades con borde discontinuo están identificadas pero aún sin equipo asignado.</p>
+    </div>
+  </div>
 
   <!-- ── DISEÑO CURRICULAR ─────────────────────────── -->
   <div class="section-head">

@@ -1,0 +1,175 @@
+
+<style>
+  .wrap { padding: 1rem 0; font-size: 12px; }
+  table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  th { font-size: 10px; font-weight: 500; color: var(--color-text-secondary); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--color-border-tertiary); }
+  th.r { text-align: right; }
+  td { padding: 5px 8px; border-bottom: 0.5px solid var(--color-border-tertiary); vertical-align: middle; font-size: 11px; }
+  td.cr { text-align: right; font-weight: 500; }
+  td.na { color: var(--color-text-secondary); font-style: italic; text-align: right; }
+  .sec td { background: var(--color-background-tertiary); color: var(--color-text-secondary); font-weight: 500; font-size: 10px; letter-spacing: 0.04em; border-bottom: none; padding: 8px 8px 3px; }
+  .b-ros td { background: #fce8e8; color: #7a1a1a; }
+  .b-nbc td { background: #dbeafe; color: #0c447c; }
+  .b-dpto td { background: #d1fae5; color: #065f46; }
+  .b-disc td { background: #dcfce7; color: #14532d; }
+  .b-elec td { background: #fef9c3; color: #713f12; }
+  .b-grado td { background: #ede9fe; color: #3730a3; }
+  .b-cap td { background: #e0f2fe; color: #0c4a6e; }
+  .b-total td { background: #fbbf24; color: #1c1917; font-weight: 500; font-size: 12px; }
+  .subtot td { background: var(--color-background-secondary); font-weight: 500; font-size: 10px; border-top: 0.5px solid var(--color-border-tertiary); }
+  .subtot td.pos { color: #065f46; } .subtot td.neg { color: #991b1b; } .subtot td.zer { color: var(--color-text-secondary); }
+  .d-new { display:inline-block;font-size:9px;padding:1px 5px;border-radius:3px;background:#bbf7d0;color:#065f46;margin-left:3px; }
+  .d-out { display:inline-block;font-size:9px;padding:1px 5px;border-radius:3px;background:#fecaca;color:#7f1d1d;margin-left:3px; }
+  .d-up  { display:inline-block;font-size:9px;padding:1px 5px;border-radius:3px;background:#fde68a;color:#713f12;margin-left:3px; }
+  .d-dn  { display:inline-block;font-size:9px;padding:1px 5px;border-radius:3px;background:#fde68a;color:#713f12;margin-left:3px; }
+  .d-move{ display:inline-block;font-size:9px;padding:1px 5px;border-radius:3px;background:#e0e7ff;color:#312e81;margin-left:3px; }
+  .d-fus { display:inline-block;font-size:9px;padding:1px 5px;border-radius:3px;background:#fce7f3;color:#831843;margin-left:3px; }
+  .d-ren { display:inline-block;font-size:9px;padding:1px 5px;border-radius:3px;background:#e0e7ff;color:#312e81;margin-left:3px; }
+  .strike { text-decoration:line-through;opacity:0.45; }
+  .col-a{width:30%;} .col-c1{width:5%;} .col-b{width:33%;} .col-c2{width:5%;} .col-bl{width:14%;} .col-s{width:6%;}
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
+  .leg{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--color-text-secondary);}
+  @media (prefers-color-scheme: dark) {
+    .b-ros td{background:#4c1515;color:#fca5a5;} .b-nbc td{background:#0c2a4a;color:#93c5fd;}
+    .b-dpto td{background:#064e3b;color:#6ee7b7;} .b-disc td{background:#14532d;color:#bbf7d0;}
+    .b-elec td{background:#422006;color:#fde68a;} .b-grado td{background:#2e1065;color:#c4b5fd;}
+    .b-cap td{background:#0c4a6e;color:#bae6fd;} .b-total td{background:#92400e;color:#fef3c7;}
+    .d-new{background:#065f46;color:#6ee7b7;} .d-out{background:#7f1d1d;color:#fca5a5;}
+    .d-up{background:#713f12;color:#fde68a;} .d-dn{background:#713f12;color:#fde68a;}
+    .d-move{background:#312e81;color:#c7d2fe;} .d-fus{background:#831843;color:#fce7f3;}
+    .d-ren{background:#312e81;color:#c7d2fe;}
+    .subtot td.pos{color:#34d399;} .subtot td.neg{color:#f87171;}
+  }
+</style>
+
+<div class="wrap">
+  <div class="legend">
+    <span class="leg"><span class="d-new">nuevo</span>curso nuevo</span>
+    <span class="leg"><span class="d-out">sale</span>eliminado</span>
+    <span class="leg"><span class="d-up">2→3</span>créditos suben</span>
+    <span class="leg"><span class="d-dn">6→3</span>créditos bajan</span>
+    <span class="leg"><span class="d-move">mueve</span>reclasificado</span>
+    <span class="leg"><span class="d-fus">fusión</span>fusionado</span>
+    <span class="leg"><span class="d-ren">renombre</span>renombrado</span>
+  </div>
+
+  <table>
+    <colgroup><col class="col-a"><col class="col-c1"><col class="col-b"><col class="col-c2"><col class="col-bl"><col class="col-s"></colgroup>
+    <thead>
+      <tr><th>ANI original</th><th class="r">Cr.</th><th>ANI propuesta</th><th class="r">Cr.</th><th>Bloque</th><th class="r">Sem.</th></tr>
+    </thead>
+    <tbody>
+
+      <!-- ROSARISTA -->
+      <tr class="sec"><td colspan="6">Formación Rosarista</td></tr>
+      <tr class="b-ros"><td>Cátedra Rosarista</td><td class="cr">2</td><td>Cátedra Rosarista</td><td class="cr">2</td><td>Rosarista</td><td class="cr">S1</td></tr>
+      <tr class="b-ros"><td>Lectura</td><td class="cr">2</td><td rowspan="2">Lectoescritura <span class="d-fus">fusión</span></td><td class="cr" rowspan="2">3</td><td rowspan="2">Rosarista</td><td class="cr" rowspan="2">S2</td></tr>
+      <tr class="b-ros"><td>Escritura</td><td class="cr">2</td></tr>
+      <tr class="b-ros"><td>Ética</td><td class="cr">2</td><td>Ética</td><td class="cr">2</td><td>Rosarista</td><td class="cr">S3</td></tr>
+      <tr class="b-ros"><td>Electiva HM – Núcleo Mutis</td><td class="cr">2</td><td>Electiva HM – Núcleo Mutis</td><td class="cr">2</td><td>Rosarista</td><td class="cr">S4</td></tr>
+      <tr class="b-ros"><td>Electiva HM</td><td class="cr">2</td><td>Electiva HM</td><td class="cr">2</td><td>Rosarista</td><td class="cr">S4</td></tr>
+      <tr class="b-ros"><td>Electiva HM</td><td class="cr">2</td><td>Electiva HM</td><td class="cr">2</td><td>Rosarista</td><td class="cr">S7</td></tr>
+      <tr class="b-ros"><td>Constitución Política</td><td class="cr">2</td><td>Constitución Política</td><td class="cr">2</td><td>Rosarista</td><td class="cr">S7</td></tr>
+      <tr class="subtot"><td colspan="2" class="cr">16 cr.</td><td colspan="2" class="cr neg">15 cr. (−1)</td><td colspan="2"></td></tr>
+
+      <!-- NBC -->
+      <tr class="sec"><td colspan="6">Núcleo Básico Común Escuela</td></tr>
+      <tr class="b-nbc"><td>Lógica Matemática</td><td class="cr">3</td><td>Lógica Matemática</td><td class="cr">3</td><td>NBC Escuela</td><td class="cr">S1</td></tr>
+      <tr class="b-nbc"><td>Economía y Negocios</td><td class="cr">3</td><td>Economía, Negocios y Sociedad <span class="d-ren">renombre</span></td><td class="cr">3</td><td>NBC Escuela</td><td class="cr">S1</td></tr>
+      <tr class="b-nbc"><td>Precálculo</td><td class="cr">3</td><td>Precálculo</td><td class="cr">3</td><td>NBC Escuela</td><td class="cr">S1</td></tr>
+      <tr class="b-nbc"><td>Cálculo I</td><td class="cr">3</td><td>Cálculo I</td><td class="cr">3</td><td>NBC Escuela</td><td class="cr">S2</td></tr>
+      <tr class="b-nbc"><td>Programación para los Negocios</td><td class="cr">3</td><td>Programación para los Negocios</td><td class="cr">3</td><td>NBC Escuela</td><td class="cr">S2</td></tr>
+      <tr class="b-nbc"><td>Probabilidad y Estadística</td><td class="cr">3</td><td>Probabilidad y Estadística</td><td class="cr">3</td><td>NBC Escuela</td><td class="cr">S3</td></tr>
+      <tr class="b-nbc"><td>Microeconomía</td><td class="cr">3</td><td>Principios de Microeconomía <span class="d-ren">renombre</span></td><td class="cr">3</td><td>NBC Escuela</td><td class="cr">S3</td></tr>
+      <tr class="b-nbc"><td class="na">—</td><td class="na">—</td><td>IA, Datos y Sociedad <span class="d-new">nuevo</span></td><td class="cr">3</td><td>NBC Escuela</td><td class="cr">S3</td></tr>
+      <tr class="b-nbc"><td>Matemática Financiera</td><td class="cr">3</td><td>Matemática Financiera</td><td class="cr">3</td><td>NBC Escuela</td><td class="cr">S4</td></tr>
+      <tr class="b-nbc"><td class="strike">Data Driven &amp; Decision Making</td><td class="cr strike">2</td><td>Data Driven &amp; Decision Making <span class="d-move">mueve</span> <span class="d-up">2→3</span></td><td class="cr">3</td><td>NBC Escuela</td><td class="cr">S4</td></tr>
+      <tr class="b-nbc"><td class="na">—</td><td class="na">—</td><td>Principios de Macroeconomía <span class="d-new">nuevo</span></td><td class="cr">3</td><td>NBC Escuela</td><td class="cr">S4</td></tr>
+      <tr class="b-nbc"><td>Finanzas Corporativas</td><td class="cr">3</td><td>Finanzas Corporativas</td><td class="cr">3</td><td>NBC Escuela</td><td class="cr">S5</td></tr>
+      <tr class="b-nbc"><td>Desafíos Contemporáneos</td><td class="cr">3</td><td>Desafíos Contemporáneos <span class="d-move">mueve a NBC</span></td><td class="cr">3</td><td>NBC Escuela</td><td class="cr">S7</td></tr>
+      <tr class="subtot"><td colspan="2" class="cr">30 cr.</td><td colspan="2" class="cr pos">39 cr. (+9)</td><td colspan="2"></td></tr>
+
+      <!-- DPTO ANI -->
+      <tr class="sec"><td colspan="6">Núcleo dpto. Administración &amp; Negocios</td></tr>
+      <tr class="b-dpto"><td>Scaling Management</td><td class="cr">2</td><td rowspan="2">Managing Projects &amp; Scale <span class="d-fus">fusión</span></td><td class="cr" rowspan="2">3</td><td rowspan="2">Dpto. A&amp;N</td><td class="cr" rowspan="2">S1</td></tr>
+      <tr class="b-dpto"><td>Project Management</td><td class="cr">2</td></tr>
+      <tr class="b-dpto"><td>Marketing</td><td class="cr">2</td><td>Marketing</td><td class="cr">2</td><td>Dpto. A&amp;N</td><td class="cr">S1</td></tr>
+      <tr class="b-dpto"><td>Contabilidad y Costos</td><td class="cr">3</td><td>Contabilidad para la Toma de Decisiones <span class="d-ren">renombre</span></td><td class="cr">3</td><td>Dpto. A&amp;N</td><td class="cr">S2</td></tr>
+      <tr class="b-dpto"><td>Innovación y Emprendimiento</td><td class="cr">2</td><td>Innovación y Emprendimiento</td><td class="cr">2</td><td>Dpto. A&amp;N</td><td class="cr">S2</td></tr>
+      <tr class="b-dpto"><td>Liderazgo en la Era Digital</td><td class="cr">2</td><td>Liderazgo en la Era Digital <span class="d-up">2→3</span></td><td class="cr">3</td><td>Dpto. A&amp;N</td><td class="cr">S3</td></tr>
+      <tr class="b-dpto"><td>Strategic Management</td><td class="cr">2</td><td rowspan="2">Strategy &amp; Sustainability <span class="d-fus">fusión</span></td><td class="cr" rowspan="2">3</td><td rowspan="2">Dpto. A&amp;N</td><td class="cr" rowspan="2">S5</td></tr>
+      <tr class="b-dpto"><td>Sustainability Management</td><td class="cr">2</td></tr>
+      <tr class="b-dpto"><td>Mentoring Profesional</td><td class="cr">1</td><td><span class="d-out">sale</span> → extracurricular</td><td class="na">—</td><td>—</td><td class="cr">—</td></tr>
+      <tr class="subtot"><td colspan="2" class="cr">18 cr.</td><td colspan="2" class="cr neg">16 cr. (−2)</td><td colspan="2"></td></tr>
+
+      <!-- DISCIPLINAR -->
+      <tr class="sec"><td colspan="6">Disciplinar específica — ANI</td></tr>
+      <tr class="b-disc"><td>Negocios Globales</td><td class="cr">3</td><td>Negocios Globales</td><td class="cr">3</td><td>Disc. ANI</td><td class="cr">S1</td></tr>
+      <tr class="b-disc"><td>Técnicas de Negociación</td><td class="cr">2</td><td>Técnicas de Negociación <span class="d-up">2→3</span></td><td class="cr">3</td><td>Disc. ANI</td><td class="cr">S2</td></tr>
+      <tr class="b-disc"><td>Cross Cultural Communication</td><td class="cr">2</td><td rowspan="2">Global Leadership &amp; Culture <span class="d-fus">fusión</span></td><td class="cr" rowspan="2">3</td><td rowspan="2">Disc. ANI</td><td class="cr" rowspan="2">S2</td></tr>
+      <tr class="b-disc"><td>Global Future Workforce</td><td class="cr">2</td></tr>
+      <tr class="b-disc"><td>Operaciones de Comercio Exterior</td><td class="cr">2</td><td>Operaciones de Comercio Exterior</td><td class="cr">2</td><td>Disc. ANI</td><td class="cr">S3</td></tr>
+      <tr class="b-disc"><td>International Sales &amp; Contracts</td><td class="cr">2</td><td><span class="d-out">sale</span> → absorb. Técnicas Neg.</td><td class="na">—</td><td>—</td><td class="cr">—</td></tr>
+      <tr class="b-disc"><td>International Trade and Economy</td><td class="cr">2</td><td>International Trade and Economy <span class="d-up">2→3</span></td><td class="cr">3</td><td>Disc. ANI</td><td class="cr">S4</td></tr>
+      <tr class="b-disc"><td>Tercer Idioma I</td><td class="cr">3</td><td>Tercer Idioma I</td><td class="cr">3</td><td>Disc. ANI</td><td class="cr">S4</td></tr>
+      <tr class="b-disc"><td>Tercer Idioma II</td><td class="cr">3</td><td>Tercer Idioma II</td><td class="cr">3</td><td>Disc. ANI</td><td class="cr">S5</td></tr>
+      <tr class="b-disc"><td>Start-ups Scalability</td><td class="cr">2</td><td rowspan="2">Sustainable &amp; Scalable Business Models <span class="d-fus">fusión</span></td><td class="cr" rowspan="2">3</td><td rowspan="2">Disc. ANI</td><td class="cr" rowspan="2">S5</td></tr>
+      <tr class="b-disc"><td>Sustainable Global Value Chain</td><td class="cr">2</td></tr>
+      <tr class="b-disc"><td>Global Business Intelligence</td><td class="cr">2</td><td>Global Business Intelligence</td><td class="cr">2</td><td>Disc. ANI</td><td class="cr">S5</td></tr>
+      <tr class="b-disc"><td>Global Scaling Up</td><td class="cr">2</td><td>Global Scaling Up <span class="d-up">2→3</span></td><td class="cr">3</td><td>Disc. ANI</td><td class="cr">S6</td></tr>
+      <tr class="b-disc"><td>Global Marketing</td><td class="cr">2</td><td>Global Marketing <span class="d-up">2→3</span></td><td class="cr">3</td><td>Disc. ANI</td><td class="cr">S6</td></tr>
+      <tr class="b-disc"><td>International Strategy</td><td class="cr">2</td><td>International Strategy <span class="d-up">2→3</span></td><td class="cr">3</td><td>Disc. ANI</td><td class="cr">S6</td></tr>
+      <tr class="b-disc"><td>Digital Business Models</td><td class="cr">2</td><td>Digital Business Models</td><td class="cr">2</td><td>Disc. ANI</td><td class="cr">S6</td></tr>
+      <tr class="b-disc"><td>Tercer Idioma III</td><td class="cr">2</td><td>Tercer Idioma III</td><td class="cr">2</td><td>Disc. ANI</td><td class="cr">S6</td></tr>
+      <tr class="b-disc"><td>International Finance</td><td class="cr">2</td><td>International Finance</td><td class="cr">2</td><td>Disc. ANI</td><td class="cr">S6</td></tr>
+      <tr class="b-disc"><td class="strike">AI for International Business</td><td class="cr strike">2</td><td><span class="d-out">sale</span> → reemplazado por IA NBC</td><td class="na">—</td><td>—</td><td class="cr">—</td></tr>
+      <tr class="subtot"><td colspan="2" class="cr">43 cr.</td><td colspan="2" class="cr neg">35 cr. (−8)</td><td colspan="2"></td></tr>
+
+      <!-- ELECTIVIDAD -->
+      <tr class="sec"><td colspan="6">Electividad / Profundización</td></tr>
+      <tr class="b-elec"><td>Profundización (×4 bloques)</td><td class="cr">19</td><td>Profundización (×4 bloques)</td><td class="cr">19</td><td>Electividad</td><td class="cr">S5–S8</td></tr>
+      <tr class="subtot"><td colspan="2" class="cr">19 cr.</td><td colspan="2" class="cr zer">19 cr. (0)</td><td colspan="2"></td></tr>
+
+      <!-- OPCION GRADO -->
+      <tr class="sec"><td colspan="6">Opción de grado</td></tr>
+      <tr class="b-grado"><td>Opción de grado (×2)</td><td class="cr">8</td><td>Opción de grado <span class="d-up">8→9</span></td><td class="cr">9</td><td>Opción grado</td><td class="cr">S7–S8</td></tr>
+      <tr class="subtot"><td colspan="2" class="cr">8 cr.</td><td colspan="2" class="cr pos">9 cr. (+1)</td><td colspan="2"></td></tr>
+
+      <!-- CAPSTONE -->
+      <tr class="sec"><td colspan="6">Capstone</td></tr>
+      <tr class="b-cap"><td>Práctica Empresarial</td><td class="cr">6</td><td>Proyecto Integrador Capstone <span class="d-dn">6→3</span></td><td class="cr">3</td><td>Capstone</td><td class="cr">S8</td></tr>
+      <tr class="subtot"><td colspan="2" class="cr">6 cr.</td><td colspan="2" class="cr neg">3 cr. (−3)</td><td colspan="2"></td></tr>
+
+      <!-- TOTAL -->
+      <tr class="b-total">
+        <td>Total ANI original</td><td class="cr">140</td>
+        <td>Total ANI propuesta</td><td class="cr">137 ✓</td>
+        <td colspan="2" style="text-align:right;font-size:10px;">Δ −3 cr.</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <div style="margin-top:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+    <div style="background:var(--color-background-secondary);border-radius:8px;padding:10px;text-align:center;">
+      <div style="font-size:10px;color:var(--color-text-secondary);margin-bottom:4px;">Formación Rosarista</div>
+      <div style="font-size:14px;font-weight:500;">16 → 15 cr.</div>
+      <div style="font-size:10px;color:#991b1b;">−1</div>
+    </div>
+    <div style="background:var(--color-background-secondary);border-radius:8px;padding:10px;text-align:center;">
+      <div style="font-size:10px;color:var(--color-text-secondary);margin-bottom:4px;">NBC Escuela</div>
+      <div style="font-size:14px;font-weight:500;color:#065f46;">30 → 39 cr.</div>
+      <div style="font-size:10px;color:#065f46;">+9</div>
+    </div>
+    <div style="background:var(--color-background-secondary);border-radius:8px;padding:10px;text-align:center;">
+      <div style="font-size:10px;color:var(--color-text-secondary);margin-bottom:4px;">Dpto. A&amp;N + Disc. ANI</div>
+      <div style="font-size:14px;font-weight:500;color:#991b1b;">61 → 51 cr.</div>
+      <div style="font-size:10px;color:#991b1b;">−10</div>
+    </div>
+    <div style="background:var(--color-background-secondary);border-radius:8px;padding:10px;text-align:center;">
+      <div style="font-size:10px;color:var(--color-text-secondary);margin-bottom:4px;">Total</div>
+      <div style="font-size:14px;font-weight:500;">140 → 137 ✓</div>
+      <div style="font-size:10px;color:#991b1b;">−3</div>
+    </div>
+  </div>
+</div>

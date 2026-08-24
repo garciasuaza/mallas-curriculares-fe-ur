@@ -39,30 +39,31 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: var(--f-body); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
 
-/* ── SITE NAV ── */
-.site-nav { height: 44px; background: #190056; display: flex; align-items: center; justify-content: space-between; padding: 0 1.25rem; position: sticky; top: 0; z-index: 300; }
-.nav-brand { color: rgba(255,255,255,.5); font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-.nav-links { display: flex; align-items: center; gap: 2px; }
-.nav-link { color: rgba(255,255,255,.55); text-decoration: none; font-size: .75rem; padding: 4px 10px; border-radius: 3px; transition: background .12s, color .12s; }
-.nav-link:hover { color: #fff; background: rgba(255,255,255,.08); }
-.nav-link.active { color: #fff; background: rgba(255,255,255,.13); font-weight: 600; }
+/* ── NAV ── */
+nav.top-nav {
+  background:#190056; height:44px; display:flex; align-items:center;
+  justify-content:space-between; padding:0 24px; position:sticky; top:0; z-index:200;
+  font-family:Calibri,'Trebuchet MS',Arial; flex-shrink:0;
+}
+nav.top-nav a { color:#fff; text-decoration:none; padding:2px 8px; font-size:12px; }
+nav.top-nav a.active { color:#190056; background:#fff; border-radius:3px; font-weight:600; }
+nav.top-nav .brand { color:#fff; font-size:13px; font-weight:600; letter-spacing:.5px; }
+.nav-sep { color:rgba(255,255,255,.35); }
 
 /* ── TAB BAR ── */
 .tab-bar {
-  background: var(--surface); border-bottom: 1px solid var(--border);
-  padding: .5rem 2rem; display: flex; gap: .35rem; position: sticky; top: 44px; z-index:100;
-  overflow-x: auto; scrollbar-width: none;
+  background: var(--surface); border-bottom: 2px solid var(--border);
+  padding: 0 2.75rem; display: flex; gap: 0; position: sticky; top: 44px; z-index:100;
 }
-.tab-bar::-webkit-scrollbar { display: none; }
 .tab-btn {
-  padding: 4px 16px; font-size: .73rem; font-weight: 600; font-family: inherit;
-  border: 1.5px solid var(--border); border-radius: 100px;
-  background: var(--surface); color: var(--muted);
-  cursor: pointer; white-space: nowrap;
-  transition: all .15s;
+  padding: .75rem 1.4rem .75rem 0; margin-right: 1.75rem;
+  border: none; border-bottom: 3px solid transparent; background: none; cursor: pointer;
+  font-family: var(--f-body); font-size: .78rem; font-weight: 700;
+  color: var(--dim); letter-spacing: .01em;
+  transition: color .15s, border-color .15s; margin-bottom: -2px; white-space: nowrap;
 }
-.tab-btn:hover { border-color: var(--navy); color: var(--navy); }
-.tab-btn.active { background: var(--navy); border-color: var(--navy); color: #fff; }
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--purple); border-bottom-color: var(--purple); }
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
 
@@ -311,17 +312,18 @@ body { font-family: var(--f-body); background: var(--bg); color: var(--text); fo
 <body>
 
 <!-- ── NAV ── -->
-<nav class="site-nav">
-  <span class="nav-brand">EEN · UR</span>
-  <div class="nav-links">
-    <a href="nbc.html" class="nav-link">NBC</a>
-    <a href="bloques.html" class="nav-link">Bloques</a>
-    <a href="actividades.html" class="nav-link">Actividades</a>
-    <a href="articulacion.html" class="nav-link">Articulación</a>
-    <a href="pedagogia.html" class="nav-link">Pedagogía</a>
-    <a href="posgrado.html" class="nav-link active">Posgrado</a>
-    <a href="menores.html" class="nav-link">Menores</a>
-    <a href="mallas_programas.html" class="nav-link">Mallas</a>
+<nav class="top-nav">
+  <span class="brand">EEN · UR</span>
+  <div style="display:flex;align-items:center;gap:6px;font-size:12px;">
+    <a href="inicio.html">Inicio</a><span class="nav-sep">·</span>
+    <a href="nbc.html">NBC</a><span class="nav-sep">·</span>
+    <a href="bloques.html">Bloques</a><span class="nav-sep">·</span>
+    <a href="actividades.html">Actividades</a><span class="nav-sep">·</span>
+    <a href="articulacion.html">Articulación</a><span class="nav-sep">·</span>
+    <a href="pedagogia.html">Pedagogía</a><span class="nav-sep">·</span>
+    <a href="posgrado.html" class="active">Posgrado</a><span class="nav-sep">·</span>
+    <a href="menores.html">Menores</a><span class="nav-sep">·</span>
+    <a href="mallas_programas.html">Mallas</a>
   </div>
 </nav>
 

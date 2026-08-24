@@ -14,7 +14,7 @@
   --ur-gray-f: #F5F4F2; --ur-gray-e: #E8E6E1;
   --ur-gray-70:#1A1620; --ur-gray-50:#6B6478; --ur-white:#FFFFFF;
 }
-html, body { font-family: 'Raleway', 'Trebuchet MS', Arial, sans-serif; background: var(--ur-gray-f); color: var(--ur-gray-70); height: 100%; }
+html, body { font-family: Calibri, 'Trebuchet MS', Arial, sans-serif; background: var(--ur-gray-f); color: var(--ur-gray-70); height: 100%; }
 
 /* ── LAYOUT ───────────────────────────────────────── */
 .shell { display: flex; flex-direction: column; height: calc(100vh - 44px); }
@@ -46,17 +46,17 @@ html, body { font-family: 'Raleway', 'Trebuchet MS', Arial, sans-serif; backgrou
   display: flex; gap: 0;
   flex-shrink: 0;
 }
-.tab-pill {
+.sel-btn {
   padding: .6rem 1.2rem;
   border: none; border-bottom: 3px solid transparent;
   background: none; cursor: pointer;
-  font-family: inherit; font-size: .8rem; font-weight: 500;
+  font-family: Calibri, sans-serif; font-size: .8rem; font-weight: 500;
   color: var(--ur-gray-50); white-space: nowrap;
   transition: color .15s, border-color .15s;
   display: flex; align-items: center; gap: .4rem;
 }
-.tab-pill:hover { color: var(--ur-navy); }
-.tab-pill.active { color: #190056; border-bottom-color: #DA0921; font-weight: 700; }
+.sel-btn:hover { color: var(--ur-navy); }
+.sel-btn.active { color: #190056; border-bottom-color: #DA0921; font-weight: 700; }
 .sel-num { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: inherit; }
 
 /* ── MAIN CONTENT ─────────────────────────────────── */
@@ -122,7 +122,7 @@ html, body { font-family: 'Raleway', 'Trebuchet MS', Arial, sans-serif; backgrou
 .unidad-btn {
   width: 100%; display: flex; align-items: center; justify-content: space-between; gap: .5rem;
   padding: .5rem 0; background: none; border: none; cursor: pointer;
-  font-family: inherit; font-size: .78rem; font-weight: 600;
+  font-family: Calibri, sans-serif; font-size: .78rem; font-weight: 600;
   color: var(--ur-navy); text-align: left;
 }
 .unidad-btn svg { width: 14px; height: 14px; flex-shrink: 0; transition: transform .2s; color: var(--ur-gray-50); }
@@ -151,33 +151,29 @@ html, body { font-family: 'Raleway', 'Trebuchet MS', Arial, sans-serif; backgrou
 /* scrollbar */
 .left-panel::-webkit-scrollbar { width: 5px; }
 .left-panel::-webkit-scrollbar-thumb { background: var(--ur-gray-e); border-radius: 3px; }
-/* ── SITE NAV ──────────────────────────────────────── */
-.site-nav { height: 44px; background: #190056; display: flex; align-items: center; justify-content: space-between; padding: 0 1.25rem; position: sticky; top: 0; z-index: 300; }
-.nav-brand { color: rgba(255,255,255,.5); font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-.nav-links { display: flex; align-items: center; gap: 2px; }
-.nav-link { color: rgba(255,255,255,.55); text-decoration: none; font-size: .75rem; padding: 4px 10px; border-radius: 3px; transition: background .12s, color .12s; }
-.nav-link:hover { color: #fff; background: rgba(255,255,255,.08); }
-.nav-link.active { color: #fff; background: rgba(255,255,255,.13); font-weight: 600; }
-/* ── TAB PILLS (selector bar) ──────────────────────── */
-.selector-bar { background: #fff; border-bottom: 1px solid #E8E5E0; padding: .4rem 1.25rem; display: flex; gap: .35rem; flex-shrink: 0; overflow-x: auto; scrollbar-width: none; }
-.selector-bar::-webkit-scrollbar { display: none; }
-.tab-pill { padding: 4px 14px; font-size: .73rem; font-weight: 600; font-family: inherit; border: 1.5px solid #E8E5E0; border-radius: 100px; background: #fff; color: #6B6478; cursor: pointer; white-space: nowrap; transition: all .15s; display: inline-flex; align-items: center; gap: .3rem; }
-.tab-pill:hover { border-color: #190056; color: #190056; }
-.tab-pill.active { background: #190056; border-color: #190056; color: #fff; }
 </style>
 </head>
 <body>
-<nav class="site-nav">
-  <span class="nav-brand">EEN · UR</span>
-  <div class="nav-links">
-    <a href="nbc.html" class="nav-link active">NBC</a>
-    <a href="bloques.html" class="nav-link">Bloques</a>
-    <a href="actividades.html" class="nav-link">Actividades</a>
-    <a href="articulacion.html" class="nav-link">Articulación</a>
-    <a href="pedagogia.html" class="nav-link">Pedagogía</a>
-    <a href="posgrado.html" class="nav-link">Posgrado</a>
-    <a href="menores.html" class="nav-link">Menores</a>
-    <a href="mallas_programas.html" class="nav-link">Mallas</a>
+<nav style="background:#190056;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:100;font-family:Calibri,'Trebuchet MS',Arial;flex-shrink:0;">
+  <span style="color:#fff;font-size:13px;font-weight:600;letter-spacing:.5px;">EEN · UR</span>
+  <div style="display:flex;align-items:center;gap:6px;font-size:12px;">
+    <a href="inicio.html" style="color:#fff;text-decoration:none;padding:2px 8px;">Inicio</a>
+    <span style="color:#ffffff66;">·</span>
+    <a href="nbc.html" style="color:#190056;background:#fff;text-decoration:none;padding:2px 8px;border-radius:3px;font-weight:600;">NBC</a>
+    <span style="color:#ffffff66;">·</span>
+    <a href="bloques.html" style="color:#fff;text-decoration:none;padding:2px 8px;">Bloques</a>
+    <span style="color:#ffffff66;">·</span>
+    <a href="actividades.html" style="color:#fff;text-decoration:none;padding:2px 8px;">Actividades</a>
+    <span style="color:#ffffff66;">·</span>
+    <a href="articulacion.html" style="color:#fff;text-decoration:none;padding:2px 8px;">Articulación</a>
+    <span style="color:#ffffff66;">·</span>
+    <a href="pedagogia.html" style="color:#fff;text-decoration:none;padding:2px 8px;">Pedagogía</a>
+    <span style="color:#ffffff66;">·</span>
+    <a href="posgrado.html" style="color:#fff;text-decoration:none;padding:2px 8px;">Posgrado</a>
+    <span style="color:#ffffff66;">·</span>
+    <a href="menores.html" style="color:#fff;text-decoration:none;padding:2px 8px;">Menores</a>
+    <span style="color:#ffffff66;">·</span>
+    <a href="mallas_programas.html" style="color:#fff;text-decoration:none;padding:2px 8px;">Mallas</a>
   </div>
 </nav>
 <div class="shell">
@@ -201,19 +197,19 @@ html, body { font-family: 'Raleway', 'Trebuchet MS', Arial, sans-serif; backgrou
 
 <!-- ── SELECTOR ───────────────────────────────────── -->
 <div class="selector-bar">
-  <button class="tab-pill active" onclick="switchCourse('micro')">
+  <button class="sel-btn active" onclick="switchCourse('micro')">
     <span class="sel-num">01</span> Principios de Microeconomía
   </button>
-  <button class="tab-pill" onclick="switchCourse('macro')">
+  <button class="sel-btn" onclick="switchCourse('macro')">
     <span class="sel-num">02</span> Principios de Macroeconomía
   </button>
-  <button class="tab-pill" onclick="switchCourse('prob')">
+  <button class="sel-btn" onclick="switchCourse('prob')">
     <span class="sel-num">03</span> Probabilidad y Estadística
   </button>
-  <button class="tab-pill" onclick="switchCourse('ens')">
+  <button class="sel-btn" onclick="switchCourse('ens')">
     <span class="sel-num">04</span> Economía, Negocios y Sociedad
   </button>
-  <button class="tab-pill" onclick="switchCourse('ia')">
+  <button class="sel-btn" onclick="switchCourse('ia')">
     <span class="sel-num">05</span> IA para la Toma de Decisiones
   </button>
 </div>
@@ -809,7 +805,7 @@ function switchCourse(key) {
     document.getElementById('cp-' + k).classList.toggle('active', k === key);
     document.getElementById('pp-' + k).classList.toggle('active', k === key);
   });
-  document.querySelectorAll('.tab-pill').forEach((btn, i) => {
+  document.querySelectorAll('.sel-btn').forEach((btn, i) => {
     btn.classList.toggle('active', COURSES[i] === key);
   });
 }

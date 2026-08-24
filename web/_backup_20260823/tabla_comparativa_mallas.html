@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparativo Mallas Curriculares — Escuela Unificada UR</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Calibri', 'Segoe UI', sans-serif; font-size: 13px; background: #f5f5f3; color: #1a1a1a; padding: 24px; }
+  h1 { font-size: 18px; font-weight: 600; color: #C00000; margin-bottom: 4px; }
+  .subtitle { font-size: 11px; color: #666; margin-bottom: 20px; }
+  .section-label { font-size: 11px; font-weight: 600; color: #888; letter-spacing: 0.06em; text-transform: uppercase; margin: 20px 0 8px; }
+
+  /* TABS */
+  .tabs { display: flex; gap: 4px; margin-bottom: 0; }
+  .tab { padding: 8px 18px; font-size: 12px; font-weight: 500; border: 1px solid #ddd; border-bottom: none; border-radius: 6px 6px 0 0; cursor: pointer; background: #eee; color: #666; transition: all 0.15s; }
+  .tab.active { background: #fff; color: #C00000; border-color: #ddd; border-bottom-color: #fff; z-index: 1; }
+  .tab-content { display: none; background: #fff; border: 1px solid #ddd; border-radius: 0 6px 6px 6px; overflow: hidden; }
+  .tab-content.active { display: block; }
+
+  /* TABLES */
+  table { width: 100%; border-collapse: collapse; }
+  th { font-size: 10px; font-weight: 600; padding: 8px 10px; border-bottom: 2px solid #ddd; text-align: right; color: #444; background: #fafafa; }
+  th.lbl { text-align: left; width: 32%; }
+  th.prog { width: 13%; }
+  td { padding: 6px 10px; border-bottom: 0.5px solid #e8e8e8; text-align: right; font-size: 12px; }
+  td.lbl { text-align: left; }
+  td.pct { font-size: 10px; color: #888; }
+  td.na  { color: #bbb; font-style: italic; font-size: 10px; }
+
+  /* BLOCK COLORS — hardcoded for export */
+  .ros td   { background: #fce8e8; color: #7a1a1a; }
+  .nbc td   { background: #dbeafe; color: #0c447c; }
+  .an  td   { background: #d1fae5; color: #065f46; }
+  .ef  td   { background: #bbf7d0; color: #14532d; }
+  .dan td   { background: #a7f3d0; color: #064e3b; }
+  .def td   { background: #86efac; color: #14532d; }
+  .sub td   { background: #f0f0ee; color: #333; font-weight: 600; font-size: 11px; }
+  .elec td  { background: #fef9c3; color: #713f12; }
+  .grado td { background: #ede9fe; color: #3730a3; }
+  .cap  td  { background: #e0f2fe; color: #0c4a6e; }
+  .total td { background: #fbbf24; color: #1c1917; font-weight: 700; font-size: 13px; }
+
+  /* EXPANDABLE ROWS */
+  .expand-btn { background: none; border: 1px solid currentColor; border-radius: 3px; font-size: 9px; padding: 1px 5px; cursor: pointer; margin-left: 6px; opacity: 0.7; font-family: inherit; color: inherit; }
+  .expand-btn:hover { opacity: 1; }
+  .detail-row { display: none; }
+  .detail-row.open { display: table-row; }
+  .detail-row td { background: #f8fbff; padding: 0; border-bottom: 0.5px solid #e0eaff; }
+  .detail-inner { display: grid; grid-template-columns: repeat(4, 1fr); border-top: none; }
+  .detail-col { padding: 8px 10px; border-right: 0.5px solid #dde; font-size: 11px; }
+  .detail-col:last-child { border-right: none; }
+  .detail-col .col-header { font-size: 9px; font-weight: 600; color: #888; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 6px; border-bottom: 1px solid #e0e0e0; padding-bottom: 4px; }
+  .detail-col ul { list-style: none; padding: 0; }
+  .detail-col ul li { padding: 3px 0; border-bottom: 0.5px solid #f0f0f0; color: #333; display: flex; justify-content: space-between; gap: 8px; }
+  .detail-col ul li:last-child { border-bottom: none; }
+  .cr-badge { font-size: 10px; color: #888; white-space: nowrap; flex-shrink: 0; }
+  .empty-col { color: #bbb; font-style: italic; font-size: 11px; padding-top: 4px; }
+
+  /* NBC detail */
+  .nbc-detail-row td { background: #eff6ff; }
+  .nbc-detail-inner { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+  .nbc-detail-inner .detail-col { font-size: 11px; }
+
+  /* LEGEND */
+  .legend { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 8px; }
+  .leg { display: flex; align-items: center; gap: 5px; font-size: 10px; color: #555; }
+  .leg-dot { width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
+
+  /* BADGES */
+  .badge { display:inline-block;font-size:9px;padding:1px 5px;border-radius:3px;margin-left:3px; }
+  .b-new { background:#bbf7d0;color:#065f46; }
+  .b-mod { background:#fde68a;color:#713f12; }
+  .b-out { background:#fecaca;color:#7f1d1d; }
+
+  /* NOTES */
+  .notes { font-size: 10px; color: #777; margin-top: 14px; line-height: 1.7; padding: 10px 12px; background: #fafafa; border: 1px solid #eee; border-radius: 4px; }
+  .notes strong { color: #555; }
+
+  @media print {
+    body { background: white; padding: 12px; }
+    .tabs, .tab { display: none; }
+    .tab-content { display: block !important; border: none; }
+    .section-label { page-break-before: always; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Comparativo de Mallas Curriculares</h1>
+<p class="subtitle">Escuela Unificada de Economía y Negocios — Universidad del Rosario · Versión de trabajo</p>
+
+<div class="legend">
+  <span class="leg"><span class="leg-dot" style="background:#fca5a5"></span>Formación Rosarista</span>
+  <span class="leg"><span class="leg-dot" style="background:#93c5fd"></span>NBC Escuela</span>
+  <span class="leg"><span class="leg-dot" style="background:#6ee7b7"></span>Núcleo dpto. Adm. &amp; Negocios</span>
+  <span class="leg"><span class="leg-dot" style="background:#bbf7d0"></span>Núcleo dpto. Econ. &amp; Finanzas</span>
+  <span class="leg"><span class="leg-dot" style="background:#34d399"></span>Disciplinar específica ANI</span>
+  <span class="leg"><span class="leg-dot" style="background:#4ade80"></span>Disciplinar específica Econ–Fin</span>
+  <span class="leg"><span class="leg-dot" style="background:#fde68a"></span>Electividad</span>
+  <span class="leg"><span class="leg-dot" style="background:#c4b5fd"></span>Opción de grado</span>
+  <span class="leg"><span class="leg-dot" style="background:#7dd3fc"></span>Capstone</span>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('resumen')">Tabla resumen</div>
+  <div class="tab" onclick="showTab('ampliada')">Tabla ampliada</div>
+</div>
+
+<!-- ==================== TABLA RESUMEN ==================== -->
+<div class="tab-content active" id="tab-resumen">
+<table>
+  <colgroup>
+    <col style="width:32%"><col style="width:9%"><col style="width:6%">
+    <col style="width:9%"><col style="width:6%">
+    <col style="width:9%"><col style="width:6%">
+    <col style="width:9%"><col style="width:6%">
+  </colgroup>
+  <thead>
+    <tr>
+      <th class="lbl">Bloque</th>
+      <th>ANI orig.<br><small style="font-weight:400">(140)</small></th><th>%</th>
+      <th>ANI prop.<br><small style="font-weight:400">(137)</small></th><th>%</th>
+      <th>Economía<br><small style="font-weight:400">(125)</small></th><th>%</th>
+      <th>Finanzas<br><small style="font-weight:400">(126)</small></th><th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="ros"><td class="lbl">Formación Rosarista</td><td>16</td><td class="pct">11.4%</td><td>15</td><td class="pct">10.9%</td><td>18</td><td class="pct">14.4%</td><td>18</td><td class="pct">14.3%</td></tr>
+    <tr class="nbc"><td class="lbl">Núcleo Básico Común Escuela</td><td>30</td><td class="pct">21.4%</td><td>39</td><td class="pct">28.5%</td><td>30</td><td class="pct">24.0%</td><td>33</td><td class="pct">26.2%</td></tr>
+    <tr class="an"><td class="lbl">Núcleo dpto. Administración &amp; Negocios</td><td>18</td><td class="pct">12.9%</td><td>16</td><td class="pct">11.7%</td><td class="na">—</td><td></td><td class="na">—</td><td></td></tr>
+    <tr class="ef"><td class="lbl">Núcleo dpto. Economía &amp; Finanzas</td><td class="na">—</td><td></td><td class="na">—</td><td></td><td>21</td><td class="pct">16.8%</td><td>21</td><td class="pct">16.7%</td></tr>
+    <tr class="dan"><td class="lbl">Disciplinar específica — ANI</td><td>43</td><td class="pct">30.7%</td><td>35</td><td class="pct">25.5%</td><td class="na">—</td><td></td><td class="na">—</td><td></td></tr>
+    <tr class="sub"><td class="lbl" style="padding-left:6px;font-size:10px">↳ Subtotal disciplinar ANI</td><td>61</td><td class="pct">43.6%</td><td>51</td><td class="pct">37.2%</td><td class="na">—</td><td></td><td class="na">—</td><td></td></tr>
+    <tr class="def"><td class="lbl">Disciplinar específica — Econ. &amp; Fin.</td><td class="na">—</td><td></td><td class="na">—</td><td></td><td>30</td><td class="pct">24.0%</td><td>30</td><td class="pct">23.8%</td></tr>
+    <tr class="sub"><td class="lbl" style="padding-left:6px;font-size:10px">↳ Subtotal disciplinar Econ–Fin</td><td class="na">—</td><td></td><td class="na">—</td><td></td><td>51</td><td class="pct">40.8%</td><td>51</td><td class="pct">40.5%</td></tr>
+    <tr class="elec"><td class="lbl">Electividad / Profundización / Diversificación</td><td>19</td><td class="pct">13.6%</td><td>19</td><td class="pct">13.9%</td><td>21</td><td class="pct">16.8%</td><td>18</td><td class="pct">14.3%</td></tr>
+    <tr class="grado"><td class="lbl">Opción de grado</td><td>8</td><td class="pct">5.7%</td><td>9</td><td class="pct">6.6%</td><td>9</td><td class="pct">7.2%</td><td>9</td><td class="pct">7.1%</td></tr>
+    <tr class="cap"><td class="lbl">Capstone / Prácticas</td><td>6</td><td class="pct">4.3%</td><td>3</td><td class="pct">2.2%</td><td>3</td><td class="pct">2.4%</td><td>3</td><td class="pct">2.4%</td></tr>
+    <tr class="total"><td class="lbl">Total</td><td>140</td><td class="pct">100%</td><td>137</td><td class="pct">100%</td><td>125</td><td class="pct">100%</td><td>126</td><td class="pct">100%</td></tr>
+  </tbody>
+</table>
+<div class="notes">
+  <strong>NBC Escuela:</strong> Economía, Negocios y Sociedad · Lógica · Precálculo · Cálculo I · Probabilidad y Estadística · Programación · Principios de Microeconomía · Principios de Macroeconomía · IA, Datos y Sociedad. Cursos adicionales en ANI: Matemática Financiera, Finanzas Corporativas, Data Driven &amp; Decision Making, Desafíos Contemporáneos.<br>
+  <strong>Economía:</strong> incluye Electiva Disciplinar III como compensación por salida de Comunicación Académica (total 125 cr.).<br>
+  <strong>Proyecto Integrador / Capstone:</strong> 3 cr. en los tres programas. En ANI reemplaza la Práctica Empresarial (6 cr. originales).
+</div>
+</div>
+
+<!-- ==================== TABLA AMPLIADA ==================== -->
+<div class="tab-content" id="tab-ampliada">
+<table>
+  <colgroup>
+    <col style="width:32%"><col style="width:9%"><col style="width:6%">
+    <col style="width:9%"><col style="width:6%">
+    <col style="width:9%"><col style="width:6%">
+    <col style="width:9%"><col style="width:6%">
+  </colgroup>
+  <thead>
+    <tr>
+      <th class="lbl">Bloque / Curso</th>
+      <th>ANI orig.<br><small style="font-weight:400">(140)</small></th><th>%</th>
+      <th>ANI prop.<br><small style="font-weight:400">(137)</small></th><th>%</th>
+      <th>Economía<br><small style="font-weight:400">(125)</small></th><th>%</th>
+      <th>Finanzas<br><small style="font-weight:400">(126)</small></th><th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <!-- ROSARISTA -->
+    <tr class="ros"><td class="lbl">Formación Rosarista</td><td>16</td><td class="pct">11.4%</td><td>15</td><td class="pct">10.9%</td><td>18</td><td class="pct">14.4%</td><td>18</td><td class="pct">14.3%</td></tr>
+    <tr class="ros" style="font-size:10px;color:#9b1c1c;"><td class="lbl" style="padding-left:14px;color:#9b1c1c;">Cátedra Rosarista · Ética · Constitución · Electivas HM · Lectoescritura</td><td colspan="8"></td></tr>
+
+    <!-- NBC -->
+    <tr class="nbc">
+      <td class="lbl">Núcleo Básico Común Escuela
+        <button class="expand-btn" onclick="toggle('nbc-detail')">+ cursos</button>
+      </td>
+      <td>30</td><td class="pct">21.4%</td><td>39</td><td class="pct">28.5%</td><td>30</td><td class="pct">24.0%</td><td>33</td><td class="pct">26.2%</td>
+    </tr>
+    <tr class="detail-row nbc-detail-row" id="nbc-detail">
+      <td colspan="9">
+        <div class="detail-inner nbc-detail-inner">
+          <div class="detail-col">
+            <div class="col-header">Cursos comunes (3 programas)</div>
+            <ul>
+              <li>Economía, Negocios y Sociedad <span class="cr-badge">3 cr.</span></li>
+              <li>Lógica Matemática <span class="cr-badge">3 cr.</span></li>
+              <li>Precálculo <span class="cr-badge">3 cr.</span></li>
+              <li>Cálculo I <span class="cr-badge">3 cr.</span></li>
+              <li>Probabilidad y Estadística <span class="cr-badge">3 cr.</span></li>
+              <li>Programación <span class="cr-badge">3 cr.</span></li>
+              <li>Principios de Microeconomía <span class="cr-badge">3 cr.</span></li>
+              <li>Principios de Macroeconomía <span class="cr-badge">3 cr.</span></li>
+              <li>IA, Datos y Sociedad <span class="cr-badge">3 cr.</span></li>
+            </ul>
+          </div>
+          <div class="detail-col">
+            <div class="col-header">Solo ANI propuesta</div>
+            <ul>
+              <li>Matemática Financiera <span class="cr-badge">3 cr.</span></li>
+              <li>Finanzas Corporativas <span class="cr-badge">3 cr.</span></li>
+              <li>Data Driven &amp; Decision Making <span class="cr-badge">3 cr.</span></li>
+              <li>Desafíos Contemporáneos <span class="cr-badge">3 cr.</span></li>
+            </ul>
+            <div class="col-header" style="margin-top:10px">Sale (todos)</div>
+            <ul>
+              <li style="color:#991b1b;">Comunicación Académica <span class="cr-badge">—</span></li>
+            </ul>
+          </div>
+          <div class="detail-col">
+            <div class="col-header">Solo Finanzas</div>
+            <ul>
+              <li>Matemática Financiera <span class="cr-badge">3 cr.</span></li>
+              <li>Finanzas Corporativas <span class="cr-badge">3 cr.</span></li>
+            </ul>
+          </div>
+        </div>
+      </td>
+    </tr>
+
+    <!-- DPTO ANI -->
+    <tr class="an">
+      <td class="lbl">Núcleo dpto. Administración &amp; Negocios
+        <button class="expand-btn" onclick="toggle('an-detail')">+ cursos</button>
+      </td>
+      <td>18</td><td class="pct">12.9%</td><td>16</td><td class="pct">11.7%</td><td class="na">—</td><td></td><td class="na">—</td><td></td>
+    </tr>
+    <tr class="detail-row" id="an-detail">
+      <td colspan="9">
+        <div class="detail-inner">
+          <div class="detail-col">
+            <div class="col-header">ANI original</div>
+            <ul>
+              <li>Scaling Management <span class="cr-badge">2 cr.</span></li>
+              <li>Marketing <span class="cr-badge">2 cr.</span></li>
+              <li>Contabilidad y Costos <span class="cr-badge">3 cr.</span></li>
+              <li>Innovación y Emprendimiento <span class="cr-badge">2 cr.</span></li>
+              <li>Liderazgo en la Era Digital <span class="cr-badge">2 cr.</span></li>
+              <li>Strategic Management <span class="cr-badge">2 cr.</span></li>
+              <li>Sustainability Management <span class="cr-badge">2 cr.</span></li>
+              <li>Project Management <span class="cr-badge">2 cr.</span></li>
+              <li>Mentoring Profesional <span class="cr-badge">1 cr.</span></li>
+            </ul>
+          </div>
+          <div class="detail-col">
+            <div class="col-header">ANI propuesta</div>
+            <ul>
+              <li>Managing Projects &amp; Scale <span class="cr-badge">3 cr.</span></li>
+              <li>Marketing <span class="cr-badge">2 cr.</span></li>
+              <li>Contabilidad p/ Toma de Decisiones <span class="cr-badge">3 cr.</span></li>
+              <li>Innovación y Emprendimiento <span class="cr-badge">2 cr.</span></li>
+              <li>Liderazgo en la Era Digital <span class="cr-badge">3 cr.</span></li>
+              <li>Strategy &amp; Sustainability <span class="cr-badge">3 cr.</span></li>
+              <li style="color:#991b1b;">Mentoring Profesional → extracurricular <span class="cr-badge">—</span></li>
+            </ul>
+          </div>
+          <div class="detail-col">
+            <div class="col-header">Economía</div>
+            <p class="empty-col">No aplica</p>
+          </div>
+          <div class="detail-col">
+            <div class="col-header">Finanzas</div>
+            <p class="empty-col">No aplica</p>
+          </div>
+        </div>
+      </td>
+    </tr>
+
+    <!-- DPTO EF -->
+    <tr class="ef">
+      <td class="lbl">Núcleo dpto. Economía &amp; Finanzas
+        <button class="expand-btn" onclick="toggle('ef-detail')">+ cursos</button>
+      </td>
+      <td class="na">—</td><td></td><td class="na">—</td><td></td><td>21</td><td class="pct">16.8%</td><td>21</td><td class="pct">16.7%</td>
+    </tr>
+    <tr class="detail-row" id="ef-detail">
+      <td colspan="9">
+        <div class="detail-inner">
+          <div class="detail-col">
+            <div class="col-header">ANI original</div>
+            <p class="empty-col">No aplica</p>
+          </div>
+          <div class="detail-col">
+            <div class="col-header">ANI propuesta</div>
+            <p class="empty-col">No aplica</p>
+          </div>
+          <div class="detail-col">
+            <div class="col-header">Economía</div>
+            <ul>
+              <li>Principios de Microeconomía <span class="cr-badge">3 cr.</span></li>
+              <li>Principios de Macroeconomía <span class="cr-badge">3 cr.</span></li>
+              <li>Econometría y Métodos de Regresión <span class="cr-badge">3 cr.</span></li>
+              <li>Predicción y Pronósticos <span class="cr-badge">3 cr.</span></li>
+              <li>Métodos de Optimización <span class="cr-badge">3 cr.</span></li>
+              <li>Proyecto Integrador I <span class="cr-badge">3 cr.</span></li>
+            </ul>
+          </div>
+          <div class="detail-col">
+            <div class="col-header">Finanzas</div>
+            <ul>
+              <li>Principios de Microeconomía <span class="cr-badge">3 cr.</span></li>
+              <li>Principios de Macroeconomía <span class="cr-badge">3 cr.</span></li>
+              <li>Econometría y Métodos de Regresión <span class="cr-badge">3 cr.</span></li>
+              <li>Predicción y Pronósticos <span class="cr-badge">3 cr.</span></li>
+              <li>Métodos de Optimización <span class="cr-badge">3 cr.</span></li>
+              <li>Proyecto Integrador I <span class="cr-badge">3 cr.</span></li>
+            </ul>
+          </div>
+        </div>
+      </td>
+    </tr>
+
+    <!-- DISC ANI -->
+    <tr class="dan">
+      <td class="lbl">Disciplinar específica — ANI
+        <button class="expand-btn" onclick="toggle('dan-detail')">+ cursos</button>
+      </td>
+      <td>43</td><td class="pct">30.7%</td><td>35</td><td class="pct">25.5%</td><td class="na">—</td><td></td><td class="na">—</td><td></td>
+    </tr>
+    <tr class="detail-row" id="dan-detail">
+      <td colspan="9">
+        <div class="detail-inner">
+          <div class="detail-col">
+            <div class="col-header">ANI original</div>
+            <ul>
+              <li>Negocios Globales <span class="cr-badge">3 cr.</span></li>
+              <li>Técnicas de Negociación <span class="cr-badge">2 cr.</span></li>
+              <li>Cross Cultural Communication <span class="cr-badge">2 cr.</span></li>
+              <li>Global Future Workforce <span class="cr-badge">2 cr.</span></li>
+              <li>Operaciones de Comercio Exterior <span class="cr-badge">2 cr.</span></li>
+              <li>International Sales &amp; Contracts <span class="cr-badge">2 cr.</span></li>
+              <li>International Trade and Economy <span class="cr-badge">2 cr.</span></li>
+              <li>Tercer Idioma I <span class="cr-badge">3 cr.</span></li>
+              <li>Tercer Idioma II <span class="cr-badge">3 cr.</span></li>
+              <li>Start-ups Scalability <span class="cr-badge">2 cr.</span></li>
+              <li>Sustainable Global Value Chain <span class="cr-badge">2 cr.</span></li>
+              <li>Global Business Intelligence <span class="cr-badge">2 cr.</span></li>
+              <li>Global Scaling Up <span class="cr-badge">2 cr.</span></li>
+              <li>Global Marketing <span class="cr-badge">2 cr.</span></li>
+              <li>International Strategy <span class="cr-badge">2 cr.</span></li>
+              <li>Digital Business Models <span class="cr-badge">2 cr.</span></li>
+              <li>Tercer Idioma III <span class="cr-badge">2 cr.</span></li>
+              <li>International Finance <span class="cr-badge">2 cr.</span></li>
+              <li>AI for International Business <span class="cr-badge">2 cr.</span></li>
+            </ul>
+          </div>
+          <div class="detail-col">
+            <div class="col-header">ANI propuesta</div>
+            <ul>
+              <li>Negocios Globales <span class="cr-badge">3 cr.</span></li>
+              <li>Técnicas de Negociación <span class="cr-badge">3 cr.</span></li>
+              <li>Global Leadership &amp; Culture <span class="cr-badge">3 cr.</span></li>
+              <li>Operaciones de Comercio Exterior <span class="cr-badge">2 cr.</span></li>
+              <li>International Trade and Economy <span class="cr-badge">3 cr.</span></li>
+              <li>Tercer Idioma I <span class="cr-badge">3 cr.</span></li>
+              <li>Tercer Idioma II <span class="cr-badge">3 cr.</span></li>
+              <li>Sustainable &amp; Scalable Business Models <span class="cr-badge">3 cr.</span></li>
+              <li>Global Business Intelligence <span class="cr-badge">2 cr.</span></li>
+              <li>Global Scaling Up <span class="cr-badge">3 cr.</span></li>
+              <li>Global Marketing <span class="cr-badge">3 cr.</span></li>
+              <li>International Strategy <span class="cr-badge">3 cr.</span></li>
+              <li>Digital Business Models <span class="cr-badge">2 cr.</span></li>
+              <li>Tercer Idioma III <span class="cr-badge">2 cr.</span></li>
+              <li>International Finance <span class="cr-badge">2 cr.</span></li>
+            </ul>
+          </div>
+          <div class="detail-col">
+            <div class="col-header">Economía</div>
+            <p class="empty-col">No aplica</p>
+          </div>
+          <div class="detail-col">
+            <div class="col-header">Finanzas</div>
+            <p class="empty-col">No aplica</p>
+          </div>
+        </div>
+      </td>
+    </tr>
+
+    <!-- SUBTOTAL ANI -->
+    <tr class="sub"><td class="lbl" style="padding-left:6px;font-size:10px">↳ Subtotal disciplinar ANI</td><td>61</td><td class="pct">43.6%</td><td>51</td><td class="pct">37.2%</td><td class="na">—</td><td></td><td class="na">—</td><td></td></tr>
+
+    <!-- DISC EF -->
+    <tr class="def">
+      <td class="lbl">Disciplinar específica — Econ. &amp; Fin.
+        <button class="expand-btn" onclick="toggle('def-detail')">+ cursos</button>
+      </td>
+      <td class="na">—</td><td></td><td class="na">—</td><td></td><td>30</td><td class="pct">24.0%</td><td>30</td><td class="pct">23.8%</td>
+    </tr>
+    <tr class="detail-row" id="def-detail">
+      <td colspan="9">
+        <div class="detail-inner">
+          <div class="detail-col">
+            <div class="col-header">ANI original</div>
+            <p class="empty-col">No aplica</p>
+          </div>
+          <div class="detail-col">
+            <div class="col-header">ANI propuesta</div>
+            <p class="empty-col">No aplica</p>
+          </div>
+          <div class="detail-col">
+            <div class="col-header">Economía</div>
+            <ul>
+              <li>Microeconomía II <span class="cr-badge">3 cr.</span></li>
+              <li>Microeconomía III <span class="cr-badge">3 cr.</span></li>
+              <li>Macroeconomía I <span class="cr-badge">3 cr.</span></li>
+              <li>Macroeconomía II <span class="cr-badge">3 cr.</span></li>
+              <li>Macroeconomía III <span class="cr-badge">3 cr.</span></li>
+              <li>Doctrinas Económicas <span class="cr-badge">3 cr.</span></li>
+              <li>Historia Económica General <span class="cr-badge">2 cr.</span></li>
+              <li>Historia Económica Colombiana <span class="cr-badge">3 cr.</span></li>
+              <li>Comunicando Economía <span class="cr-badge">3 cr.</span></li>
+              <li>Economía de Comportamiento <span class="cr-badge">3 cr.</span></li>
+              <li>Electiva Disciplinar III <span class="cr-badge">3 cr.</span></li>
+            </ul>
+          </div>
+          <div class="detail-col">
+            <div class="col-header">Finanzas</div>
+            <ul>
+              <li>Finanzas Personales <span class="cr-badge">3 cr.</span></li>
+              <li>Contabilidad p/ Toma de Decisiones <span class="cr-badge">3 cr.</span></li>
+              <li>Valoración de Empresas y Proyectos <span class="cr-badge">3 cr.</span></li>
+              <li>Renta Fija y Derivados <span class="cr-badge">3 cr.</span></li>
+              <li>Renta Variable y Portafolios <span class="cr-badge">3 cr.</span></li>
+              <li>Inversiones Alternativas <span class="cr-badge">3 cr.</span></li>
+              <li>Teoría y Política Monetaria <span class="cr-badge">3 cr.</span></li>
+              <li>Gestión Integral de Riesgos <span class="cr-badge">3 cr.</span></li>
+              <li>Economía Financiera <span class="cr-badge">3 cr.</span></li>
+              <li>Electiva Disciplinar I <span class="cr-badge">3 cr.</span></li>
+            </ul>
+          </div>
+        </div>
+      </td>
+    </tr>
+
+    <!-- SUBTOTAL EF -->
+    <tr class="sub"><td class="lbl" style="padding-left:6px;font-size:10px">↳ Subtotal disciplinar Econ–Fin</td><td class="na">—</td><td></td><td class="na">—</td><td></td><td>51</td><td class="pct">40.8%</td><td>51</td><td class="pct">40.5%</td></tr>
+
+    <!-- ELEC / GRADO / CAP / TOTAL -->
+    <tr class="elec"><td class="lbl">Electividad / Profundización / Diversificación</td><td>19</td><td class="pct">13.6%</td><td>19</td><td class="pct">13.9%</td><td>21</td><td class="pct">16.8%</td><td>18</td><td class="pct">14.3%</td></tr>
+    <tr class="grado"><td class="lbl">Opción de grado</td><td>8</td><td class="pct">5.7%</td><td>9</td><td class="pct">6.6%</td><td>9</td><td class="pct">7.2%</td><td>9</td><td class="pct">7.1%</td></tr>
+    <tr class="cap"><td class="lbl">Capstone / Prácticas</td><td>6</td><td class="pct">4.3%</td><td>3</td><td class="pct">2.2%</td><td>3</td><td class="pct">2.4%</td><td>3</td><td class="pct">2.4%</td></tr>
+    <tr class="total"><td class="lbl">Total</td><td>140</td><td class="pct">100%</td><td>137</td><td class="pct">100%</td><td>125</td><td class="pct">100%</td><td>126</td><td class="pct">100%</td></tr>
+  </tbody>
+</table>
+
+<div class="notes">
+  <strong>Desplegables:</strong> haga clic en "+ cursos" para ver el listado completo de cada bloque por programa. · <strong>Economía:</strong> Electiva Disciplinar III compensa la salida de Comunicación Académica (total 125 cr.). · <strong>ANI propuesta:</strong> Desafíos Contemporáneos reclasificado a NBC Escuela. Data Driven &amp; Decision Making migra de Digitalización a NBC.
+</div>
+</div>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+  function toggle(id) {
+    const row = document.getElementById(id);
+    const btn = event.target;
+    const isOpen = row.classList.toggle('open');
+    btn.textContent = isOpen ? '− cursos' : '+ cursos';
+  }
+</script>
+</body>
+</html>

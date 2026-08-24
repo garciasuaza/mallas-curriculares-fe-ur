@@ -1,0 +1,195 @@
+
+<style>
+  .wrap { padding: 1rem 0; font-size: 13px; }
+  table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  th { font-size: 10px; font-weight: 500; color: var(--color-text-secondary); text-align: right; padding: 7px 10px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  th.lbl { text-align: left; }
+  td { padding: 7px 10px; text-align: right; vertical-align: middle; font-size: 12px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  td.lbl { text-align: left; font-size: 12px; }
+  td.sub { text-align: left; font-size: 10px; color: var(--color-text-secondary); padding-left: 14px; font-style: italic; }
+  td.pct { font-size: 10px; color: var(--color-text-secondary); }
+  td.na  { font-style: italic; font-size: 10px; color: var(--color-text-secondary); }
+  .row-ros td   { background: #fce8e8; color: #7a1a1a; }
+  .row-nbc td   { background: #dbeafe; color: #0c447c; }
+  .row-dpto-an td { background: #d1fae5; color: #065f46; }
+  .row-dpto-ef td { background: #bbf7d0; color: #14532d; }
+  .row-disc-an td { background: #a7f3d0; color: #064e3b; }
+  .row-disc-ef td { background: #86efac; color: #14532d; }
+  .row-sub td   { background: var(--color-background-secondary); color: var(--color-text-primary); font-weight: 500; font-size: 11px; }
+  .row-elec td  { background: #fef9c3; color: #713f12; }
+  .row-grado td { background: #ede9fe; color: #3730a3; }
+  .row-cap td   { background: #e0f2fe; color: #0c4a6e; }
+  .row-total td { background: #fbbf24; color: #1c1917; font-weight: 500; font-size: 13px; }
+  .note { font-size: 10px; color: var(--color-text-secondary); margin-top: 10px; line-height: 1.7; padding: 0 4px; }
+  .badge { display:inline-block;font-size:9px;padding:1px 5px;border-radius:3px;background:#fde68a;color:#713f12;margin-left:4px; }
+  .badge-new { background:#bbf7d0;color:#065f46; }
+  .col-lbl{width:34%;} .col-n{width:11%;} .col-p{width:11%;}
+  @media (prefers-color-scheme: dark) {
+    .row-ros td{background:#4c1515;color:#fca5a5;}
+    .row-nbc td{background:#0c2a4a;color:#93c5fd;}
+    .row-dpto-an td{background:#064e3b;color:#6ee7b7;}
+    .row-dpto-ef td{background:#14532d;color:#bbf7d0;}
+    .row-disc-an td{background:#065f46;color:#34d399;}
+    .row-disc-ef td{background:#166534;color:#4ade80;}
+    .row-sub td{background:#1f2937;color:#f9fafb;}
+    .row-elec td{background:#422006;color:#fde68a;}
+    .row-grado td{background:#2e1065;color:#c4b5fd;}
+    .row-cap td{background:#0c4a6e;color:#bae6fd;}
+    .row-total td{background:#92400e;color:#fef3c7;}
+    .badge{background:#713f12;color:#fde68a;}
+    .badge-new{background:#065f46;color:#6ee7b7;}
+  }
+</style>
+
+<div class="wrap">
+  <table>
+    <colgroup>
+      <col class="col-lbl">
+      <col class="col-n"><col class="col-p">
+      <col class="col-n"><col class="col-p">
+      <col class="col-n"><col class="col-p">
+    </colgroup>
+    <thead>
+      <tr>
+        <th class="lbl">Bloque</th>
+        <th>ANI orig.<br><span style="font-weight:400">(140)</span></th><th>%</th>
+        <th>ANI prop.<br><span style="font-weight:400">(137)</span></th><th>%</th>
+        <th>Economía<br><span style="font-weight:400">(122)</span></th><th>%</th>
+        <th>Finanzas<br><span style="font-weight:400">(126)</span></th><th>%</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr class="row-ros">
+        <td class="lbl">Formación Rosarista</td>
+        <td>16</td><td class="pct">11.4%</td>
+        <td>15</td><td class="pct">10.9%</td>
+        <td>18</td><td class="pct">14.8%</td>
+        <td>18</td><td class="pct">14.3%</td>
+      </tr>
+
+      <tr class="row-nbc">
+        <td class="lbl">Núcleo Básico Común Escuela</td>
+        <td>30</td><td class="pct">21.4%</td>
+        <td>39</td><td class="pct">28.5%</td>
+        <td>30</td><td class="pct">24.6%</td>
+        <td>33</td><td class="pct">26.2%</td>
+      </tr>
+      <tr class="row-nbc">
+        <td class="sub">Economía, Negocios y Sociedad · Lógica · Precálculo · Cálculo I · Prob. y Estadística · Programación</td>
+        <td>18</td><td></td><td>18</td><td></td><td>18</td><td></td><td>18</td><td></td>
+      </tr>
+      <tr class="row-nbc">
+        <td class="sub">Principios de Microeconomía</td>
+        <td>3</td><td></td><td>3</td><td></td><td>3</td><td></td><td>3</td><td></td>
+      </tr>
+      <tr class="row-nbc">
+        <td class="sub">Principios de Macroeconomía <span class="badge badge-new">NBC</span></td>
+        <td class="na" style="text-align:right">—</td><td></td><td>3</td><td></td><td>3</td><td></td><td>3</td><td></td>
+      </tr>
+      <tr class="row-nbc">
+        <td class="sub">IA, Datos y Sociedad <span class="badge badge-new">NBC</span></td>
+        <td class="na" style="text-align:right">—</td><td></td><td>3</td><td></td><td>3</td><td></td><td>3</td><td></td>
+      </tr>
+      <tr class="row-nbc">
+        <td class="sub">Matemática Financiera · Finanzas Corporativas</td>
+        <td>6</td><td></td><td>6</td><td></td><td>—</td><td></td><td>6</td><td></td>
+      </tr>
+      <tr class="row-nbc">
+        <td class="sub">Data Driven &amp; Decision Making <span class="badge badge-new">NBC</span></td>
+        <td>2</td><td></td><td>3</td><td></td><td class="na" style="text-align:right">—</td><td></td><td class="na" style="text-align:right">—</td><td></td>
+      </tr>
+      <tr class="row-nbc">
+        <td class="sub">Desafíos Contemporáneos <span class="badge badge-new">→ NBC</span></td>
+        <td>3</td><td></td><td>3</td><td></td><td class="na" style="text-align:right">—</td><td></td><td class="na" style="text-align:right">—</td><td></td>
+      </tr>
+      <tr class="row-nbc">
+        <td class="sub">Comunicación Académica <span class="badge" style="background:#fecaca;color:#7f1d1d">sale</span></td>
+        <td class="na" style="text-align:right">—</td><td></td><td class="na" style="text-align:right">—</td><td></td><td class="na" style="text-align:right">—</td><td></td><td class="na" style="text-align:right">—</td><td></td>
+      </tr>
+
+      <tr class="row-dpto-an">
+        <td class="lbl">Núcleo dpto. Administración &amp; Negocios</td>
+        <td>18</td><td class="pct">12.9%</td>
+        <td>16</td><td class="pct">11.7%</td>
+        <td class="na">—</td><td></td>
+        <td class="na">—</td><td></td>
+      </tr>
+
+      <tr class="row-dpto-ef">
+        <td class="lbl">Núcleo dpto. Economía &amp; Finanzas</td>
+        <td class="na">—</td><td></td>
+        <td class="na">—</td><td></td>
+        <td>21</td><td class="pct">17.2%</td>
+        <td>21</td><td class="pct">16.7%</td>
+      </tr>
+
+      <tr class="row-disc-an">
+        <td class="lbl">Disciplinar específica — ANI</td>
+        <td>43</td><td class="pct">30.7%</td>
+        <td>35</td><td class="pct">25.5%</td>
+        <td class="na">—</td><td></td>
+        <td class="na">—</td><td></td>
+      </tr>
+      <tr class="row-sub">
+        <td class="lbl" style="font-size:10px;padding-left:4px">Subtotal disciplinar ANI (dpto. + específica)</td>
+        <td>61</td><td class="pct">43.6%</td>
+        <td>51</td><td class="pct">37.2%</td>
+        <td class="na">—</td><td></td>
+        <td class="na">—</td><td></td>
+      </tr>
+
+      <tr class="row-disc-ef">
+        <td class="lbl">Disciplinar específica — Econ. &amp; Fin.</td>
+        <td class="na">—</td><td></td>
+        <td class="na">—</td><td></td>
+        <td>27</td><td class="pct">22.1%</td>
+        <td>30</td><td class="pct">23.8%</td>
+      </tr>
+      <tr class="row-sub">
+        <td class="lbl" style="font-size:10px;padding-left:4px">Subtotal disciplinar Econ–Fin (dpto. + específica)</td>
+        <td class="na">—</td><td></td>
+        <td class="na">—</td><td></td>
+        <td>48</td><td class="pct">39.3%</td>
+        <td>51</td><td class="pct">40.5%</td>
+      </tr>
+
+      <tr class="row-elec">
+        <td class="lbl">Electividad / Profundización / Diversificación</td>
+        <td>19</td><td class="pct">13.6%</td>
+        <td>19</td><td class="pct">13.9%</td>
+        <td>21</td><td class="pct">17.2%</td>
+        <td>18</td><td class="pct">14.3%</td>
+      </tr>
+
+      <tr class="row-grado">
+        <td class="lbl">Opción de grado</td>
+        <td>8</td><td class="pct">5.7%</td>
+        <td>9</td><td class="pct">6.6%</td>
+        <td>9</td><td class="pct">7.4%</td>
+        <td>9</td><td class="pct">7.1%</td>
+      </tr>
+
+      <tr class="row-cap">
+        <td class="lbl">Capstone / Prácticas</td>
+        <td>6</td><td class="pct">4.3%</td>
+        <td>3</td><td class="pct">2.2%</td>
+        <td>3</td><td class="pct">2.5%</td>
+        <td>3</td><td class="pct">2.4%</td>
+      </tr>
+
+      <tr class="row-total">
+        <td class="lbl">Total</td>
+        <td>140</td><td class="pct">100%</td>
+        <td>137</td><td class="pct">100%</td>
+        <td>122</td><td class="pct">100%</td>
+        <td>126</td><td class="pct">100%</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <p class="note">
+    NBC Escuela: los cursos en azul claro son comunes a los tres programas. Desafíos Contemporáneos y Data Driven &amp; Decision Making son NBC solo para ANI por su perfil disciplinar. Matemática Financiera y Finanzas Corporativas están en ANI y Finanzas pero no en Economía (propuesta). · Economía baja de 125 a 122 cr. por la salida de Comunicación Académica (−3 cr.) sin compensación acordada. · Subtotales disciplinares incluyen núcleo de departamento + disciplinar específica para comparabilidad directa entre programas.
+  </p>
+</div>

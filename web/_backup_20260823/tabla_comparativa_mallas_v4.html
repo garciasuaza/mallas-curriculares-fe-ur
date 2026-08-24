@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparativo Mallas Curriculares — Escuela Unificada UR</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Calibri', 'Segoe UI', sans-serif; font-size: 13px; background: #f5f5f3; color: #1a1a1a; padding: 24px; }
+h1 { font-size: 18px; font-weight: 600; color: #C00000; margin-bottom: 4px; }
+.subtitle { font-size: 11px; color: #666; margin-bottom: 16px; }
+
+.tabs { display: flex; gap: 4px; margin-bottom: 0; flex-wrap: wrap; }
+.tab { padding: 7px 14px; font-size: 11px; font-weight: 500; border: 1px solid #ccc; border-bottom: none; border-radius: 6px 6px 0 0; cursor: pointer; background: #e8e8e8; color: #666; transition: all 0.15s; white-space: nowrap; }
+.tab.active { background: #fff; color: #C00000; border-color: #ccc; border-bottom-color: #fff; z-index: 1; }
+.tab:hover:not(.active) { background: #ddd; }
+.tab-content { display: none; background: #fff; border: 1px solid #ccc; border-radius: 0 6px 6px 6px; overflow: hidden; }
+.tab-content.active { display: block; }
+
+table { width: 100%; border-collapse: collapse; }
+th { font-size: 10px; font-weight: 600; padding: 8px 10px; border-bottom: 2px solid #ddd; text-align: right; color: #444; background: #fafafa; }
+th.lbl { text-align: left; }
+td { padding: 6px 10px; border-bottom: 0.5px solid #e8e8e8; text-align: right; font-size: 12px; }
+td.lbl { text-align: left; }
+td.pct { font-size: 10px; color: #888; }
+td.na  { color: #bbb; font-style: italic; font-size: 10px; }
+
+.ros td   { background: #fce8e8; color: #7a1a1a; }
+.nbc td   { background: #dbeafe; color: #0c447c; }
+.an  td   { background: #d1fae5; color: #065f46; }
+.ef  td   { background: #bbf7d0; color: #14532d; }
+.dan td   { background: #a7f3d0; color: #064e3b; }
+.def td   { background: #86efac; color: #14532d; }
+.sub td   { background: #f0f0ee; color: #333; font-weight: 600; font-size: 11px; }
+.elec td  { background: #fef9c3; color: #713f12; }
+.grado td { background: #ede9fe; color: #3730a3; }
+.cap  td  { background: #e0f2fe; color: #0c4a6e; }
+.total td { background: #fbbf24; color: #1c1917; font-weight: 700; font-size: 13px; }
+
+.expand-btn { background: none; border: 1px solid currentColor; border-radius: 3px; font-size: 9px; padding: 1px 5px; cursor: pointer; margin-left: 6px; opacity: 0.7; font-family: inherit; color: inherit; }
+.expand-btn:hover { opacity: 1; }
+.detail-row { display: none; }
+.detail-row.open { display: table-row; }
+.detail-row td { background: #f8fbff; padding: 0; border-bottom: 0.5px solid #e0eaff; }
+.detail-inner { display: grid; grid-template-columns: repeat(4, 1fr); }
+.detail-inner.cols3 { grid-template-columns: repeat(3, 1fr); }
+.detail-col { padding: 8px 10px; border-right: 0.5px solid #dde; font-size: 11px; }
+.detail-col:last-child { border-right: none; }
+.col-header { font-size: 9px; font-weight: 600; color: #888; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 6px; border-bottom: 1px solid #e0e0e0; padding-bottom: 4px; }
+.detail-col ul { list-style: none; }
+.detail-col ul li { padding: 3px 0; border-bottom: 0.5px solid #f0f0f0; color: #333; display: flex; justify-content: space-between; gap: 8px; font-size: 11px; }
+.detail-col ul li:last-child { border-bottom: none; }
+.cr-badge { font-size: 10px; color: #888; white-space: nowrap; flex-shrink: 0; }
+.empty-col { color: #bbb; font-style: italic; font-size: 11px; padding-top: 4px; }
+
+/* MALLA POR TIPO */
+.malla-wrap { padding: 16px; }
+.malla-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+.malla-title { font-size: 15px; font-weight: 600; color: #C00000; }
+.malla-total { font-size: 12px; color: #666; }
+.malla-note { font-size: 10px; color: #999; font-style: italic; margin-bottom: 14px; }
+
+.bloque-list { display: flex; flex-direction: column; gap: 10px; }
+.bloque-section { border: 1px solid #e0e0e0; border-radius: 6px; overflow: hidden; }
+.bloque-section-header { padding: 8px 12px; font-size: 11px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+.bloque-section-header .cr-total { font-size: 10px; font-weight: 400; opacity: 0.8; }
+.course-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 12px; border-bottom: 0.5px solid rgba(0,0,0,0.06); font-size: 11px; }
+.course-row:last-child { border-bottom: none; }
+.course-name { flex: 1; }
+.course-cr { font-weight: 600; font-size: 11px; white-space: nowrap; margin-left: 12px; }
+
+/* block colors for bloque-section */
+.bs-ros .bloque-section-header { background: #fce8e8; color: #7a1a1a; }
+.bs-ros .course-row { background: #fff8f8; color: #7a1a1a; }
+.bs-nbc .bloque-section-header { background: #dbeafe; color: #0c447c; }
+.bs-nbc .course-row { background: #f5faff; color: #0c447c; }
+.bs-an .bloque-section-header { background: #d1fae5; color: #065f46; }
+.bs-an .course-row { background: #f0fdf8; color: #065f46; }
+.bs-ef .bloque-section-header { background: #bbf7d0; color: #14532d; }
+.bs-ef .course-row { background: #f0fdf4; color: #14532d; }
+.bs-dan .bloque-section-header { background: #a7f3d0; color: #064e3b; }
+.bs-dan .course-row { background: #ecfdf5; color: #064e3b; }
+.bs-def .bloque-section-header { background: #86efac; color: #14532d; }
+.bs-def .course-row { background: #f0fdf4; color: #14532d; }
+.bs-elec .bloque-section-header { background: #fef9c3; color: #713f12; }
+.bs-elec .course-row { background: #fefce8; color: #713f12; }
+.bs-grado .bloque-section-header { background: #ede9fe; color: #3730a3; }
+.bs-grado .course-row { background: #faf5ff; color: #3730a3; }
+.bs-cap .bloque-section-header { background: #e0f2fe; color: #0c4a6e; }
+.bs-cap .course-row { background: #f0f9ff; color: #0c4a6e; }
+.bs-total .bloque-section-header { background: #fbbf24; color: #1c1917; font-size: 13px; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0 8px; }
+.leg { display: flex; align-items: center; gap: 5px; font-size: 10px; color: #555; }
+.leg-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+.notes { font-size: 10px; color: #777; margin-top: 14px; line-height: 1.7; padding: 10px 12px; background: #fafafa; border: 1px solid #eee; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<h1>Comparativo de Mallas Curriculares</h1>
+<p class="subtitle">Escuela Unificada de Economía y Negocios — Universidad del Rosario · Versión de trabajo</p>
+
+<div class="legend">
+  <span class="leg"><span class="leg-dot" style="background:#fca5a5"></span>Formación Rosarista</span>
+  <span class="leg"><span class="leg-dot" style="background:#93c5fd"></span>NBC Escuela</span>
+  <span class="leg"><span class="leg-dot" style="background:#6ee7b7"></span>Núcleo dpto. A&amp;N</span>
+  <span class="leg"><span class="leg-dot" style="background:#bbf7d0"></span>Núcleo dpto. Econ–Fin</span>
+  <span class="leg"><span class="leg-dot" style="background:#34d399"></span>Disciplinar ANI</span>
+  <span class="leg"><span class="leg-dot" style="background:#4ade80"></span>Disciplinar Econ–Fin</span>
+  <span class="leg"><span class="leg-dot" style="background:#fde68a"></span>Profundización/Diversificación</span>
+  <span class="leg"><span class="leg-dot" style="background:#c4b5fd"></span>Opción de grado</span>
+  <span class="leg"><span class="leg-dot" style="background:#7dd3fc"></span>Capstone</span>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('resumen',this)">Tabla resumen</div>
+  <div class="tab" onclick="showTab('ampliada',this)">Tabla ampliada</div>
+  <div class="tab" onclick="showTab('ani-orig',this)">ANI original</div>
+  <div class="tab" onclick="showTab('ani-prop',this)">ANI propuesta</div>
+  <div class="tab" onclick="showTab('econ',this)">Economía</div>
+  <div class="tab" onclick="showTab('fin',this)">Finanzas</div>
+  <div class="tab" onclick="showTab('admon',this)">Comparativo A&amp;N</div>
+</div>
+
+<!-- ===== TABLA RESUMEN ===== -->
+<div class="tab-content active" id="tab-resumen">
+<table>
+  <colgroup>
+    <col style="width:32%"><col style="width:8%"><col style="width:6%">
+    <col style="width:8%"><col style="width:6%">
+    <col style="width:8%"><col style="width:6%">
+    <col style="width:8%"><col style="width:6%">
+  </colgroup>
+  <thead>
+    <tr>
+      <th class="lbl">Bloque</th>
+      <th>ANI orig.<br><small style="font-weight:400">(140)</small></th><th>%</th>
+      <th>ANI prop.<br><small style="font-weight:400">(135)</small></th><th>%</th>
+      <th>Economía<br><small style="font-weight:400">(125)</small></th><th>%</th>
+      <th>Finanzas<br><small style="font-weight:400">(126)</small></th><th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="ros"><td class="lbl">Formación Rosarista</td><td>16</td><td class="pct">11.4%</td><td>15</td><td class="pct">11.1%</td><td>18</td><td class="pct">14.4%</td><td>18</td><td class="pct">14.3%</td></tr>
+    <tr class="nbc"><td class="lbl">Núcleo Básico Común Escuela</td><td>30</td><td class="pct">21.4%</td><td>39</td><td class="pct">28.9%</td><td>30</td><td class="pct">24.0%</td><td>33</td><td class="pct">26.2%</td></tr>
+    <tr class="an"><td class="lbl">Núcleo dpto. Administración &amp; Negocios</td><td>18</td><td class="pct">12.9%</td><td>17</td><td class="pct">12.6%</td><td class="na">—</td><td></td><td class="na">—</td><td></td></tr>
+    <tr class="ef"><td class="lbl">Núcleo dpto. Economía &amp; Finanzas</td><td class="na">—</td><td></td><td class="na">—</td><td></td><td>21</td><td class="pct">16.8%</td><td>21</td><td class="pct">16.7%</td></tr>
+    <tr class="dan"><td class="lbl">Disciplinar específica — ANI</td><td>43</td><td class="pct">30.7%</td><td>40</td><td class="pct">29.6%</td><td class="na">—</td><td></td><td class="na">—</td><td></td></tr>
+    <tr class="sub"><td class="lbl" style="padding-left:6px;font-size:10px">↳ Subtotal disciplinar ANI</td><td>61</td><td class="pct">43.6%</td><td>57</td><td class="pct">42.2%</td><td class="na">—</td><td></td><td class="na">—</td><td></td></tr>
+    <tr class="def"><td class="lbl">Disciplinar específica — Econ. &amp; Fin.</td><td class="na">—</td><td></td><td class="na">—</td><td></td><td>36</td><td class="pct">28.8%</td><td>36</td><td class="pct">28.6%</td></tr>
+    <tr class="sub"><td class="lbl" style="padding-left:6px;font-size:10px">↳ Subtotal disciplinar Econ–Fin</td><td class="na">—</td><td></td><td class="na">—</td><td></td><td>57</td><td class="pct">45.6%</td><td>57</td><td class="pct">45.2%</td></tr>
+    <tr class="elec"><td class="lbl">Profundización / Diversificación</td><td>19</td><td class="pct">13.6%</td><td>12</td><td class="pct">8.9%</td><td>12</td><td class="pct">9.6%</td><td>12</td><td class="pct">9.5%</td></tr>
+    <tr class="grado"><td class="lbl">Opción de grado</td><td>8</td><td class="pct">5.7%</td><td>9</td><td class="pct">6.7%</td><td>9</td><td class="pct">7.2%</td><td>9</td><td class="pct">7.1%</td></tr>
+    <tr class="cap"><td class="lbl">Capstone</td><td>6</td><td class="pct">4.3%</td><td>3</td><td class="pct">2.2%</td><td>3</td><td class="pct">2.4%</td><td>3</td><td class="pct">2.4%</td></tr>
+    <tr class="total"><td class="lbl">Total</td><td>140</td><td class="pct">100%</td><td>135</td><td class="pct">100%</td><td>125</td><td class="pct">100%</td><td>126</td><td class="pct">100%</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ===== TABLA AMPLIADA ===== -->
+<div class="tab-content" id="tab-ampliada">
+<table>
+  <colgroup>
+    <col style="width:32%"><col style="width:8%"><col style="width:6%">
+    <col style="width:8%"><col style="width:6%">
+    <col style="width:8%"><col style="width:6%">
+    <col style="width:8%"><col style="width:6%">
+  </colgroup>
+  <thead>
+    <tr>
+      <th class="lbl">Bloque / Cursos</th>
+      <th>ANI orig.<br><small style="font-weight:400">(140)</small></th><th>%</th>
+      <th>ANI prop.<br><small style="font-weight:400">(135)</small></th><th>%</th>
+      <th>Economía<br><small style="font-weight:400">(125)</small></th><th>%</th>
+      <th>Finanzas<br><small style="font-weight:400">(126)</small></th><th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="ros"><td class="lbl">Formación Rosarista</td><td>16</td><td class="pct">11.4%</td><td>15</td><td class="pct">11.1%</td><td>18</td><td class="pct">14.4%</td><td>18</td><td class="pct">14.3%</td></tr>
+    <tr class="ros"><td class="lbl" style="padding-left:14px;font-size:10px;color:#9b1c1c;">Cátedra Rosarista · Ética · Constitución · Electivas HM · Lectoescritura</td><td colspan="8"></td></tr>
+
+    <tr class="nbc">
+      <td class="lbl">Núcleo Básico Común Escuela <button class="expand-btn" onclick="toggle('nbc-d')">+ cursos</button></td>
+      <td>30</td><td class="pct">21.4%</td><td>39</td><td class="pct">28.9%</td><td>30</td><td class="pct">24.0%</td><td>33</td><td class="pct">26.2%</td>
+    </tr>
+    <tr class="detail-row" id="nbc-d"><td colspan="9"><div class="detail-inner cols3">
+      <div class="detail-col"><div class="col-header">Comunes (3 programas) — 27 cr.</div><ul>
+        <li>Economía, Negocios y Sociedad <span class="cr-badge">3</span></li>
+        <li>Lógica Matemática <span class="cr-badge">3</span></li>
+        <li>Precálculo <span class="cr-badge">3</span></li>
+        <li>Cálculo I <span class="cr-badge">3</span></li>
+        <li>Programación para los Negocios <span class="cr-badge">3</span></li>
+        <li>Probabilidad y Estadística <span class="cr-badge">3</span></li>
+        <li>Principios de Microeconomía <span class="cr-badge">3</span></li>
+        <li>Principios de Macroeconomía <span class="cr-badge">3</span></li>
+        <li>IA, Datos y Sociedad <span class="cr-badge">3</span></li>
+      </ul></div>
+      <div class="detail-col"><div class="col-header">ANI propuesta (+12 cr.)</div><ul>
+        <li>Matemática Financiera <span class="cr-badge">3</span></li>
+        <li>Finanzas Corporativas <span class="cr-badge">3</span></li>
+        <li>Data Driven &amp; Decision Making <span class="cr-badge">3</span></li>
+        <li>Desafíos Contemporáneos <span class="cr-badge">3</span></li>
+      </ul></div>
+      <div class="detail-col"><div class="col-header">Finanzas (+6 cr.)</div><ul>
+        <li>Matemática Financiera <span class="cr-badge">3</span></li>
+        <li>Finanzas Corporativas <span class="cr-badge">3</span></li>
+      </ul></div>
+    </div></td></tr>
+
+    <tr class="an">
+      <td class="lbl">Núcleo dpto. Administración &amp; Negocios <button class="expand-btn" onclick="toggle('an-d')">+ cursos</button></td>
+      <td>18</td><td class="pct">12.9%</td><td>17</td><td class="pct">12.6%</td><td class="na">—</td><td></td><td class="na">—</td><td></td>
+    </tr>
+    <tr class="detail-row" id="an-d"><td colspan="9"><div class="detail-inner">
+      <div class="detail-col"><div class="col-header">ANI original — 18 cr.</div><ul>
+        <li>Scaling Management <span class="cr-badge">2</span></li>
+        <li>Marketing <span class="cr-badge">2</span></li>
+        <li>Contabilidad y Costos <span class="cr-badge">3</span></li>
+        <li>Innovación y Emprendimiento <span class="cr-badge">2</span></li>
+        <li>Liderazgo en la Era Digital <span class="cr-badge">2</span></li>
+        <li>Strategic Management <span class="cr-badge">2</span></li>
+        <li>Sustainability Management <span class="cr-badge">2</span></li>
+        <li>Project Management <span class="cr-badge">2</span></li>
+        <li>Mentoring Profesional <span class="cr-badge">1</span></li>
+      </ul></div>
+      <div class="detail-col"><div class="col-header">ANI propuesta — 17 cr.</div><ul>
+        <li>Managing Projects &amp; Scale <span class="cr-badge">3</span></li>
+        <li>Marketing <span class="cr-badge">3</span></li>
+        <li>Contabilidad p/ Toma de Decisiones <span class="cr-badge">3</span></li>
+        <li>Innovación y Emprendimiento <span class="cr-badge">2</span></li>
+        <li>Liderazgo en la Era Digital <span class="cr-badge">3</span></li>
+        <li>Strategy &amp; Sustainability <span class="cr-badge">3</span></li>
+      </ul></div>
+      <div class="detail-col"><div class="col-header">Economía</div><p class="empty-col">No aplica</p></div>
+      <div class="detail-col"><div class="col-header">Finanzas</div><p class="empty-col">No aplica</p></div>
+    </div></td></tr>
+
+    <tr class="ef">
+      <td class="lbl">Núcleo dpto. Economía &amp; Finanzas <button class="expand-btn" onclick="toggle('ef-d')">+ cursos</button></td>
+      <td class="na">—</td><td></td><td class="na">—</td><td></td><td>21</td><td class="pct">16.8%</td><td>21</td><td class="pct">16.7%</td>
+    </tr>
+    <tr class="detail-row" id="ef-d"><td colspan="9"><div class="detail-inner">
+      <div class="detail-col"><div class="col-header">ANI original</div><p class="empty-col">No aplica</p></div>
+      <div class="detail-col"><div class="col-header">ANI propuesta</div><p class="empty-col">No aplica</p></div>
+      <div class="detail-col"><div class="col-header">Economía — 21 cr.</div><ul>
+        <li>Principios de Microeconomía <span class="cr-badge">3</span></li>
+        <li>Principios de Macroeconomía <span class="cr-badge">3</span></li>
+        <li>Econometría y Métodos de Regresión <span class="cr-badge">3</span></li>
+        <li>Predicción y Pronósticos <span class="cr-badge">3</span></li>
+        <li>Métodos de Optimización <span class="cr-badge">3</span></li>
+        <li>Proyecto Integrador I <span class="cr-badge">3</span></li>
+      </ul></div>
+      <div class="detail-col"><div class="col-header">Finanzas — 21 cr.</div><ul>
+        <li>Principios de Microeconomía <span class="cr-badge">3</span></li>
+        <li>Principios de Macroeconomía <span class="cr-badge">3</span></li>
+        <li>Econometría y Métodos de Regresión <span class="cr-badge">3</span></li>
+        <li>Predicción y Pronósticos <span class="cr-badge">3</span></li>
+        <li>Métodos de Optimización <span class="cr-badge">3</span></li>
+        <li>Proyecto Integrador I <span class="cr-badge">3</span></li>
+      </ul></div>
+    </div></td></tr>
+
+    <tr class="dan">
+      <td class="lbl">Disciplinar específica — ANI <button class="expand-btn" onclick="toggle('dan-d')">+ cursos</button></td>
+      <td>43</td><td class="pct">30.7%</td><td>40</td><td class="pct">29.6%</td><td class="na">—</td><td></td><td class="na">—</td><td></td>
+    </tr>
+    <tr class="detail-row" id="dan-d"><td colspan="9"><div class="detail-inner">
+      <div class="detail-col"><div class="col-header">ANI original — 43 cr.</div><ul>
+        <li>Negocios Globales <span class="cr-badge">3</span></li>
+        <li>Técnicas de Negociación <span class="cr-badge">2</span></li>
+        <li>Cross Cultural Communication <span class="cr-badge">2</span></li>
+        <li>Global Future Workforce <span class="cr-badge">2</span></li>
+        <li>Operaciones de Comercio Exterior <span class="cr-badge">2</span></li>
+        <li>International Sales &amp; Contracts <span class="cr-badge">2</span></li>
+        <li>International Trade and Economy <span class="cr-badge">2</span></li>
+        <li>Tercer Idioma I <span class="cr-badge">3</span></li>
+        <li>Start-ups Scalability <span class="cr-badge">2</span></li>
+        <li>Sustainable Global Value Chain <span class="cr-badge">2</span></li>
+        <li>Global Business Intelligence <span class="cr-badge">2</span></li>
+        <li>Tercer Idioma II <span class="cr-badge">3</span></li>
+        <li>Global Scaling Up <span class="cr-badge">2</span></li>
+        <li>Global Marketing <span class="cr-badge">2</span></li>
+        <li>International Strategy <span class="cr-badge">2</span></li>
+        <li>Digital Business Models <span class="cr-badge">2</span></li>
+        <li>Tercer Idioma III <span class="cr-badge">2</span></li>
+        <li>International Finance <span class="cr-badge">2</span></li>
+        <li>AI for International Business <span class="cr-badge">2</span></li>
+      </ul></div>
+      <div class="detail-col"><div class="col-header">ANI propuesta — 40 cr.</div><ul>
+        <li>Negocios Globales <span class="cr-badge">3</span></li>
+        <li>Técnicas de Negociación <span class="cr-badge">3</span></li>
+        <li>Global Leadership &amp; Culture <span class="cr-badge">3</span></li>
+        <li>Operaciones de Comercio Exterior <span class="cr-badge">2</span></li>
+        <li>International Trade and Economy <span class="cr-badge">3</span></li>
+        <li>Tercer Idioma I <span class="cr-badge">3</span></li>
+        <li>Sustainable &amp; Scalable Business Models <span class="cr-badge">3</span></li>
+        <li>Global Business Intelligence <span class="cr-badge">2</span></li>
+        <li>Tercer Idioma II <span class="cr-badge">3</span></li>
+        <li>Global Scaling Up <span class="cr-badge">3</span></li>
+        <li>Global Marketing <span class="cr-badge">3</span></li>
+        <li>International Strategy <span class="cr-badge">3</span></li>
+        <li>Digital Business Models <span class="cr-badge">2</span></li>
+        <li>Tercer Idioma III <span class="cr-badge">2</span></li>
+        <li>International Finance <span class="cr-badge">2</span></li>
+      </ul></div>
+      <div class="detail-col"><div class="col-header">Economía</div><p class="empty-col">No aplica</p></div>
+      <div class="detail-col"><div class="col-header">Finanzas</div><p class="empty-col">No aplica</p></div>
+    </div></td></tr>
+    <tr class="sub"><td class="lbl" style="padding-left:6px;font-size:10px">↳ Subtotal disciplinar ANI</td><td>61</td><td class="pct">43.6%</td><td>57</td><td class="pct">42.2%</td><td class="na">—</td><td></td><td class="na">—</td><td></td></tr>
+
+    <tr class="def">
+      <td class="lbl">Disciplinar específica — Econ. &amp; Fin. <button class="expand-btn" onclick="toggle('def-d')">+ cursos</button></td>
+      <td class="na">—</td><td></td><td class="na">—</td><td></td><td>36</td><td class="pct">28.8%</td><td>36</td><td class="pct">28.6%</td>
+    </tr>
+    <tr class="detail-row" id="def-d"><td colspan="9"><div class="detail-inner">
+      <div class="detail-col"><div class="col-header">ANI original</div><p class="empty-col">No aplica</p></div>
+      <div class="detail-col"><div class="col-header">ANI propuesta</div><p class="empty-col">No aplica</p></div>
+      <div class="detail-col"><div class="col-header">Economía — 36 cr.</div><ul>
+        <li>Microeconomía II <span class="cr-badge">3</span></li>
+        <li>Microeconomía III <span class="cr-badge">3</span></li>
+        <li>Macroeconomía I <span class="cr-badge">3</span></li>
+        <li>Macroeconomía II <span class="cr-badge">3</span></li>
+        <li>Macroeconomía III <span class="cr-badge">3</span></li>
+        <li>Doctrinas Económicas <span class="cr-badge">3</span></li>
+        <li>Historia Económica General <span class="cr-badge">2</span></li>
+        <li>Historia Económica Colombiana <span class="cr-badge">3</span></li>
+        <li>Comunicando Economía <span class="cr-badge">3</span></li>
+        <li>Economía de Comportamiento <span class="cr-badge">3</span></li>
+        <li>Electiva Disciplinar I <span class="cr-badge">3</span></li>
+        <li>Electiva Disciplinar II <span class="cr-badge">3</span></li>
+        <li>Electiva Disciplinar III <span class="cr-badge">3</span></li>
+      </ul></div>
+      <div class="detail-col"><div class="col-header">Finanzas — 36 cr.</div><ul>
+        <li>Finanzas Personales <span class="cr-badge">3</span></li>
+        <li>Contabilidad p/ Toma de Decisiones <span class="cr-badge">3</span></li>
+        <li>Valoración de Empresas y Proyectos <span class="cr-badge">3</span></li>
+        <li>Renta Fija y Derivados <span class="cr-badge">3</span></li>
+        <li>Renta Variable y Portafolios <span class="cr-badge">3</span></li>
+        <li>Inversiones Alternativas <span class="cr-badge">3</span></li>
+        <li>Teoría y Política Monetaria <span class="cr-badge">3</span></li>
+        <li>Gestión Integral de Riesgos <span class="cr-badge">3</span></li>
+        <li>Economía Financiera <span class="cr-badge">3</span></li>
+        <li>Electiva Disciplinar I <span class="cr-badge">3</span></li>
+        <li>Electiva Disciplinar II <span class="cr-badge">3</span></li>
+        <li>Electiva Disciplinar III <span class="cr-badge">3</span></li>
+      </ul></div>
+    </div></td></tr>
+    <tr class="sub"><td class="lbl" style="padding-left:6px;font-size:10px">↳ Subtotal disciplinar Econ–Fin</td><td class="na">—</td><td></td><td class="na">—</td><td></td><td>57</td><td class="pct">45.6%</td><td>57</td><td class="pct">45.2%</td></tr>
+
+    <tr class="elec"><td class="lbl">Profundización / Diversificación (4 núcleos × 3 cr.)</td><td>19</td><td class="pct">13.6%</td><td>12</td><td class="pct">8.9%</td><td>12</td><td class="pct">9.6%</td><td>12</td><td class="pct">9.5%</td></tr>
+    <tr class="grado"><td class="lbl">Opción de grado</td><td>8</td><td class="pct">5.7%</td><td>9</td><td class="pct">6.7%</td><td>9</td><td class="pct">7.2%</td><td>9</td><td class="pct">7.1%</td></tr>
+    <tr class="cap"><td class="lbl">Capstone / Proyecto Integrador</td><td>6</td><td class="pct">4.3%</td><td>3</td><td class="pct">2.2%</td><td>3</td><td class="pct">2.4%</td><td>3</td><td class="pct">2.4%</td></tr>
+    <tr class="total"><td class="lbl">Total</td><td>140</td><td class="pct">100%</td><td>135</td><td class="pct">100%</td><td>125</td><td class="pct">100%</td><td>126</td><td class="pct">100%</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- helper macro for malla tabs -->
+<!-- ===== ANI ORIGINAL ===== -->
+<div class="tab-content" id="tab-ani-orig">
+<div class="malla-wrap">
+  <div class="malla-header"><span class="malla-title">ANI — Malla original</span><span class="malla-total">140 créditos</span></div>
+  <p class="malla-note">Cursos organizados por tipo de bloque. Secuencia semestral pendiente de validación de prerrequisitos.</p>
+  <div class="bloque-list">
+    <div class="bloque-section bs-ros">
+      <div class="bloque-section-header">Formación Rosarista <span class="cr-total">16 cr.</span></div>
+      <div class="course-row"><span class="course-name">Cátedra Rosarista</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Lectura</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Escritura</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Ética</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Electiva HM – Núcleo Mutis</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Electiva HM</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Electiva HM</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Constitución Política</span><span class="course-cr">2</span></div>
+    </div>
+    <div class="bloque-section bs-nbc">
+      <div class="bloque-section-header">Núcleo Básico Común Escuela <span class="cr-total">30 cr.</span></div>
+      <div class="course-row"><span class="course-name">Economía y Negocios</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Lógica Matemática</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Precálculo</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Cálculo I</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Programación para los Negocios</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Probabilidad y Estadística</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Microeconomía</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Matemática Financiera</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Data Driven &amp; Decision Making</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Finanzas Corporativas</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Desafíos Contemporáneos</span><span class="course-cr">3</span></div>
+    </div>
+    <div class="bloque-section bs-an">
+      <div class="bloque-section-header">Núcleo dpto. Administración &amp; Negocios <span class="cr-total">18 cr.</span></div>
+      <div class="course-row"><span class="course-name">Scaling Management</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Marketing</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Contabilidad y Costos</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Innovación y Emprendimiento</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Liderazgo en la Era Digital</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Strategic Management</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Sustainability Management</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Project Management</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Mentoring Profesional</span><span class="course-cr">1</span></div>
+    </div>
+    <div class="bloque-section bs-dan">
+      <div class="bloque-section-header">Disciplinar específica — ANI <span class="cr-total">43 cr.</span></div>
+      <div class="course-row"><span class="course-name">Negocios Globales</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Técnicas de Negociación</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Cross Cultural Communication</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Global Future Workforce</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Operaciones de Comercio Exterior</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">International Sales &amp; Contracts</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">International Trade and Economy</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Tercer Idioma I</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Start-ups Scalability</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Sustainable Global Value Chain</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Global Business Intelligence</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Tercer Idioma II</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Global Scaling Up</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Global Marketing</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">International Strategy</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Digital Business Models</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Tercer Idioma III</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">International Finance</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">AI for International Business</span><span class="course-cr">2</span></div>
+    </div>
+    <div class="bloque-section bs-elec">
+      <div class="bloque-section-header">Profundización / Diversificación <span class="cr-total">19 cr.</span></div>
+      <div class="course-row"><span class="course-name">Profundización (×4 bloques, TBD)</span><span class="course-cr">19</span></div>
+    </div>
+    <div class="bloque-section bs-grado">
+      <div class="bloque-section-header">Opción de grado <span class="cr-total">8 cr.</span></div>
+      <div class="course-row"><span class="course-name">Opción de Grado (×2 bloques)</span><span class="course-cr">8</span></div>
+    </div>
+    <div class="bloque-section bs-cap">
+      <div class="bloque-section-header">Capstone / Práctica <span class="cr-total">6 cr.</span></div>
+      <div class="course-row"><span class="course-name">Práctica Empresarial</span><span class="course-cr">6</span></div>
+    </div>
+    <div class="bloque-section bs-total">
+      <div class="bloque-section-header">Total <span class="cr-total">140 cr.</span></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== ANI PROPUESTA ===== -->
+<div class="tab-content" id="tab-ani-prop">
+<div class="malla-wrap">
+  <div class="malla-header"><span class="malla-title">ANI — Malla propuesta</span><span class="malla-total">135 créditos</span></div>
+  <p class="malla-note">Cursos organizados por tipo de bloque. Secuencia semestral pendiente de validación de prerrequisitos.</p>
+  <div class="bloque-list">
+    <div class="bloque-section bs-ros">
+      <div class="bloque-section-header">Formación Rosarista <span class="cr-total">15 cr.</span></div>
+      <div class="course-row"><span class="course-name">Cátedra Rosarista</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Lectoescritura</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Ética</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Electiva HM – Núcleo Mutis</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Electiva HM</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Electiva HM</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Constitución Política</span><span class="course-cr">2</span></div>
+    </div>
+    <div class="bloque-section bs-nbc">
+      <div class="bloque-section-header">Núcleo Básico Común Escuela <span class="cr-total">39 cr.</span></div>
+      <div class="course-row"><span class="course-name">Economía, Negocios y Sociedad</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Lógica Matemática</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Precálculo</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Cálculo I</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Programación para los Negocios</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Probabilidad y Estadística</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Principios de Microeconomía</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">IA, Datos y Sociedad</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Matemática Financiera</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Data Driven &amp; Decision Making</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Principios de Macroeconomía</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Finanzas Corporativas</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Desafíos Contemporáneos</span><span class="course-cr">3</span></div>
+    </div>
+    <div class="bloque-section bs-an">
+      <div class="bloque-section-header">Núcleo dpto. Administración &amp; Negocios <span class="cr-total">17 cr.</span></div>
+      <div class="course-row"><span class="course-name">Managing Projects &amp; Scale</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Marketing</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Contabilidad p/ Toma de Decisiones</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Innovación y Emprendimiento</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Liderazgo en la Era Digital</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Strategy &amp; Sustainability</span><span class="course-cr">3</span></div>
+    </div>
+    <div class="bloque-section bs-dan">
+      <div class="bloque-section-header">Disciplinar específica — ANI <span class="cr-total">40 cr.</span></div>
+      <div class="course-row"><span class="course-name">Negocios Globales</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Técnicas de Negociación</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Global Leadership &amp; Culture</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Operaciones de Comercio Exterior</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">International Trade and Economy</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Tercer Idioma I</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Sustainable &amp; Scalable Business Models</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Global Business Intelligence</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Tercer Idioma II</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Global Scaling Up</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Global Marketing</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">International Strategy</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Digital Business Models</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Tercer Idioma III</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">International Finance</span><span class="course-cr">2</span></div>
+    </div>
+    <div class="bloque-section bs-elec">
+      <div class="bloque-section-header">Profundización / Diversificación <span class="cr-total">12 cr.</span></div>
+      <div class="course-row"><span class="course-name">Núcleo de Diversificación I (TBD)</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Núcleo de Diversificación II (TBD)</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Núcleo de Diversificación III (TBD)</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Núcleo de Diversificación IV (TBD)</span><span class="course-cr">3</span></div>
+    </div>
+    <div class="bloque-section bs-grado">
+      <div class="bloque-section-header">Opción de grado <span class="cr-total">9 cr.</span></div>
+      <div class="course-row"><span class="course-name">Opción de Grado</span><span class="course-cr">9</span></div>
+    </div>
+    <div class="bloque-section bs-cap">
+      <div class="bloque-section-header">Capstone <span class="cr-total">3 cr.</span></div>
+      <div class="course-row"><span class="course-name">Proyecto Integrador Capstone</span><span class="course-cr">3</span></div>
+    </div>
+    <div class="bloque-section bs-total">
+      <div class="bloque-section-header">Total <span class="cr-total">135 cr.</span></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== ECONOMÍA ===== -->
+<div class="tab-content" id="tab-econ">
+<div class="malla-wrap">
+  <div class="malla-header"><span class="malla-title">Economía — Malla propuesta</span><span class="malla-total">125 créditos</span></div>
+  <p class="malla-note">Cursos organizados por tipo de bloque. Secuencia semestral pendiente de validación de prerrequisitos.</p>
+  <div class="bloque-list">
+    <div class="bloque-section bs-ros">
+      <div class="bloque-section-header">Formación Rosarista <span class="cr-total">18 cr.</span></div>
+      <div class="course-row"><span class="course-name">Cátedra Rosarista</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Lectoescritura</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Ética</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Electiva HM – Núcleo Mutis</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Electiva HM</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Electiva HM</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Electiva HM</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Constitución Política</span><span class="course-cr">3</span></div>
+    </div>
+    <div class="bloque-section bs-nbc">
+      <div class="bloque-section-header">Núcleo Básico Común Escuela <span class="cr-total">30 cr.</span></div>
+      <div class="course-row"><span class="course-name">Economía, Negocios y Sociedad</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Lógica Matemática</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Precálculo</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Cálculo I</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Programación para los Negocios</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Probabilidad y Estadística</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Principios de Microeconomía</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Principios de Macroeconomía</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">IA, Datos y Sociedad</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Álgebra Lineal</span><span class="course-cr">3</span></div>
+    </div>
+    <div class="bloque-section bs-ef">
+      <div class="bloque-section-header">Núcleo dpto. Economía &amp; Finanzas <span class="cr-total">21 cr.</span></div>
+      <div class="course-row"><span class="course-name">Econometría y Métodos de Regresión</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Predicción y Pronósticos</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Métodos de Optimización</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Proyecto Integrador I</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Microeconomía II</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Macroeconomía I</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Cálculo II</span><span class="course-cr">3</span></div>
+    </div>
+    <div class="bloque-section bs-def">
+      <div class="bloque-section-header">Disciplinar específica — Economía <span class="cr-total">36 cr.</span></div>
+      <div class="course-row"><span class="course-name">Microeconomía III</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Macroeconomía II</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Macroeconomía III</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Doctrinas Económicas</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Historia Económica General</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Historia Económica Colombiana</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Comunicando Economía</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Economía de Comportamiento</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Electiva Disciplinar I</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Electiva Disciplinar II</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Electiva Disciplinar III</span><span class="course-cr">3</span></div>
+    </div>
+    <div class="bloque-section bs-elec">
+      <div class="bloque-section-header">Profundización / Diversificación <span class="cr-total">12 cr.</span></div>
+      <div class="course-row"><span class="course-name">Núcleo de Diversificación I (TBD)</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Núcleo de Diversificación II (TBD)</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Núcleo de Diversificación III (TBD)</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Núcleo de Diversificación IV (TBD)</span><span class="course-cr">3</span></div>
+    </div>
+    <div class="bloque-section bs-grado">
+      <div class="bloque-section-header">Opción de grado <span class="cr-total">9 cr.</span></div>
+      <div class="course-row"><span class="course-name">Opción de Grado</span><span class="course-cr">9</span></div>
+    </div>
+    <div class="bloque-section bs-cap">
+      <div class="bloque-section-header">Capstone <span class="cr-total">3 cr.</span></div>
+      <div class="course-row"><span class="course-name">Proyecto Integrador Capstone</span><span class="course-cr">3</span></div>
+    </div>
+    <div class="bloque-section bs-total">
+      <div class="bloque-section-header">Total <span class="cr-total">125 cr.</span></div>
+    </div>
+  </div>
+  <div class="notes">Nota: Álgebra Lineal y Cálculo II se incluyeron en el núcleo de departamento dado que son prerrequisitos de los cursos de métodos cuantitativos. La secuencia y asignación semestral requiere validación con los directores de programa. Formación Rosarista: pendiente confirmar composición exacta de electivas HM y bloques de Constitución.</div>
+</div>
+</div>
+
+<!-- ===== FINANZAS ===== -->
+<div class="tab-content" id="tab-fin">
+<div class="malla-wrap">
+  <div class="malla-header"><span class="malla-title">Finanzas — Malla propuesta</span><span class="malla-total">126 créditos</span></div>
+  <p class="malla-note">Cursos organizados por tipo de bloque. Secuencia semestral pendiente de validación de prerrequisitos.</p>
+  <div class="bloque-list">
+    <div class="bloque-section bs-ros">
+      <div class="bloque-section-header">Formación Rosarista <span class="cr-total">18 cr.</span></div>
+      <div class="course-row"><span class="course-name">Cátedra Rosarista</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Lectoescritura</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Ética</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Electiva HM – Núcleo Mutis</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Electiva HM</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Electiva HM</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Electiva HM</span><span class="course-cr">2</span></div>
+      <div class="course-row"><span class="course-name">Constitución Política</span><span class="course-cr">3</span></div>
+    </div>
+    <div class="bloque-section bs-nbc">
+      <div class="bloque-section-header">Núcleo Básico Común Escuela <span class="cr-total">33 cr.</span></div>
+      <div class="course-row"><span class="course-name">Economía, Negocios y Sociedad</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Lógica Matemática</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Precálculo</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Cálculo I</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Programación para los Negocios</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Probabilidad y Estadística</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Principios de Microeconomía</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Principios de Macroeconomía</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">IA, Datos y Sociedad</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Matemática Financiera</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Finanzas Corporativas</span><span class="course-cr">3</span></div>
+    </div>
+    <div class="bloque-section bs-ef">
+      <div class="bloque-section-header">Núcleo dpto. Economía &amp; Finanzas <span class="cr-total">21 cr.</span></div>
+      <div class="course-row"><span class="course-name">Econometría y Métodos de Regresión</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Predicción y Pronósticos</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Métodos de Optimización</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Proyecto Integrador I</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Álgebra Lineal</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Cálculo II</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Macroeconomía I</span><span class="course-cr">3</span></div>
+    </div>
+    <div class="bloque-section bs-def">
+      <div class="bloque-section-header">Disciplinar específica — Finanzas <span class="cr-total">36 cr.</span></div>
+      <div class="course-row"><span class="course-name">Finanzas Personales</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Contabilidad p/ Toma de Decisiones</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Valoración de Empresas y Proyectos</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Renta Fija y Derivados</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Renta Variable y Portafolios</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Inversiones Alternativas</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Teoría y Política Monetaria</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Gestión Integral de Riesgos</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Economía Financiera</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Electiva Disciplinar I</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Electiva Disciplinar II</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Electiva Disciplinar III</span><span class="course-cr">3</span></div>
+    </div>
+    <div class="bloque-section bs-elec">
+      <div class="bloque-section-header">Profundización / Diversificación <span class="cr-total">12 cr.</span></div>
+      <div class="course-row"><span class="course-name">Núcleo de Diversificación I (TBD)</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Núcleo de Diversificación II (TBD)</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Núcleo de Diversificación III (TBD)</span><span class="course-cr">3</span></div>
+      <div class="course-row"><span class="course-name">Núcleo de Diversificación IV (TBD)</span><span class="course-cr">3</span></div>
+    </div>
+    <div class="bloque-section bs-grado">
+      <div class="bloque-section-header">Opción de grado <span class="cr-total">9 cr.</span></div>
+      <div class="course-row"><span class="course-name">Opción de Grado</span><span class="course-cr">9</span></div>
+    </div>
+    <div class="bloque-section bs-cap">
+      <div class="bloque-section-header">Capstone <span class="cr-total">3 cr.</span></div>
+      <div class="course-row"><span class="course-name">Proyecto Integrador Capstone</span><span class="course-cr">3</span></div>
+    </div>
+    <div class="bloque-section bs-total">
+      <div class="bloque-section-header">Total <span class="cr-total">126 cr.</span></div>
+    </div>
+  </div>
+  <div class="notes">Nota: Álgebra Lineal, Cálculo II y Macroeconomía I se incluyeron en el núcleo de departamento como base metodológica. La composición exacta de Formación Rosarista (electivas HM y Constitución) requiere confirmación con la malla oficial.</div>
+</div>
+</div>
+</div>
+
+<!-- ===== COMPARATIVO ADMINISTRACIÓN & NEGOCIOS ===== -->
+<div class="tab-content" id="tab-admon">
+<div class="malla-wrap">
+  <div class="malla-header">
+    <span class="malla-title">Comparativo Escuela de Administración &amp; Negocios</span>
+    <span class="malla-total">ANI original · AdE · Marketing · Emprendimiento — 140 cr. c/u</span>
+  </div>
+  <p class="malla-note">Análisis de coherencia por tipología de curso. ⚠ = diferencia de créditos en cursos con el mismo nombre entre programas.</p>
+
+  <!-- RESUMEN BLOQUES -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;">
+    <div style="border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;">
+      <div style="background:#1a1a1a;color:#fff;font-size:10px;font-weight:700;padding:6px 10px;">ANI original — 140 cr.</div>
+      <div style="font-size:10px;padding:6px 10px;background:#fce8e8;color:#7a1a1a;">Formación Rosarista: <b>16</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#dbeafe;color:#0c447c;">NBC Escuela: <b>32</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#d1fae5;color:#065f46;">Dpto. A&amp;N: <b>18</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#a7f3d0;color:#064e3b;">Disciplinar: <b>41</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#fef9c3;color:#713f12;">Profundización: <b>19</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#ede9fe;color:#3730a3;">Opción grado: <b>8</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#e0f2fe;color:#0c4a6e;">Capstone: <b>6</b></div>
+    </div>
+    <div style="border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;">
+      <div style="background:#1a1a1a;color:#fff;font-size:10px;font-weight:700;padding:6px 10px;">Adm. de Empresas — 140 cr.</div>
+      <div style="font-size:10px;padding:6px 10px;background:#fce8e8;color:#7a1a1a;">Formación Rosarista: <b>15</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#dbeafe;color:#0c447c;">NBC: <b>46</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#d1fae5;color:#065f46;">Dpto. A&amp;N: <b>—</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#a7f3d0;color:#064e3b;">Disciplinar: <b>49</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#fef9c3;color:#713f12;">Profundización: <b>22</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#ede9fe;color:#3730a3;">Opción grado: <b>8</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#e0f2fe;color:#0c4a6e;">Capstone: <b>—</b> (en disciplinar)</div>
+    </div>
+    <div style="border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;">
+      <div style="background:#1a1a1a;color:#fff;font-size:10px;font-weight:700;padding:6px 10px;">Marketing y Neg. Digitales — 140 cr.</div>
+      <div style="font-size:10px;padding:6px 10px;background:#fce8e8;color:#7a1a1a;">Formación Rosarista: <b>15</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#dbeafe;color:#0c447c;">NBC: <b>49</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#d1fae5;color:#065f46;">Dpto. A&amp;N: <b>—</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#a7f3d0;color:#064e3b;">Disciplinar: <b>49</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#fef9c3;color:#713f12;">Profundización: <b>19</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#ede9fe;color:#3730a3;">Opción grado: <b>8</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#e0f2fe;color:#0c4a6e;">Capstone: <b>—</b> (en disciplinar)</div>
+    </div>
+    <div style="border:1px solid #e0e0e0;border-radius:6px;overflow:hidden;">
+      <div style="background:#1a1a1a;color:#fff;font-size:10px;font-weight:700;padding:6px 10px;">Emprendimiento — 140 cr.</div>
+      <div style="font-size:10px;padding:6px 10px;background:#fce8e8;color:#7a1a1a;">Formación Rosarista: <b>18</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#dbeafe;color:#0c447c;">NBC: <b>43</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#d1fae5;color:#065f46;">Dpto. A&amp;N: <b>—</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#a7f3d0;color:#064e3b;">Disciplinar: <b>43</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#fef9c3;color:#713f12;">Profundización: <b>22</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#ede9fe;color:#3730a3;">Opción grado: <b>8</b></div>
+      <div style="font-size:10px;padding:6px 10px;background:#e0f2fe;color:#0c4a6e;">Capstone: <b>6</b></div>
+    </div>
+  </div>
+
+  <!-- TABLA COMPARATIVA CURSOS -->
+  <table>
+    <thead>
+      <tr>
+        <th class="lbl" style="width:28%">Curso</th>
+        <th style="width:9%">ANI orig.</th>
+        <th style="width:9%">AdE</th>
+        <th style="width:9%">Marketing</th>
+        <th style="width:9%">Emprend.</th>
+        <th style="width:8%">Conflicto</th>
+        <th class="lbl" style="width:28%">Tipología</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- FORMACION ROSARISTA -->
+      <tr><td colspan="7" style="background:#fce8e8;color:#7a1a1a;font-weight:600;font-size:10px;letter-spacing:0.05em;padding:6px 10px;border-bottom:none;">FORMACIÓN ROSARISTA</td></tr>
+      <tr class="ros"><td class="lbl">Cátedra Rosarista</td><td>2</td><td>2</td><td>2</td><td>2</td><td></td><td class="lbl" style="font-size:10px">✓ Coherente en 4 programas</td></tr>
+      <tr class="ros"><td class="lbl">Lectura / Lectoescritura</td><td>2+2</td><td>3</td><td>3</td><td>3</td><td style="color:#991b1b;font-size:10px">⚠ ANI: 4 cr (2 cursos)</td><td class="lbl" style="font-size:10px">AdE, Mkt, Emp: un solo curso de 3 cr.</td></tr>
+      <tr class="ros"><td class="lbl">Ética</td><td>2</td><td>2</td><td>2</td><td>2</td><td></td><td class="lbl" style="font-size:10px">✓ Coherente en 4 programas</td></tr>
+      <tr class="ros"><td class="lbl">Electivas HM / Núcleo Mutis</td><td>6</td><td>4</td><td>4</td><td>6</td><td style="color:#991b1b;font-size:10px">⚠ Varía 4–6 cr.</td><td class="lbl" style="font-size:10px">Sin estandarización entre programas</td></tr>
+      <tr class="ros"><td class="lbl">Constitución Política</td><td>2</td><td>2</td><td>2</td><td>2</td><td></td><td class="lbl" style="font-size:10px">✓ Coherente — nombre varía levemente</td></tr>
+      <tr class="ros"><td class="lbl">Lógica Matemática</td><td>3 (NBC)</td><td>3 (NBC)</td><td>3 (NBC)</td><td>3 (Ros.)</td><td style="color:#991b1b;font-size:10px">⚠ Emp: clasifica en Rosarista</td><td class="lbl" style="font-size:10px">Inconsistencia de bloque en Emprendimiento</td></tr>
+
+      <!-- NBC -->
+      <tr><td colspan="7" style="background:#dbeafe;color:#0c447c;font-weight:600;font-size:10px;letter-spacing:0.05em;padding:6px 10px;border-bottom:none;">NÚCLEO BÁSICO COMÚN / NBC</td></tr>
+      <tr class="nbc"><td class="lbl">Scaling Management</td><td>2 (Dpto)</td><td>2</td><td>2</td><td>2</td><td></td><td class="lbl" style="font-size:10px">✓ Créditos coherentes — bloque varía</td></tr>
+      <tr class="nbc"><td class="lbl">Marketing</td><td>2 (Dpto)</td><td>2</td><td>2</td><td>2</td><td></td><td class="lbl" style="font-size:10px">✓ Coherente en créditos</td></tr>
+      <tr class="nbc"><td class="lbl">Economía para Negocios</td><td>3 (ENS)</td><td>2</td><td>2</td><td>2</td><td style="color:#991b1b;font-size:10px">⚠ ANI: 3 cr. / Otros: 2 cr.</td><td class="lbl" style="font-size:10px">ANI tiene versión más amplia</td></tr>
+      <tr class="nbc"><td class="lbl">Lógica Matemática</td><td>3</td><td>3</td><td>3</td><td>3</td><td></td><td class="lbl" style="font-size:10px">✓ Coherente</td></tr>
+      <tr class="nbc"><td class="lbl">Inglés I-II / III-IV / V-VI</td><td class="na">—</td><td>12</td><td>12</td><td>12</td><td style="color:#991b1b;font-size:10px">⚠ ANI usa Tercer Idioma</td><td class="lbl" style="font-size:10px">ANI: Tercer Idioma (8 cr. disc.) vs. 12 cr. inglés en otros</td></tr>
+      <tr class="nbc"><td class="lbl">Fundamentos / Mat. para los Negocios</td><td class="na">—</td><td>3+3</td><td>3+3</td><td>3+3</td><td style="color:#991b1b;font-size:10px">⚠ Duplicidad Fund.+Mat.</td><td class="lbl" style="font-size:10px">Dos cursos con solapamiento conceptual; ANI usa Precálculo+Cálculo I</td></tr>
+      <tr class="nbc"><td class="lbl">Programación para los Negocios</td><td>3</td><td>3</td><td>3</td><td>3</td><td></td><td class="lbl" style="font-size:10px">✓ Coherente en 4 programas</td></tr>
+      <tr class="nbc"><td class="lbl">Contabilidad y Costos</td><td>3 (Dpto)</td><td>2</td><td>2</td><td>2</td><td style="color:#991b1b;font-size:10px">⚠ ANI: 3 cr. / Otros: 2 cr.</td><td class="lbl" style="font-size:10px">Diferencia de 1 crédito sin justificación aparente</td></tr>
+      <tr class="nbc"><td class="lbl">Innovación y Emprendimiento</td><td>2 (Dpto)</td><td>2</td><td>2</td><td class="na">—</td><td></td><td class="lbl" style="font-size:10px">Emp. lo reemplaza por cursos disciplinares propios</td></tr>
+      <tr class="nbc"><td class="lbl">Liderazgo en la Era Digital</td><td>2 (Dpto)</td><td>2</td><td>2</td><td>2</td><td></td><td class="lbl" style="font-size:10px">✓ Coherente en 4 programas</td></tr>
+      <tr class="nbc"><td class="lbl">Data Driven &amp; Decision Making</td><td>2</td><td>3</td><td>3</td><td>3</td><td style="color:#991b1b;font-size:10px">⚠ ANI: 2 cr. / Otros: 3 cr.</td><td class="lbl" style="font-size:10px">ANI propuesta ya corrige a 3 cr.</td></tr>
+      <tr class="nbc"><td class="lbl">Matemática Financiera</td><td>3</td><td>2</td><td>2</td><td>2</td><td style="color:#991b1b;font-size:10px">⚠ ANI: 3 cr. / Otros: 2 cr.</td><td class="lbl" style="font-size:10px">Decisión pendiente: ¿estandarizar en 2 o 3?</td></tr>
+      <tr class="nbc"><td class="lbl">Strategic Management</td><td>2 (Dpto)</td><td>2</td><td>2</td><td>2</td><td></td><td class="lbl" style="font-size:10px">✓ Coherente en créditos</td></tr>
+      <tr class="nbc"><td class="lbl">Sustainability Management</td><td>2 (Dpto)</td><td>2</td><td>2</td><td>2</td><td></td><td class="lbl" style="font-size:10px">✓ Coherente en 4 programas</td></tr>
+      <tr class="nbc"><td class="lbl">Project Management</td><td>2 (Dpto)</td><td>2</td><td>2</td><td>2</td><td></td><td class="lbl" style="font-size:10px">✓ Coherente en 4 programas</td></tr>
+      <tr class="nbc"><td class="lbl">Mentoring Profesional</td><td>1</td><td>2</td><td>2</td><td>2</td><td style="color:#991b1b;font-size:10px">⚠ ANI: 1 cr. / Otros: 2 cr.</td><td class="lbl" style="font-size:10px">ANI propuesta ya elimina el curso</td></tr>
+      <tr class="nbc"><td class="lbl">Global Future Workforce</td><td>2 (Disc)</td><td>2 (Disc)</td><td class="na">—</td><td>2 (NBC)</td><td style="color:#991b1b;font-size:10px">⚠ Bloque inconsistente</td><td class="lbl" style="font-size:10px">NBC en Emp., Disciplinar en ANI y AdE</td></tr>
+
+      <!-- DISCIPLINAR -->
+      <tr><td colspan="7" style="background:#a7f3d0;color:#064e3b;font-weight:600;font-size:10px;letter-spacing:0.05em;padding:6px 10px;border-bottom:none;">DISCIPLINAR ESPECÍFICA</td></tr>
+      <tr class="dan"><td class="lbl">International Finance</td><td>2</td><td>2</td><td class="na">—</td><td class="na">—</td><td></td><td class="lbl" style="font-size:10px">Compartido ANI–AdE; coherente</td></tr>
+      <tr class="dan"><td class="lbl">Branding</td><td class="na">—</td><td>2</td><td>2</td><td class="na">—</td><td></td><td class="lbl" style="font-size:10px">Compartido AdE–Mkt; coherente</td></tr>
+      <tr class="dan"><td class="lbl">Publicidad Digital</td><td class="na">—</td><td class="na">—</td><td>2</td><td>2</td><td></td><td class="lbl" style="font-size:10px">Compartido Mkt–Emp.; coherente</td></tr>
+      <tr class="dan"><td class="lbl">Business Intelligence</td><td class="na">—</td><td class="na">—</td><td>2</td><td>2</td><td></td><td class="lbl" style="font-size:10px">Compartido Mkt–Emp.; coherente</td></tr>
+      <tr class="dan"><td class="lbl">Derecho comercial y tributario</td><td class="na">—</td><td>2</td><td class="na">—</td><td>2</td><td></td><td class="lbl" style="font-size:10px">Compartido AdE–Emp.; coherente</td></tr>
+      <tr class="dan"><td class="lbl">Digital Business Models</td><td>2</td><td class="na">—</td><td>2</td><td class="na">—</td><td></td><td class="lbl" style="font-size:10px">Compartido ANI–Mkt.; coherente</td></tr>
+      <tr class="dan"><td class="lbl">Técnicas de Negociación</td><td>2</td><td class="na">—</td><td class="na">—</td><td>2</td><td></td><td class="lbl" style="font-size:10px">Compartido ANI–Emp.; coherente</td></tr>
+      <tr class="dan"><td class="lbl">Práctica / Capstone</td><td>6 (cap)</td><td>6 (disc)</td><td>6 (disc)</td><td>6 (disc)</td><td style="color:#991b1b;font-size:10px">⚠ Bloque inconsistente</td><td class="lbl" style="font-size:10px">Mismos créditos, clasificación diferente</td></tr>
+
+      <!-- PROFUNDIZACIÓN -->
+      <tr><td colspan="7" style="background:#fef9c3;color:#713f12;font-weight:600;font-size:10px;letter-spacing:0.05em;padding:6px 10px;border-bottom:none;">PROFUNDIZACIÓN / DIVERSIFICACIÓN / OPCIÓN DE GRADO</td></tr>
+      <tr class="elec"><td class="lbl">Profundización total</td><td>19</td><td>22</td><td>19</td><td>22</td><td style="color:#991b1b;font-size:10px">⚠ AdE y Emp.: 22 cr.</td><td class="lbl" style="font-size:10px">AdE y Emp. tienen 3 cr. adicionales de Fundamentos</td></tr>
+      <tr class="grado"><td class="lbl">Opción de grado</td><td>8</td><td>8</td><td>8</td><td>8</td><td></td><td class="lbl" style="font-size:10px">✓ Coherente — ANI propuesta sube a 9</td></tr>
+
+    </tbody>
+  </table>
+
+  <!-- DIAGNÓSTICO -->
+  <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+    <div style="border:1px solid #fecaca;border-radius:6px;padding:12px;background:#fff8f8;">
+      <div style="font-size:11px;font-weight:600;color:#991b1b;margin-bottom:8px;">⚠ Conflictos de crédito identificados</div>
+      <div style="font-size:11px;color:#555;line-height:1.8;">
+        <b>Contabilidad y Costos:</b> ANI 3 cr. vs. AdE/Mkt/Emp. 2 cr.<br>
+        <b>Matemática Financiera:</b> ANI 3 cr. vs. otros 2 cr. — ¿estandarizar?<br>
+        <b>Data Driven &amp; Decision Making:</b> ANI original 2 cr. vs. otros 3 cr. (corregido en propuesta ANI)<br>
+        <b>Mentoring Profesional:</b> ANI 1 cr. vs. otros 2 cr. (sale en propuesta ANI)<br>
+        <b>Economía para Negocios:</b> ANI 3 cr. (como ENS) vs. otros 2 cr.
+      </div>
+    </div>
+    <div style="border:1px solid #bbf7d0;border-radius:6px;padding:12px;background:#f0fdf4;">
+      <div style="font-size:11px;font-weight:600;color:#065f46;margin-bottom:8px;">✓ Núcleo compartido sólido (14 cursos)</div>
+      <div style="font-size:11px;color:#555;line-height:1.8;">
+        Cátedra Rosarista · Ética · Constitución · Lógica Matemática · Scaling Management · Marketing · Liderazgo · Strategic Mgmt. · Sustainability Mgmt. · Project Mgmt. · Programación · Strategic Management · Profundización · Opción de Grado<br><br>
+        <b>Candidatos a NBC Escuela (3-4 programas):</b> Programación, Lógica, Scaling, Marketing, Liderazgo, Strategic, Sustainability, Project Mgmt.
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:12px;border:1px solid #e0e7ff;border-radius:6px;padding:12px;background:#f8f8ff;">
+    <div style="font-size:11px;font-weight:600;color:#312e81;margin-bottom:8px;">🔍 Inconsistencias estructurales</div>
+    <div style="font-size:11px;color:#555;line-height:1.8;">
+      <b>Inglés vs. Tercer Idioma:</b> AdE, Mkt y Emp. tienen 12 cr. de inglés en NBC; ANI los reemplaza con 8 cr. de Tercer Idioma en disciplinar — lógica distinta, no comparable directamente.<br>
+      <b>Fundamentos Matemáticos + Matemáticas para los Negocios:</b> AdE, Mkt y Emp. tienen ambos cursos (6 cr. total); ANI usa Precálculo + Cálculo I. Solapamiento probable entre "Fundamentos" y "Matemáticas para los Negocios".<br>
+      <b>Práctica/Capstone:</b> ANI clasifica la práctica como "Capstone" (bloque separado); los otros tres la clasifican como "Disciplinar" — inconsistencia de bloque que distorsiona comparación disciplinar.<br>
+      <b>Lógica Matemática en Emprendimiento:</b> clasificada en Formación Rosarista en lugar de NBC — error de clasificación.<br>
+      <b>NBC vs. Dpto. A&amp;N:</b> los cursos que ANI clasifica como "Dpto. A&amp;N" (Scaling, Marketing, Liderazgo, etc.) aparecen como NBC en AdE, Mkt y Emp. — la distinción de departamento aplica solo a ANI en la nomenclatura actual.
+    </div>
+  </div>
+</div>
+</div>
+<script>
+function showTab(id, el) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  el.classList.add('active');
+}
+function toggle(id) {
+  const row = document.getElementById(id);
+  const btn = event.target;
+  const isOpen = row.classList.toggle('open');
+  btn.textContent = isOpen ? '− cursos' : '+ cursos';
+}
+</script>
+</body>
+</html>
