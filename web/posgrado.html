@@ -228,6 +228,60 @@ nav.top-nav .brand { color:#fff; font-size:13px; font-weight:600; letter-spacing
 .block-open .block-name { color:rgba(200,160,58,.7); }
 .block-open .block-cr   { color:rgba(200,160,58,.5); }
 
+/* ── CREDENCIALES ── */
+.cred-intro-text {
+  font-size:.84rem; color:var(--muted); line-height:1.75; margin-bottom:1.25rem;
+  max-width:660px;
+}
+.cred-intro-text strong { color:var(--text); font-weight:600; }
+
+.cred-pairs { display:flex; flex-direction:column; gap:1rem; margin-bottom:1.75rem; }
+.cred-pair {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--r);
+  padding:1rem 1.25rem; display:flex; align-items:center; gap:.75rem; flex-wrap:wrap;
+}
+.cred-pair-num {
+  font-family:var(--f-display); font-size:1.6rem; letter-spacing:.04em;
+  color:var(--teal); flex-shrink:0; width:26px;
+}
+.cred-block {
+  border-radius:5px; padding:.5rem .75rem; display:flex; flex-direction:column; gap:.15rem;
+  flex:1; min-width:120px;
+}
+.cred-block-code {
+  font-family:var(--f-display); font-size:.95rem; letter-spacing:.05em; color:#fff; line-height:1;
+}
+.cred-block-name { font-size:.67rem; color:rgba(255,255,255,.8); line-height:1.3; }
+.cred-block-cr   { font-size:.6rem; color:rgba(255,255,255,.5); }
+.cred-op {
+  font-family:var(--f-display); font-size:1.4rem; color:var(--dim); flex-shrink:0;
+  padding:0 .1rem;
+}
+.cred-arrow-op {
+  font-size:1.2rem; color:var(--teal); flex-shrink:0; padding:0 .25rem;
+}
+.cred-result {
+  background:var(--cb-pe); border:1.5px solid var(--teal);
+  border-radius:var(--r); padding:.55rem 1rem; flex:1; min-width:140px;
+  display:flex; flex-direction:column; gap:.15rem;
+}
+.cred-result-label {
+  font-size:.58rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--teal); margin-bottom:.1rem;
+}
+.cred-result-name { font-size:.82rem; font-weight:700; color:var(--text); line-height:1.25; }
+.cred-result-cr   { font-size:.7rem; color:var(--muted); }
+
+/* pin on course blocks for credential marking */
+.cred-pin {
+  position:absolute; top:-9px; right:-9px;
+  width:20px; height:20px; border-radius:50%;
+  background:var(--teal); border:2px solid var(--surface);
+  display:flex; align-items:center; justify-content:center;
+  font-size:.6rem; font-weight:700; color:#fff; z-index:2;
+}
+.cred-pin-2 { background:rgba(10,107,90,.65); }
+
 /* ── PLAN TABLE ── */
 .plan-table-wrap { overflow-x:auto; margin-bottom:1.5rem; }
 .plan-table { width:100%; border-collapse:collapse; min-width:460px; }
@@ -275,7 +329,7 @@ nav.top-nav .brand { color:#fff; font-size:13px; font-weight:600; letter-spacing
 
 <!-- ── TABS ── -->
 <div class="tab-bar">
-  <button class="tab-btn active" onclick="showTab('modelo')">Modelo híbrido 3+2</button>
+  <button class="tab-btn active" onclick="showTab('modelo')">Modelo de malla</button>
   <button class="tab-btn" onclick="showTab('ba')">Maestría en Business Analytics</button>
 </div>
 
@@ -307,7 +361,7 @@ nav.top-nav .brand { color:#fff; font-size:13px; font-weight:600; letter-spacing
       <div class="tipo-label" style="color:var(--c-fund);">Fundamentos</div>
       <div class="tipo-name">Núcleo compartido</div>
       <div class="tipo-cr" style="color:var(--c-fund);">3 cr</div>
-      <div class="tipo-meta">4 cursos · 12 cr total<br>Idénticos en todos los programas</div>
+      <div class="tipo-meta">4 cursos · 12 cr total<br>Compartido con algunos programas</div>
     </div>
     <div class="tipo-card" style="border-left:3px solid var(--c-prof);">
       <div class="tipo-label" style="color:var(--c-prof);">Profundización</div>
@@ -499,6 +553,60 @@ nav.top-nav .brand { color:#fff; font-size:13px; font-weight:600; letter-spacing
     </table>
   </div>
 
+  <!-- CREDENCIALES INTERMEDIAS -->
+  <div class="section-divider"><h2>Credenciales intermedias</h2><span>1 Fundamento + 1 Profundización</span></div>
+
+  <p class="cred-intro-text">
+    La arquitectura permite generar <strong>certificaciones acumulables</strong> combinando
+    un curso de Fundamentos con un módulo de Profundización temáticamente complementarios.
+    Cada par suma <strong>5 créditos</strong> y puede reconocerse como credencial intermedia
+    —acreditable antes de completar la maestría completa.
+  </p>
+
+  <div class="cred-pairs">
+    <div class="cred-pair">
+      <div class="cred-pair-num">①</div>
+      <div class="cred-block" style="background:var(--c-fund);">
+        <div class="cred-block-code">F<sub style="font-size:.7em;">n</sub></div>
+        <div class="cred-block-name">Fundamento (3 cr)</div>
+        <div class="cred-block-cr">Núcleo compartido</div>
+      </div>
+      <div class="cred-op">+</div>
+      <div class="cred-block" style="background:var(--c-prof);">
+        <div class="cred-block-code">P<sub style="font-size:.7em;">n</sub></div>
+        <div class="cred-block-name">Profundización (2 cr)</div>
+        <div class="cred-block-cr">Módulo del programa</div>
+      </div>
+      <div class="cred-arrow-op">→</div>
+      <div class="cred-result">
+        <div class="cred-result-label">Credencial intermedia ①</div>
+        <div class="cred-result-name">Certificación de nivel 1</div>
+        <div class="cred-result-cr">5 cr · acreditable entre S1 y S2</div>
+      </div>
+    </div>
+
+    <div class="cred-pair">
+      <div class="cred-pair-num" style="color:rgba(10,107,90,.6);">②</div>
+      <div class="cred-block" style="background:var(--c-fund);">
+        <div class="cred-block-code">F<sub style="font-size:.7em;">n</sub></div>
+        <div class="cred-block-name">Fundamento (3 cr)</div>
+        <div class="cred-block-cr">Núcleo compartido</div>
+      </div>
+      <div class="cred-op">+</div>
+      <div class="cred-block" style="background:var(--c-prof);">
+        <div class="cred-block-code">P<sub style="font-size:.7em;">n</sub></div>
+        <div class="cred-block-name">Profundización (2 cr)</div>
+        <div class="cred-block-cr">Módulo del programa</div>
+      </div>
+      <div class="cred-arrow-op">→</div>
+      <div class="cred-result">
+        <div class="cred-result-label">Credencial intermedia ②</div>
+        <div class="cred-result-name">Certificación de nivel 2</div>
+        <div class="cred-result-cr">5 cr · acreditable entre S2 y S3</div>
+      </div>
+    </div>
+  </div>
+
   <!-- PRINCIPIOS -->
   <div class="section-divider"><h2>Principios del modelo</h2><span>Rationale de diseño</span></div>
 
@@ -585,13 +693,15 @@ nav.top-nav .brand { color:#fff; font-size:13px; font-weight:600; letter-spacing
           <div class="block-name-sm">Visualización de Datos</div>
           <div class="block-cr">3 cr</div>
         </div>
-        <div class="course-block cb-fund" style="flex:1.15;">
+        <div class="course-block cb-fund" style="flex:1.15;position:relative;">
+          <span class="cred-pin">①</span>
           <span class="block-tag shared">COMÚN</span>
           <div class="block-code">F3</div>
           <div class="block-name-sm">Inteligencia de Negocios</div>
           <div class="block-cr">3 cr</div>
         </div>
-        <div class="course-block cb-prof" style="flex:1;">
+        <div class="course-block cb-prof" style="flex:1;position:relative;">
+          <span class="cred-pin">①</span>
           <div class="block-code">P1</div>
           <div class="block-name-sm">Ética, Seguridad y Aspectos Legales de los Datos</div>
           <div class="block-cr">2 cr</div>
@@ -606,7 +716,8 @@ nav.top-nav .brand { color:#fff; font-size:13px; font-weight:600; letter-spacing
         <span class="sem-row-cr">11 cr</span>
       </div>
       <div class="sem-row-body">
-        <div class="course-block cb-fund" style="flex:1.15;">
+        <div class="course-block cb-fund" style="flex:1.15;position:relative;">
+          <span class="cred-pin cred-pin-2">②</span>
           <span class="block-tag shared">COMÚN</span>
           <div class="block-code">F4</div>
           <div class="block-name-sm">Modelos Estadísticos para Toma de Decisiones</div>
@@ -617,7 +728,8 @@ nav.top-nav .brand { color:#fff; font-size:13px; font-weight:600; letter-spacing
           <div class="block-name-sm">Gestión Ágil de Proyectos</div>
           <div class="block-cr">2 cr</div>
         </div>
-        <div class="course-block cb-prof">
+        <div class="course-block cb-prof" style="position:relative;">
+          <span class="cred-pin cred-pin-2">②</span>
           <div class="block-code">P3</div>
           <div class="block-name-sm">Analítica Predictiva</div>
           <div class="block-cr">2 cr</div>
@@ -671,6 +783,59 @@ nav.top-nav .brand { color:#fff; font-size:13px; font-weight:600; letter-spacing
     </div>
 
   </div><!-- /sem-visual -->
+
+  <!-- CREDENCIALES BA -->
+  <div class="section-divider"><h2>Credenciales intermedias</h2><span>Salidas acreditables antes de completar la maestría</span></div>
+
+  <p class="cred-intro-text">
+    Dos pares F+P generan <strong>certificaciones intermedias</strong> acreditables al finalizar
+    cada semestre. El estudiante puede obtener la credencial y continuar hacia la maestría,
+    o detenerse con una certificación reconocida.
+  </p>
+
+  <div class="cred-pairs">
+    <div class="cred-pair">
+      <div class="cred-pair-num">①</div>
+      <div class="cred-block" style="background:var(--c-fund);">
+        <div class="cred-block-code">F3</div>
+        <div class="cred-block-name">Inteligencia de Negocios</div>
+        <div class="cred-block-cr">3 cr · S1</div>
+      </div>
+      <div class="cred-op">+</div>
+      <div class="cred-block" style="background:var(--c-prof);">
+        <div class="cred-block-code">P1</div>
+        <div class="cred-block-name">Ética, Seguridad y Aspectos Legales</div>
+        <div class="cred-block-cr">2 cr · S1</div>
+      </div>
+      <div class="cred-arrow-op">→</div>
+      <div class="cred-result">
+        <div class="cred-result-label">Credencial intermedia ①</div>
+        <div class="cred-result-name">Analítica de Datos Responsable</div>
+        <div class="cred-result-cr">5 cr · acreditable al finalizar S1</div>
+      </div>
+    </div>
+
+    <div class="cred-pair">
+      <div class="cred-pair-num" style="color:rgba(10,107,90,.6);">②</div>
+      <div class="cred-block" style="background:var(--c-fund);">
+        <div class="cred-block-code">F4</div>
+        <div class="cred-block-name">Modelos Estadísticos para Decisiones</div>
+        <div class="cred-block-cr">3 cr · S2</div>
+      </div>
+      <div class="cred-op">+</div>
+      <div class="cred-block" style="background:var(--c-prof);">
+        <div class="cred-block-code">P3</div>
+        <div class="cred-block-name">Analítica Predictiva</div>
+        <div class="cred-block-cr">2 cr · S2</div>
+      </div>
+      <div class="cred-arrow-op">→</div>
+      <div class="cred-result">
+        <div class="cred-result-label">Credencial intermedia ②</div>
+        <div class="cred-result-name">Analytics Specialist</div>
+        <div class="cred-result-cr">5 cr · acreditable al finalizar S2</div>
+      </div>
+    </div>
+  </div>
 
   <!-- PLAN DE ESTUDIOS TABLE -->
   <div class="section-divider"><h2>Plan de estudios</h2><span>Detalle · 33 cr totales</span></div>
